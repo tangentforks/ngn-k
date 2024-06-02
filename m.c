@@ -10,6 +10,10 @@
 #else
  #define AP(p) ((A)(U)(p)) //A from pointer
 #endif
+#ifdef shared
+__attribute((weak, visibility("default"))) V kinit();
+#endif
+
 Z ST{V*p;W n;B f;}reg[128];Z U nreg;Z UC pnd[128];Z U npnd;
 Z V mc(){P(!npnd)F(npnd,U j=pnd[i];munmap(reg[j].p,reg[j].n);reg[j].p=0)npnd=0;U j=0;F(nreg,I(reg[i].p,MC(reg+j,reg+i,SZ*reg);j++))nreg=j;}
 Z A mu(V*p)_(F(nreg,P(reg[i].p==p,pnd[npnd++]=i;0))die("UNMAP"))
