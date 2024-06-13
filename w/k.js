@@ -93,4 +93,4 @@ txt=_=>{if(!g)return;cnv.parentNode.removeChild(cnv);clearInterval(iid);clearTim
  cnv=g=iid=tid=aid=null}
 
 onresize=_=>{if(!cnv||!out)return;let s=cnv.style,e=out;s.left=e.offsetLeft+'px';s.top=e.offsetTop+'px'
- const k=cnv.width=cnv.height=min(e.offsetWidth,e.offsetHeight);g.scale(k,k)}
+ const f=g.font;const k=cnv.width=cnv.height=min(e.offsetWidth,e.offsetHeight);g.scale(k,k);g.font=f}
