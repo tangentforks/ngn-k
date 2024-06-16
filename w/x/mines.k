@@ -25,7 +25,7 @@ md:{$[~tick;:tick
 d:{$[-2>i:G[(2+D)/1+x];(c`brown;q x)
      0>i:G[(2+D)/1+x];(c`green;q x)
      (c`blue;q x;c`white;w[(~i)_$i;B*u+x])]}
-draw:{cc:d'+!D;m:"you ",("lost";"won")W
+draw:{m:"you ",("lost";"won")W
       `js@,//("g.clearRect(0,0,1,1);";d'+!D)
       $[tick;:tick;~W;`js@,//(c`red;q I)]
       b:(c`white),/:w["X"]'+B*u+-1+(2+D)\&(0>G)&2=3!G
