@@ -9,7 +9,7 @@ cnt:{+/(+/(0>n)&2=3!n:x N;x)*~:\~0>x}
 
 tick:{G::cnt fld G;$[~+/-2=G;tick::(::);]}
 b:0.9*B:1%*D /inner(b) and outer(B) box size
-u:0.3 0.6 /position of win/lose message
+u:0.3 0.6 /position of text within box
 
 c:{"g.fillStyle='",($x),"';"}           /set colour
 w:{"g.fillText(",(","/(,`j x),$y),");"} /write text
