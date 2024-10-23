@@ -5,7 +5,6 @@
 #define  DBG(a...)//a
 #define    _(a...) {return({a;});}
 #define  A(x,a...) (TY(x)[]){x,a}
-#define   A8(a...) (CO A[8]){a}
 #define  G(x,a...) ({Z CO TY(x)arr[]={x,a};arr;})
 #define  W(x,a...) while(x){a;}
 #define  B(x,a...) I(x,a;break)
@@ -65,13 +64,14 @@
 #define MINE(x) (_r(x)==REFB)
 
 TD void V;TD bool B;TD char G,C;TD char unsigned UC;TD CO C*S;TD short H;TD unsigned short UH;TD int I;TD unsigned int U;TD long long L;TD double F;TD size_t N;
-TD unsigned long long W,A,A0(),A1(A),A2(A,A),A3(A,A,A),A4(A,A,A,A),AA(CO A*,U),AX(A,CO A*,U);
+TD unsigned long long W,A,A0(),A1(A),A2(A,A),A3(A,A,A),A4(A,A,A,A),A5(A,A,A,A,A),A6(A,A,A,A,A,A),A7(A,A,A,A,A,A,A),A8(A,A,A,A,A,A,A,A),AA(CO A*,U),AX(A,CO A*,U);
 
 #define A0(f,b...) A f(                )_(b)
 #define A1(f,b...) A f(A x             )_(b)/*1*/
 #define A2(f,b...) A f(A x,A y         )_(b)/*01*/
 #define A3(f,b...) A f(A x,A y,A z     )_(b)
 #define A4(f,b...) A f(A x,A y,A z,A u )_(b)
+#define A8(a...) (CO A[8]){a}
 #define AX(f,b...) A f(A x,CO A*a,U n  )_(DBG(Q(n<=8));b)/*0,1..1,n*/
 #define AA(f,b...) A f(    CO A*a,U n  )_(DBG(Q(n<=8));b)
 A1 _R,aA1,asc,AZ,blw,cB,cG,cC,cF,cH,cI,cL,cS,dsc,enl,epr,err,fir,flp,flr,frk,gZ,gg,grp,hex,imx,imn,inv,jS,js0,js1,kcos,kexp,klog,ksin,kst,las,len,m0,m1,mkn,mRa,mr,mut,
