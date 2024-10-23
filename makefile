@@ -3,6 +3,7 @@ M=mkdir -p $(@D)
 0:;$(MAKE) k && $(MAKE) t #default target
 k:;$(MAKE) a N=$@ R=k O='-O3 -march=native' L='-lm -ldl' #for calling k from dynamic libs, add: L='... -Wl,-E'
 libk.so:;$(MAKE) a N=$@ R=$@ O='-fPIC -Dshared -fvisibility=hidden' L='-lm -ldl -shared'
+libk.dylib:;$(MAKE) a N=$@ R=$@ O='-fPIC -Dshared -fvisibility=hidden' L='-lm -ldl -install_name $@ -dynamiclib'
 libk.a:;$(MAKE) b N=$@ R=$@ O='-O3 -march=native -ffreestanding -lm -ldl -Dldstatic'
 o/$N/%.o:%.c *.h;$M;$(CC) @opts $O -o $@ -c $<
 o/$N/bin:$(patsubst %.c,o/$N/%.o,$(wildcard *.c));$(CC) $O -o $@ $^ @lopts $L # ;$(STRIP) -R .comment $@ -R '.note*'
