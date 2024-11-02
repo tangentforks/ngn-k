@@ -9,15 +9,15 @@ Z A1(p1,x&&xn==1?fir(x):x)                                                      
 S pID(S s)_(W(id1(*s),s+=0xe555>>((UC)*s>>4&-2)&3)s)                                                //parse identifier
 W pu(S*p)_(S s=*p;W v=0;C c=*s;W(C09(c),v=10*v+c-'0';c=*++s)*p-s?*p=s,v:NL)                         //parse unsigned long
 L pl(S*p)_(B m=**p=='-';*p+=m;(1-2*m)*pu(p))                                                        //parse long
-Z L plN(S*p)_(L v=pl(p);!v&&**p=='N'?(*p)++,NL:v)                                                   //parse long (with support for nulls)
+Z L plN(S*p)_(S s=*p;L v=pl(&s);P((*s)&&!!strchr(".nwefb",*s),NL)*p=s;!v&&**p=='N'?(*p)++,NL:v)     //parse long (with support for nulls)
 Z L pfu(S*p)_(L v=pu(p);S s=*p;C c=*s;P(c=='w',(*p)++;WFL)P(c=='n',(*p)++;v^NFL)I e=0;              //parse float unsigned
  I(c=='.',c=*++s;W(C09(c),I(v<(1ull<<63)/10,v=10*v+c-'0';e--)c=*++s))
  I(c=='e',s++;e+=pl(&s);P(e<-308,0)P(e>308,WFL))
  Z F t[309];I(!*t,*t=1;F(308,t[i+1]=10*t[i]))
  *p=s;*(L*)A(e<0?v/t[-e]:v*t[e]))
 L pf(S*p)_(B m=**p=='-';(*p)+=m;L v=(L)m<<63|pfu(p);(*p)+=**p=='f';v)                               //parse float
-Z A pV(C t,TY(pl)*f)_(L a[1<<9];U n=0;                                                              //parse ints or floats
- W(1,L v=f(&s);P(n>=L(a),ez0())a[n++]=v;S p=pw(s);B(p==s||!num(p))s=p)aV(t,n,a))
+Z A pV(C t,TY(pl)*f)_(L a[1<<9];U n=0;S p=s,m;                                                      //parse ints or floats
+ W(1,m=p;L v=f(&p);P(n>=L(a),ez0())B(p==m)s=p;a[n++]=v;p=pw(s);B(p==s||!num(p)))aV(t,n,a))
 Z A0(pZ,S p=s;W(*p-'0'<2u,p++)                                                                      //parse ints
  P(*p=='B',S t=s;s=p+1;cB(aV(tG,p-t,t)))//todo
  P(*p=='b',S t=s;s=p+1;cG(cB(aV(tG,p-t,t))))
@@ -45,7 +45,7 @@ Z A pt(C*v)_(C c=*s;                                                            
  P(C09(c)&&s[1]==':',B u=s[2]==':';s+=2+u;U i=20+c-'0';P(i>25,ep0())*v=1;Lt(tv-u)|i)
  P(c=='0'&&s[1]=='x',s+=2;p1(p0x()))
  P(num(s)&&(c-'-'||s==s0||(!id1(s[-1])&&!strchr(")]}\"",s[-1]))),
-  B d=0;S p=s;c=*p;W(1,p=pw(p);B(!num(p))p+=*p=='-';c=*p;B(!CA9(c))W(CA9(c)||c=='.'||c==':',d|=!!strchr(".nwef",c);c=*++p))p1(d?pF():pZ()))
+  B d;S p=s;A x=an(0,tL);W(1,d=xtF;p+=*p=='-';c=*p;B(!CA9(c))W(CA9(c)||c=='.'||c==':',d|=!!strchr(".nwef",c);c=*++p)x=cat11(d-xtF?cF(x):x,d?pF():pZ());p=pw(s);B(p==s||!num(p))s=p)p1(x))
  P(c>>7,S p=s;A x=pP();*v=1;AO(p-s0,x))
  U i=si("'/\\",c);P(i<3,c=*++s;B h=c==':';s+=h;*v=1;aw+i+3*h)i=si(vc,c);P(i>19,GAP)
  B u=*++s==':';s+=u;*v=1;Lt(tv-u)|i)
