@@ -16,16 +16,17 @@ Z L pfu(S*p)_(L v=pu(p);S s=*p;C c=*s;P(c=='w',(*p)++;WFL)P(c=='n',(*p)++;v^NFL)
  Z F t[309];I(!*t,*t=1;F(308,t[i+1]=10*t[i]))
  *p=s;*(L*)A(e<0?v/t[-e]:v*t[e]))
 L pf(S*p)_(B m=**p=='-';(*p)+=m;L v=(L)m<<63|pfu(p);(*p)+=**p=='f';v)                               //parse float
-Z A pV(C t,TY(pl)*f)_(L a[1<<9];U n=0;S p=s,m;                                                      //parse ints or floats
- W(1,m=p;L v=f(&p);P(n>=L(a),ez0())B(p==m)s=p;a[n++]=v;p=pw(s);B(p==s||!num(p)))aV(t,n,a))
+Z A pV(C t,TY(pl)*f)_(L a[1<<9];U n=0;S p=s,m;B d=1;A x=an(0,t);                                    //parse ints or floats
+ W(d,n=0;W(n<L(a),m=p;L v=f(&p);B(p==m,d=0)s=p;a[n++]=v;p=pw(s);B(p==s||!num(p),d=0))x=cat11(x,aV(t,n,a)))x)
+
 Z A0(pZ,S p=s;W(*p-'0'<2u,p++)                                                                      //parse ints
  P(*p=='B',S t=s;s=p+1;cB(aV(tG,p-t,t)))//todo
  P(*p=='b',S t=s;s=p+1;cG(cB(aV(tG,p-t,t))))
  sqzZ(N(pV(tL,plN))))
 Z A0(pF,pV(tF,pf))                                                                                  //parse floats
-Z A0(pC,C a[1<<9];U n=0;C c=*++s;                                                                   //parse "string"
- W(c&&c-'"'&&n<L(a),I(c=='\\',c=*++s;U i=fG("tnr0",4,c);I(i<4,c="\t\n\r"[i]))a[n++]=c;c=*++s)
- P(!c,ep0())P(n>=L(a),ez0())s++;aV(tC,n,a))
+Z A0(pC,C a[1<<9];U n;C c=*++s;A x=an(0,tC);                                                        //parse "string"
+ W(c,n=0;W(c&&c-'"'&&n<L(a),I(c=='\\',c=*++s;U i=fG("tnr0",4,c);I(i<4,c="\t\n\r"[i]))a[n++]=c;c=*++s)
+ P(!c,x(0);ep0())x=cat11(x,aV(tC,n,a));B(c=='"',c=0))s++;x)
 Z A0(p0x,S p=s;W(CA9(*p),p++)A x=N(unhC(s,p-s));s=p;x)                                              //parse 0x string
 Z A0(ps,S p=s;C c=*s;I(id0(c),s=pID(s))J(c>>7,W(*++s<-64)s+=*s==':')aCm(p,s))                       //parse symbol
 Z A pS(C c)_(I a[256];U n=0;                                                                        //parse symbols
