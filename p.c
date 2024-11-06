@@ -18,7 +18,6 @@ Z L pfu(S*p)_(L v=pu(p);S s=*p;C c=*s;P(c=='w',(*p)++;WFL)P(c=='n',(*p)++;v^NFL)
 L pf(S*p)_(B m=**p=='-';(*p)+=m;L v=(L)m<<63|pfu(p);(*p)+=**p=='f';v)                               //parse float
 Z A pV(C t,TY(pl)*f)_(L a[1<<9];U n=0;S p=s,m;B d=1;A x=an(0,t);                                    //parse ints or floats
  W(d,n=0;W(n<L(a),m=p;L v=f(&p);B(p==m,d=0)s=p;a[n++]=v;p=pw(s);B(p==s||!num(p),d=0))x=cat11(x,aV(t,n,a)))x)
-
 Z A0(pZ,S p=s;W(*p-'0'<2u,p++)                                                                      //parse ints
  P(*p=='B',S t=s;s=p+1;cB(aV(tG,p-t,t)))//todo
  P(*p=='b',S t=s;s=p+1;cG(cB(aV(tG,p-t,t))))
