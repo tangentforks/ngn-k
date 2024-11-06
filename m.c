@@ -95,10 +95,10 @@ Z A bs_(S*p)_(C b[256];S s=*p,e=strchrnul(s,10);P(e-s+1>=L(b),ez0())MC(b,s,e-s);
 
 Z A evs1(S*p)_(S s=*p;P(*s=='\\',++*p;bs_(p))A x=pk((V*)p,10);N(x);x=N(cpl(aCm(s,*p),x,0));x(run(x,0,0)))
 A evs(S s,B r)_(W(*s,A x=evs1(&s);P(!x,I(r,s=strchrnul(s,10);s+=!!*s;epr(0))0)I(r,x(out(x)))E(P(!*s,x)x(0))mc())au)
-B rep()_(Z C b[256],*s=b;C*q;
- W(1,L n=read(0,s,b-s+SZ b);P(n<=0,0)s+=n;q=memchr(s-n,10,n);
-     P(q,C*p=b;W(q,*q=0;evs(p,1);p=q+1;q=memchr(p,10,s-p))MC(b,p,s-p);s+=b-p;1)
-     P(b+SZ b<=s,die("LONGLINE")))1)
+B rep()_(Z C b[256],*s=b;C*q;A x=aV(tC,256,b);s=s-b+xC;
+ W(1,L n=read(0,s,xC-s+xn);P(n<=0,s=b;0)s+=n;q=memchr(s-n,10,n);
+   P(q,C*p=xC;W(q,*q=0;evs(p,1);p=q+1;q=memchr(p,10,s-p);x(0))MC(b,p,s-p);s=s-p+b;1)
+   q=xC;x=x(aV(tC,2*xn,xV));s=s-q+xC)1)
 V repl(){W(rep())}
 
 A cns,cn[tn];Z A ce[tn];S*argv,*env;
