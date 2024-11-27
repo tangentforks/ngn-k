@@ -68,9 +68,11 @@ A AO(UC o,A x)_(Xs(x&~(0xffll<<32)|(W)o<<32)_O(x)=o;x)
 A AN(U n,A x)_(xn=n;x)
 A1(AZ,xT=tG;x)
 
-Z C s0[1<<16],*s1=s0+1;
-S su(U u)_(P(u&1<<31,s0-(I)u)Z W r;r=u;(V*)&r)
-U us(S s)_(U n=SL(s);P(n<4||(n==4&&!(s[3]&128)),U v=0;MC(&v,s,n);v)S p=s0+1;W(p<s1,P(!strcmp(p,s),s0-p)p+=SL(p)+1)n++;P(s1+n>s0+SZ s0,die("SYMS"))MC(s1,s,n);s1+=n;s0-s1+n)
+Z C s0[1<<16],*s1=s0+1;U ht[1<<16];
+Z I hhs(S c,N n)_(I r=5381;F(n,r+=(r<<31)+*c++);r%L(ht))
+Z I hi(S s,N n)_(I h=hhs(s,n++),h0=h;W(ht[h%L(ht)]>0,P(h-h0>=L(ht),ez0())B(!strncmp(s0+ht[h%L(ht)],s,n));++h)h%=L(ht);P(ht[h]>0,-h)P(s1+n+1>s0+SZ(s0),die("SYMS"));MC(s1,s,n);ht[h]=s1-s0;s1+=n;-h)
+S su(U u)_(P(u&1<<31,s0+ht[-u])Z W r;r=u;(V*)&r)
+U us(S s)_(U n=SL(s);P(n<4||(n==4&&!(s[3]&128)),U v=0;MC(&v,s,n);v)hi(s,n))
 A sym(S s)_(as(us(s)))
 
 Z U gd,gn;Z W gk[256];A gv[256];
