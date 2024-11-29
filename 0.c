@@ -75,6 +75,7 @@ I pg=4096;//pagesize
  C*strchr(CO C*s,I v)_(W(1,P(*s==v,(V*)s)P(!*s++,(V*)0))(V*)0)
  C*strstr(CO C*p,CO C*q)_(memmem(p,SL(p),q,SL(q)))
  I strcmp(S p,S q)_(W(*p&&*p==*q,p++;q++)*p-*q)
+ I strncmp(S p,S q, N n)_(S p0=p;W(p0-p+n&&*p&&*p==*q,p++;q++)*p-*q)
 #else
  U js_eval(C*s,U m,C*r,U n)_(0)
 #endif
