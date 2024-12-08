@@ -23,7 +23,7 @@ Z X1(csti,RmMA(e1f(csti,x))RF(sqzZ(cL(x)))Rf(az(gf(x)))RC(cG(x))Rc(ai(xv))Ruvw(a
 Z X1(prsI,RmMA(e1f(prsI,x))Rc(prsI(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tl])))L v=pl(&s);x(*s?_R(cn[tl]):az(v)      ))R_(et(x)))
 Z X1(prsF,RmMA(e1f(prsF,x))Rc(prsF(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tf])))L v=pf(&s);x(*s?_R(cn[tf]):aV(tf,1,&v)))R_(et(x)))
 Z Y2(pad,RmMA(e2f(pad,x,y))RC(K2("{y@(!x)+(x<0)*#y}",x,y))Rc(dlr(x,enl(y)))R_(et(y)))
-X2(dlr,Rs(I v=xv;P(v-(C)v,ed(y))G(&csti,cF,cC,cS,prsI,prsF,ed)[si("ifcsIF",v|'s'*!v)](y))Ril(pad(x,y))R_(et(y)))
+X2(dlr,Rs(I v=xv;P(v-(C)v,ed(y))G(&csti,cF,cC,cS,cB,prsI,prsF,ed)[si("ifcsbIF",v|'s'*!v)](y))Ril(pad(x,y))R_(et(y)))
 A1(sqzZ,C r=0,t=xT;U n=xN,w=Tw[t]-3;L *m=ms[w-1];I i,j;CO L*y=AL(xV);F(n>>5-w,W(r<w,U s=sb[r]&~m[r];L h=0;Fj(4,h|=m[r]&yL[j+(i<<2)]+s)B(!h)r++))P(r==w,x)
   U c=n&(1<<5-w)-1;I(c,L l=0;W(r<w,U s=sb[r]&~m[r];L h=0;F((c<<w)+7>>3, MC(&l,xL+(((n>>5-w)<<2)+i),MIN(8,(c<<w+3>>3)-(i<<3)));h|=m[r]&l+s)B(!h)r++))P(r==w,x)ct(4+r,x))
 Z A sqzA(A x,C t)_(U n=xn,w=Tw[t];Q(w-3<4u)P(w==6,A y=an(n,t);cLA(yV,xV,n);x(y))A y=an(n,w==5?t:tI);cIL(yV,xV,n);x(0);ct(t,y))
