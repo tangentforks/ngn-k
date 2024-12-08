@@ -69,7 +69,7 @@ Z U knd(A x/*0*/)_(X(Ril(ti)REBGHIL(tI)R_(xt))0)
 Z A set(A x,L i,A y/*1i1*/)_(Q(MINE(x));
  X(RA(A z=xa;xa=z(y);ytt&&!ytU?sqz(x):x)
    RM(A z=kv(&x);z=mut(z);Q(ztA);I(ytT&&yN-zn,x(y(el(z))))I j=i;F(zn,za=set(mut(za),j,ii(y,i));P(!za,za=au;x(y(z(0)))))y(aM(x,z)))
-   RB(set(cG(x),i,y))
+   RB(P(yv<2u,xL[i>>6]&=~(1llu<<(i&~(-1llu<<6)));xL[i>>6]|=((W)yv)<<(i&~(-1llu<<6));x)set(cG(x),i,y))
    R_(P(knd(x)-knd(y)-tC+tc,set(blw(x),i,y))I(xtZ,N(sup(&x,&y)))C w=xw-3;!w?xg=yv:w==1?xh=yv:w==2?xi=yv:(xl=gl(y));x))0)
 AA(a8,/*10..0*/A x=*a,y=a[1];
  X(RE(Ab8;*b=gZ(x);MC(b+1,a+1,56);a8(b,n))
