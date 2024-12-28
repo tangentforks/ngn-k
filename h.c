@@ -13,7 +13,7 @@ A rsz(L n,A x/*1*/)_(
       I r=n<0;n*=1-2*r;A y=an(n,xt);N w=xw-3,m=xn<<w,k=n%xn<<w,l=n<<w;
       I(!r,MC(yV,xV,MIN(m,l)))J(l<=m,MC(yV,xV+m-l,l))E(MC(yV,xV+m-k,k);MC(yV+k,xV,m-k))
       cyc(yV,m,l);I(!n&&ytA,yx=mkn(_R(xx)))x(ytA?sqz(mRa(y)):y)))0)
-A slc(A x/*0*/,U i,U j)_(Q(xtT&&i<=j&&i<=xN)N n=j-i;XB(A y=aB(64-i);MS(yV,0,yN+7>>3);y=cat11(y,xR);y(aV(tB,n,&yL[1]+(i>>6))))
+A slc(A x/*0*/,U i,U j)_(Q(xtT&&i<=j&&i<=xN)N n=j-i;XB(x=aV(tL,(j>>6)-(i>>6)+1,xL+(i>>6));xT=tB;xn<<=6;A y=aB(-i%64u);N p=yn+7>>3;MS(yV,0,p);y=cat11(y,x);I(p,y=drp(64,y))AN(n,y);y)
  XE(I v=*xL;aE(v+i,v+j))A y=an(n,xt);U w=xw-3;MC(yV,xV+((W)i<<w),(W)n<<w);XA(P(!n,yx=mkn(_R(xx));y)sqz(mRa(y)))y)
 Z A chp(L n,A x/*1*/)_(P(n<0,ed(x))L m=(xn+n-1)/n;A y=aA(m);F(m|!m,ya=slc(x,n*i,MIN(xn,n*i+n)))x(0);I(!m,yx=mkn(yx))y)
 Z A2(rsh,/*01*/XE(x=gZ(xR);x(rsh(x,y)))YE(rsh(x,gZ(y)))YmM(en(y))Yt(rsh(x,enl(y)))Q(xtZ);N r=xn;P(!r,fir(y))P(r>256,ez(y))x=Ny(cL(xR));L s[r];MC(s,xV,r<<3);x(0);
