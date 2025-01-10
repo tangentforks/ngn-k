@@ -23,7 +23,7 @@ Z X1(csti,RmMA(e1f(csti,x))RF(sqzZ(cL(x)))Rf(az(gf(x)))RC(cG(x))Rc(ai(xv))Ruvw(a
 Z UC bswp(UC b)_(b=(b&0xF0)>>4|(b&0x0F)<<4;b=(b&0xCC)>>2|(b&0x33)<<2;b=(b&0xAA)>>1|(b&0x55)<<1;b)
 Z X1(prsB,RmMA(e1f(prsB,x))Rc(prsB(enl(x)))RC(A u=aC(xn);F(xn,uc=bswp(xc))uT=tB;un<<=3;x(u))Ril(x=ct(tL,x);xT=tB;xn<<=6;x)RGHIL(x=cL(x);A u=aV(tL,xn,xV);uT=tB;un<<=6;x(u))R_(et(x)))
 Z X1(prsI,RmMA(e1f(prsI,x))Rc(prsI(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tl])))L v=pl(&s);x(*s?_R(cn[tl]):az(v)      ))
-	 RB(N n=(xn-1+(1<<6))>>6;A u=MINE(x)?xR:aV(tL,n,xV);uT=tL;un=n;x(u))R_(et(x)))
+	 RB(N n=(xn-1+(1<<6))>>6,m=xn;A u=MINE(x)?xR:aV(tL,n,xV);uT=tL;un=n;I(m%64,uL[un-1]&=-1+(1ull<<(m%64u)));x(u))R_(et(x)))
 Z X1(prsF,RmMA(e1f(prsF,x))Rc(prsF(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tf])))L v=pf(&s);x(*s?_R(cn[tf]):aV(tf,1,&v)))R_(et(x)))
 Z Y2(pad,RmMA(e2f(pad,x,y))RC(K2("{y@(!x)+(x<0)*#y}",x,y))Rc(dlr(x,enl(y)))R_(et(y)))
 X2(dlr,Rs(I v=xv;P(v-(C)v,ed(y))G(&csti,cF,cC,cS,cB,prsB,prsI,prsF,ed)[si("ifcsbBIF",v|'s'*!v)](y))Ril(pad(x,y))R_(et(y)))
