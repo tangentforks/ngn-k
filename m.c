@@ -103,7 +103,7 @@ B rep()_(Z C b[256],*s=b;C*q;A x=aV(tC,256,b);s=s-b+xC;
    q=xC;x=x(aV(tC,2*xn,xV));s=s-q+xC)1)
 V repl(){W(rep())}
 
-A cns,cn[tn];Z A ce[tn];S*argv,*env;
+A cns,cn[tn];A ce[tn];S*argv,*env;
 V kinit(){Z B l;P(l)l=1;pg=sysconf(_SC_PAGESIZE);A b[32],*c=b;
  F(tS-tA+1,*c++=ce[tA+i]=an(0,tA+i))*c++=ce[tm]=am(emp(tS),emp(tA));_x(ce[tA])=_R(ce[tC]);ce[tM]=ce[tA];F(tn-ti,Q(!ce[i+ti]);ce[i+ti]=ce[tA])//empties
  cn[tA]=ce[tC];*c++=cn[ti]=cn[tl]=al(NL);F(tL-tE+1,cn[tE+i]=cn[ti])*c++=cn[tF]=cn[tf]=af(NF);cn[tC]=cn[tc]=ac(32);cn[tS]=cn[ts]=as(0);F(tn-to,cn[to+i]=au)//nulls
