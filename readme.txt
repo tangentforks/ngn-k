@@ -1,4 +1,4 @@
-this k implementation is no longer supported
+this k implementation is (lightly?) supported and is a fork of https://codeberg.org/ngn/k
 for others, see https://k.miraheze.org/wiki/Running_K
 
 
