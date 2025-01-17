@@ -9,11 +9,15 @@ salphnum:{`c$s+(-10+-/"a0")*"0:"'s:str0[("0";36);x;y]}
 
 mkns:{`s$salph[x;y]}
 SYMLENRNG:1 4
-mknt0:{$[`s~z;mkns[SYMLENRNG];`A~z;mkmx0[x;]'4+&:;mkn0[;ts z;z]]y}
+DCTLENRNG:2 4
+mknt0:{$[`s~z;mkns[SYMLENRNG];`A~z;mkmx0[x;]'4+&:;`m~z;mkdt0[x;;`A]'DCTLENRNG[0]+?/(--/DCTLENRNG),;mkn0[;ts z;z]]y}
 mknt:mknt0[1]
 
-mkmx0:{,/mknt0[x-1;1]'y?$[x;`c`s`i`A;`c`s`i]}
+mkmx0:{,/mknt0[x-1;1]'y?$[x>0;`c`s`i`A`m;`c`s`i]}
 mkmx:mkmx0[1]
+
+mkdt0:{mkns[1 4;y]!mknt0[x;y]z}
+mkdt:mkdt0[0]
 
 /
 Examples:
@@ -31,3 +35,6 @@ mkmx[5]          / make a mixed array of length 5
 mkmx0[2]5        / make a mixed array of length 5 and max depth 2
 
 mkmx0[0]'5+&8    / make a mixed array of length 8, depth 1 containing mixed arrays of length 5
+
+mkdt[5]`c        / make 5 dicts of length 4 with chars as values
+mkdt[5]`A        / make 5 dicts of length 4 with mixed arrays as values
