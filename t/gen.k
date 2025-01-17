@@ -10,7 +10,7 @@ salphnum:{`c$s+(-10+-/"a0")*"0:"'s:str0[("0";36);x;y]}
 mkns:{`s$salph[x;y]}
 SYMLENRNG:1 4
 DCTLENRNG:2 4
-mknt0:{$[`s~z;mkns[SYMLENRNG];`A~z;mkmx0[x;]'4+&:;`m~z;mkdt0[x;;`A]'DCTLENRNG[0]+?/(--/DCTLENRNG),;mkn0[;ts z;z]]y}
+mknt0:{$[`s~z;mkns[SYMLENRNG];`A~z;mkmx0[x;]'4+&:;`m~z;mkdt0[x;;`A]'DCTLENRNG[0]+?/|(--/DCTLENRNG),;mkn0[;ts z;z]]y}
 mknt:mknt0[1]
 
 mkmx0:{,/mknt0[x-1;1]'y?$[x>0;`c`s`i`A`m;`c`s`i]}
