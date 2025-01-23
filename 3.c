@@ -31,7 +31,9 @@ Z A3(admf,/*010*/B i=xv==3;U n=zn;P((y&&ytf)||ztF,F v=y?gf(cF(y)):i;z=cF(zR);Mz(
 Z A3(subf,/*010*/y=y?neg(y):zn?mul(ai(-2),ii(z,0)):ai(0);neg(admf(ADD,y,z)))
 Z A3(mmmf,/*010*/B i=xv==7;P((y&&ytf)||ztF,y=of1(y?cF(y):aV(tf,1,A((L)i<<63|WFL)));z=of1(cF(zR));of0(N(z(mmmf(x,y,z)))))L v=y?gl(y):i?-WL:WL;az(zn?(i?maxfZ:minfZ)(v,z):v))
 A3(arf,/*010*/Q(xtv)Q(xv<11)Q(!y||ytzfc)Q(ztZFC)
- ZE(P(x==ADD&&!y,W i=*zL,n=zL[1]-i;az(n*i+n/2*(n-1|1)))z=gZ(zR);z(arf(x,y,z)))
+ ZE(I(!y,P(x==ADD,W i=*zL,n=zL[1]-i;az(n*i+n/2*(n-1|1)))
+         P(x==MXM,L i=*zL,j=zL[1];az(j<i?WL:j-1))
+         P(x==MNM,L i=*zL,j=zL[1];az(j<i&j!=NL?NL:i)))z=gZ(zR);z(arf(x,y,z)))
  ZB(z=cG(zR);z(arf(x,y,z)))
  G(&dexf,admf,subf,admf,___f,___f,mmmf,mmmf,___f,___f,___f)[xv](x,y,z))
 
