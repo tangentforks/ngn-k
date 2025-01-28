@@ -33,27 +33,27 @@ Z A mulzZ(L a,A y,U f)_(U n=yn,i=0,w=MAX(tZ(a)-tG,yw-3);y=ct(tG+w,y);A z=an(n,yt
 
 Z A modzZ(L m,A y,U f)_(P(!m,y)
  P(m<0,m=-m;A z=an(yn,yt);U w=yw-3;F((zn-1+(1<<5-w))>>5-w,S4(w,
-  C v[32];MC(v,yC+32*i,32);VFj(32,C s=v[j]&(   1<<7); s>>=7 ;v[j]=s+(1+2*s)*(s^v[j])/m)MC(zC+32*i,&v,32),
+  C v[32];MC(v,yC+32*i,32);VFj(32,C s=v[j]&(   1<< 7);s>>= 7;v[j]=s+(1+2*s)*(s^v[j])/m)MC(zC+32*i,&v,32),
   H v[16];MC(v,yH+16*i,32);VFj(16,H s=v[j]&(   1<<15);s>>=15;v[j]=s+(1+2*s)*(s^v[j])/m)MC(zH+16*i,&v,32),
-  I v[8]; MC(v,yI+ 8*i,32);VFj( 8,I s=v[j]&(   1<<31);s>>=31;v[j]=s+(1+2*s)*(s^v[j])/m)MC(zI+ 8*i,&v,32),
-  L v[4]; MC(v,yL+ 4*i,32);VFj( 4,L s=v[j]&(1ull<<63);s>>=63;v[j]=s+(1+2*s)*(s^v[j])/m)MC(zL+ 4*i,&v,32)))y(z))
+  I v[ 8];MC(v,yI+ 8*i,32);VFj( 8,I s=v[j]&(   1<<31);s>>=31;v[j]=s+(1+2*s)*(s^v[j])/m)MC(zI+ 8*i,&v,32),
+  L v[ 4];MC(v,yL+ 4*i,32);VFj( 4,L s=v[j]&(1ull<<63);s>>=63;v[j]=s+(1+2*s)*(s^v[j])/m)MC(zL+ 4*i,&v,32)))y(z))
  P(m&m-1,A z=an(yn,tZ(m));U wy=yw-3,wz=zw-3;U n=yn;F((n-1+(1<<5-wy))>>5-wy,S((wz<<2)+wy,
-  C(0, U l=(n>>5)?32:n;n-=32;C r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<<7 )))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<0))
-  C(1, U l=(n>>4)?16:n;n-=16;C r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<0))
-  C(2, U l=(n>>3)? 8:n;n-= 8;C r[ 8];I v[8] ;MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<0))
-  C(3, U l=(n>>2)? 4:n;n-= 4;C r[ 4];L v[4] ;MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<0))
-  C(4, U l=(n>>5)?32:n;n-=32;H r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<<7 )))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<1))
-  C(5, U l=(n>>4)?16:n;n-=16;H r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<1))
-  C(6, U l=(n>>3)? 8:n;n-= 8;H r[ 8];I v[8] ;MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<1))
-  C(7, U l=(n>>2)? 4:n;n-= 4;H r[ 4];L v[4] ;MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<1))
-  C(8, U l=(n>>5)?32:n;n-=32;I r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<<7 )))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<2))
-  C(9, U l=(n>>4)?16:n;n-=16;I r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<2))
-  C(10,U l=(n>>3)? 8:n;n-= 8;I r[ 8];I v[8] ;MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<2))
-  C(11,U l=(n>>2)? 4:n;n-= 4;I r[ 4];L v[4] ;MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<2))
-  C(12,U l=(n>>5)?32:n;n-=32;L r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<<7 )))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<3))
-  C(13,U l=(n>>4)?16:n;n-=16;L r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<3))
-  C(14,U l=(n>>3)? 8:n;n-= 8;L r[ 8];I v[8] ;MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<3))
-  C(15,U l=(n>>2)? 4:n;n-= 4;L r[ 4];L v[4] ;MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),&r,l<<3))))y(z))
+  C( 0,U l=(n>>5)?32:n;n-=32;C r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<< 7)))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<0))
+  C( 1,U l=(n>>4)?16:n;n-=16;C r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<0))
+  C( 2,U l=(n>>3)? 8:n;n-= 8;C r[ 8];I v[ 8];MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<0))
+  C( 3,U l=(n>>2)? 4:n;n-= 4;C r[ 4];L v[ 4];MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<0))
+  C( 4,U l=(n>>5)?32:n;n-=32;H r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<< 7)))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<1))
+  C( 5,U l=(n>>4)?16:n;n-=16;H r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<1))
+  C( 6,U l=(n>>3)? 8:n;n-= 8;H r[ 8];I v[ 8];MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<1))
+  C( 7,U l=(n>>2)? 4:n;n-= 4;H r[ 4];L v[ 4];MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<1))
+  C( 8,U l=(n>>5)?32:n;n-=32;I r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<< 7)))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<2))
+  C( 9,U l=(n>>4)?16:n;n-=16;I r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<2))
+  C(10,U l=(n>>3)? 8:n;n-= 8;I r[ 8];I v[ 8];MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<2))
+  C(11,U l=(n>>2)? 4:n;n-= 4;I r[ 4];L v[ 4];MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<2))
+  C(12,U l=(n>>5)?32:n;n-=32;L r[32];C v[32];MC(v,yC+32*i,32);VFj(l,C s=((C)(v[j]&(  1<< 7)))>> 7;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<3))
+  C(13,U l=(n>>4)?16:n;n-=16;L r[16];H v[16];MC(v,yH+16*i,32);VFj(l,H s=((H)(v[j]&(  1<<15)))>>15;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<3))
+  C(14,U l=(n>>3)? 8:n;n-= 8;L r[ 8];I v[ 8];MC(v,yI+ 8*i,32);VFj(l,I s=((I)(v[j]&(  1<<31)))>>31;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<3))
+  C(15,U l=(n>>2)? 4:n;n-= 4;L r[ 4];L v[ 4];MC(v,yL+ 4*i,32);VFj(l,L s=((L)(v[j]&(1ll<<63)))>>63;r[j]=(s*(1-m))+(1+2*s)*(s^v[j])%m)MC(zV+i*SZ(r),r,l<<3))))y(z))
   m--;U t=tZ(m),w=t-tG;y=mut(N(ct(t,y)));F(3-w,m|=m<<(8<<w+i))L*p=yV;F((yn<<w)+31>>5,Fj(4,*p++&=m))y)
 Z A modzf(L n,A y,U f)_(P(!n,y)P(n<0,en(y))K2("{y-x*(-x)!_y}",az(n),y))
 Z A mmmzZ(L v,A y,U f)_(C t=tZ(v),u=tG+yw-3;I(u<t||u-yt,y=ct(t,y))E(t=u)U n=yn;A z=MINE(y)?y:an(n,t);C w=t-tG;n+=31>>w;L m=-(f==7);v^=m;
