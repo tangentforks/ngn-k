@@ -1,6 +1,15 @@
 #include<stdbool.h> // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
 #include<string.h>
 #include<unistd.h>
+
+#if __clang__
+ #define vfor _Pragma("clang loop vectorize(assume_safety)") for
+#elif __GNUC__
+ #define vfor _Pragma("GCC ivdep") for
+#else
+ #define vfor for
+#endif
+
 #include"g.h"
 #define  DBG(a...)//a
 #define    _(a...) {return({a;});}
@@ -17,6 +26,8 @@
 #define    D(a...) default:{a;}break;
 #define    F(a...) F_(i,a)
 #define   Fj(a...) F_(j,a)
+#define   VF(a...) VF_(i,a)
+#define   VFj(a...) VF_(j,a)
 #define    X(a...) S(xt,a)
 #define    Y(a...) S(yt,a)
 #define X1(f,a...) A1(f,X(a)0)
@@ -25,6 +36,7 @@
 #define  R(x,a...) case x:_(a)
 #define   R_(a...) default:_(a)
 #define F_(i,n,a...) for(TY(n)n_=(n),i=0;i<n_;i++){a;}
+#define VF_(i,n,a...) vfor(TY(n)n_=(n),i=0;i<n_;i++){a;}
 #define L(x) (SZ(x)/SZ((x)[0]))
 #define R1 R
 #define CO const
