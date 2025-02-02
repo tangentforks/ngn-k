@@ -31,6 +31,7 @@ V mRn(U n,CO A*a){F(n,_R(a[i]))}
 V mrn(U n,CO A*a){F(n,mr(a[i]))}
 A1(mRa,mRn(xn,xA);x)
 
+Z A AW(C w,A x)_(Q(w<6u);xE=w;x)
 NI A an(U n,C t)_(Q(!lck)Q(tA<=t)Q(t<tn)Q(!TP(t))U i=59-CLZ(HD|HD-1+(((W)n<<Tw[t])+7>>3));A x=mb(i);xb=i;xr=REFB;xT=t;xn=n;x)
 A aV(C t,U n,CO V*v)_(A x=an(n,t);MC(xV,v,((W)n<<Tw[t])+7>>3);x)
 A aa(U n,A x/*1*/)_(P(MINE(x)&&((W)n<<xw)+7>>3<=cap(x),AN(n,x))A y=an(n,xt);MC(yV,xV,((W)xn<<Tw[xt])+7>>3);I(ytR,I(MINE(x),AZ(x))E(mRn(xn,xA)))x(y))//realloc
@@ -55,6 +56,7 @@ A aCz(S s)_(aCn(s,SL(s)))
 A az(L n)_(n-(I)n?al(n):ai(n))
 A al(L v)_(aV(tl,1,&v))
 A af(F v)_(aV(tf,1,&v))
+A ar(L v,C w)_(AW(w,aV(tr,1,&v)))
 A aE(L i,L j)_(Q(i<=j)P(i==j,emp(tG))A x=an(tE,2);*xL=i;xL[1]=j;x)
 A1(mut,XP(x)P(MINE(x),x)x=x(aV(xt,xn,xV));XR(mRa(x))x)
 C tZ(L v)_(G(tL,tL,tL,tL,tI,tI,tH,tG)[CLZ(v^v>>63|1)-1>>3])
@@ -63,7 +65,6 @@ L gl_(A x)_(XP(xv)*xL)
 L gl(A x)_(L v=gl_(x);x(0);v)
 F gf(A x)_(F v=*xF;x(0);v)
 A AT(W t,A x)_(Q(t<tn);P(TP(t),Lt(t)|-1ull<<56&x)xT=t;x)
-A AW(C w,A x)_(Q(w<6u);xE=w;x)
 A AK(C k,A x)_(Q(k<9u);xk=k;x)
 A AO(UC o,A x)_(Xs(x&~(0xffll<<32)|(W)o<<32)_O(x)=o;x)
 A AN(U n,A x)_(xn=n;x)
