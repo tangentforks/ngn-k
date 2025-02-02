@@ -93,7 +93,7 @@ A3 _2,aA3,arf,arp,ars,cpl,e2,r2,try;
 A4 ara,a4,d4;
 AX _8,e8,f8,prj,run;
 AA a8,d8,ins,no8;
-TD A TAU(U);TAU aA0,aA,aB,aG,aC,aF,aI,aL,aS,gns,emp;
+TD A TAU(U);TAU aA0,aA,aB,aG,aC,aH,aF,aI,aL,aS,gns,emp;
 TD A TAL(L);TAL al,az,cls,rndF;
 TD A TALA(L,A);TALA drp,rnd,rsz;
 TD A TAQ(S);TAQ aCz,bsl,bsm,die,sym;
