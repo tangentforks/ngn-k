@@ -55,5 +55,5 @@ t21:k;l/runparts.k aoc/21  ;echo t21 done
 t22:k;l/runparts.k aoc/22  ;echo t22 done
 t23:k;l/runparts.k aoc/23  ;echo t23 done
 
-c:;rm -rf o k libk.so libk.a #clean
+c:;rm -rf o k libk.so libk.a libk.dylib #clean
 .PHONY: 0 c k w h a t tu td tg te te0 te1 te2 ta t15 t16 t17 t18 t19 t20 t21 t22 t23
