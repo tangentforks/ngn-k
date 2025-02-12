@@ -5,7 +5,7 @@ for others, see https://k.miraheze.org/wiki/Running_K
 
 ngn/k is a simple fast vector programming language
 try:     https://ngn.codeberg.page/k
-build:   make CC=clang-17   # or CC=gcc-10 or other
+build:   make             # Dockerfile uses latest gcc and should be considered canonical
 use:     rlfe -h ~/.k_history ./k repl.k
 chat:    https://matrix.to/#/#ngnk:matrix.org
 license: GNU AGPLv3 (v3 only) - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
