@@ -31,7 +31,7 @@ A1(bytes,XA(e1f(cgB,x))et(x))
 Z Y2(pad,RmMA(e2f(pad,x,y))RC(K2("{y@(!x)+(x<0)*#y}",x,y))Rc(dlr(x,enl(y)))R_(et(y)))
 X2(dlr,Rs(I v=xv;P(v-(C)v,ed(y))G(&csti,cF,cC,cS,cB,prsB,prsC,prsI,prsF,ed)[si("ifcsbBCIF",v|'s'*!v)](y))Ril(pad(x,y))R_(et(y)))
 A1(sqzZ,C r=0,t=xT;U n=xN,w=Tw[t]-3;L *m=ms[w-1];I i,j;CO L*y=AL(xV);MS(xG+(n<<w),0,-n%(1<<5-w)<<3);
-   F((n-1+(1<<5-w))>>5-w,W(r<w,U s=sb[r]&~m[r];L h=0;Fj(4,h|=m[r]&yL[4*i+j]+s)B(!h)r++))P(r==w,x)ct(4+r,x))
+   F((n-1+(1<<5-w))>>5-w,W(r<w,W s=sb[r]&~m[r];L h=0;Fj(4,h|=m[r]&yL[4*i+j]+s)B(!h)r++))P(r==w,x)ct(4+r,x))
 Z A sqzA(A x,C t)_(U n=xn,w=Tw[t];Q(w-3<4u)P(w==6,A y=an(n,t);cLA(yV,xV,n);x(y))A y=an(n,w==5?t:tI);cIL(yV,xV,n);x(0);ct(t,y))
 A1(sqz,P(!xtA,x)U n=xn;A y=xx;C t=yt;
  Y(Ril(B l=0;F(n,A y=xa;I(ytl,l=1)E(P(!yti,x)))
