@@ -26,24 +26,29 @@ Z X2(fndGx,
    F(m,I v=xi;zl=v==(C)v?yL[(UC)v]:NL),
    F(m,L v=xl;zl=v==(C)v?yL[(UC)v]:NL))
   x(0);sqzZ(z)))
-A2(fnd,X(
+Z L eyt_(L*d,A x,L i,L k)_(P(k>xn,i)i=eyt_(d,x,i,2*k);S4(xw-3,d[k]=xg,d[k]=xh,d[k]=xi,d[k]=xl);eyt_(d,x,i+1,2*k+1))
+Z X1(eyt,R_(et(x))RE(eyt(gZ(x)))RB(eyt(cG(x)))RGHIL(A y=aL(xn+1);*yL=0;eyt_(yL,x,0,1);x(y)))
+A2(fndA,Z L*g=0;Z U k;U l=urnk(y);
+ P(g,P(l>k-1,r2f(fndA,x,y))P(l<k-1,er(y))L i=1,n=xn;W(i<n,i=2*i+(qA(y,xa)>0))i>>=1+CTZ(~i);y(al(i&&mtc_(y,xa)?g[i]:NL)))
+ k=urnk(x);P(l+1<k,er(y))P(l>=k,A z=eyt(asc(xR));x=i1(x,zR),g=zL,z=x(z(fndA(x,y))),g=0;z)
+ F(xn,P(mtc_(y,xa),y(al(i))))y(al(NL)))
+A2(fndZFS,Z L*g=0;Z C t;
+ P(g,YmMA(r2f(fndZFS,x,y))YE(fndZFS(x,gZ(y)))YB(fndZFS(x,cG(y)))Yt(fir(N(fndZFS(x,enl(y)))))
+  P(t==TT[yt]||ytZ&&LH(tG,t,tL),U wx=xw-3,wy=yw-3,n=xn;A z=an(yn,tL);
+   Fj(yn,L u,v,i=1;S4(wy,u=yG[j],u=yH[j],u=yI[j],u=yL[j])W(i<n,S4(wx,,v=xh,v=xi,v=xl)i=2*i+(u>v))i>>=1+CTZ(~i);S4(wx,,v=xh,v=xi,v=xl)zL[j]=i&&u==v?g[i]:NL)y(z))
+  fN(y))
+ Yt(P(xt==TT[yt]||ytz&&xtZ,L v=gl(y);S4(xw-3,,F(xn,P(v==xh,ai(i))),F(xn,P(v==xi,ai(i))),F(xn,P(v==xl,ai(i))))al(NL))y(al(NL)))
+ t=xt;I(xtF||xtS,A u=an(xn,G(tG,tH,tI,tL)[xw-3]);MC(uV,xV,xn<<xw-3),x=u)E(_R(x))
+ A z=eyt(asc(xR));x=x(i1(x,zR));g=zL;z=x(z(fndZFS(x,y)));g=0;z)
+X2(fnd,
  R_(et(y))
  Rm(i1(xx,N(fnd(xy,y))))
  RM(en(y))
  RE(x=gZ(xR);x(fnd(x,y)))
- RA(U k=urnk(x),l=urnk(y);P(k<l+1,r2f(fnd,x,y))P(k>l+1,er(y))
-  X(RA(F(xn,P(mtc_(xa,y),y(az(i))))y(az(NL)))
-    R_(F(xN,A z=ii(x,i);I m=mtc_(z,y);z(0);P(m,y(az(i))))y(az(NL))))0)
+ RA(fndA(x,y))
  RB(x=cG(xR);x(fnd(x,y)))
  RGC(A z=aL(256);F(256,zl=NL);UC*a=xV;U n=xn;F(n,zL[a[n-1-i]]=n-1-i)z(fndGx(y,z)))
- R5(tH,tI,tL,tF,tS,
-  YmMA(r2f(fnd,x,y))
-  YE(fnd(x,gZ(y)))
-  P(xt==TT[yt]||xtZ&&ytzZ,
-   TY(fGL)*f=G(&fGL,fHL,fIL,fLL)[xw-3];V*a=xV;U m=xn;
-   Yt(az(f(a,m,gl(y))))
-   U n=yn;A z=aL(n);My(S4(yw-3,F(n,zl=f(a,m,yg)),F(n,zl=f(a,m,yh)),F(n,zl=f(a,m,yi)),F(n,zl=f(a,m,yl))))z)
-  fN(y)))0)
+ R5(tH,tI,tL,tF,tS,fndZFS(x,y)))
 X2(que,Rs(Z CO C s[][4]={"j","k","hex"};G(&js0,val,unh,ed)[fI((V*)s,L(s),xv)](y))Ril(rnd(gl_(x),y))R_(fnd(x,y)))
 
 Z A2 binF;
@@ -59,6 +64,5 @@ Z Y2(binZ,
   P(xn-(I)xn,ez(y))U wx=xw-3,wy=yw-3;P(!wx,wy?K2("{@[x'`c$127&y;&-128>y;:;-1]}",x,y):K2("{(-1+\\@[&256;128+x;+;1])128+y}",x,y))A z=an(yn,tZ(xn-1));I wz=zw-3,k[2];
   F(yn,L v;S4(wy,v=yg,v=yh,v=yi,v=yl)*k=-1;k[1]=xn;S4(wx,,W(*k+1<k[1],I i=*k+k[1]>>1;k[v<xh]=i),W(*k+1<k[1],I i=*k+k[1]>>1;k[v<xi]=i),W(*k+1<k[1],I i=*k+k[1]>>1;k[v<xl]=i))
        S4(wz,zg=*k,zh=*k,zi=*k,zl=*k))y(z)))
-
 Z Y2(binF,RF(x=of1(xR);x(binZ(x,of1(y))))REBGHILC(binF(x,N(cF(y))))Rt(YU(ed(y))fir(N(binF(x,enl(y)))))RmMA(r2f(binF,x,y))R_(ed(y)))
 X2(bin,REBGHILC(binZ(x,y))RF(binF(x,y))Rm(_1(xx,N(bin(xy,y))))R_(et(y)))
