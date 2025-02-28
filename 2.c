@@ -21,7 +21,7 @@ Z A mulZZ(A x,A y,U f)_(XB(bitBB(x,y,0))U n=yn,i=0,w=MAX(xw-3,yw-3);P(xw-3-w,x=c
  M(alL,L)M(aiI,I)M(ahH,H)M(agG,G)
 #undef M
 ZN B ozZ(L v,CO W*y,CO W*r,U n,U w)_(r=AL(r);y=AL(y);F(3-w,v|=v<<(8<<w+i))W t[4]={};F(((W)n<<w)+31>>5,Fj(4,t[j]|=(*r^v)&(*r^*y);r++;y++))!!((t[0]|t[1]|t[2]|t[3])&msk[w]))
-Z A addzZ(L v,A y,U f)_(U n=yn,w=MAX(tZ(v)-tG,yw-3);y=ct(tG+w,y);A z=an(n,yt);G(&agG,ahH,aiI,alL)[w](v,yV,zV,n+(31>>w)>>5-w);
+Z A addzZ(L v,A y,U f)_(P(!v,sqzZ(y))U n=yn,w=MAX(tZ(v)-tG,yw-3);y=ct(tG+w,y);A z=an(n,yt);G(&agG,ahH,aiI,alL)[w](v,yV,zV,n+(31>>w)>>5-w);
  P(w<3&&ozZ(v,yV,zV,n,w),z(0);y=ct(tG+w+1,y);addzZ(v,y,f))y(z))
 
 Z A mulzZ(L a,A y,U f)_(U n=yn,i=0,w=MAX(tZ(a)-tG,yw-3);y=ct(tG+w,y);A z=an(n,yt);
