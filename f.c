@@ -7,13 +7,16 @@ Z U fH(CO H*a,U n,H v)_(U i=0;W(i<n&&a[i]!=v,i++)i)
   U fI(CO I*a,U n,I v)_(U i=0;W(i<n&&a[i]!=v,i++)i)
   U fL(CO L*a,U n,L v)_(U i=0;W(i<n&&a[i]!=v,i++)i)
 
-Z L fGL(CO V*a,U n,L v)_(P(v!=(G)v,NL)U i=fG(a,n,v);i<n?i:NL)
-Z L fHL(CO V*a,U n,L v)_(P(v!=(H)v,NL)U i=fH(a,n,v);i<n?i:NL)
-Z L fIL(CO V*a,U n,L v)_(P(v!=(I)v,NL)U i=fI(a,n,v);i<n?i:NL)
-Z L fLL(CO V*a,U n,L v)_(             U i=fL(a,n,v);i<n?i:NL)
-
 Z A1(fN,A y=_R(cn[tl]);x(xtt?y:rsz(xN,y)))
 
+Z CO W msk[]={0x8080808080808080ll,0x8000800080008000ll,0x8000000080000000ll,0x8000000000000000ll};
+A2(fndl,YmMA(r2f(fndl,x,y))YE(fndl(x,gZ(y)))YB(fndl(x,cG(y)))Yt(fir(N(fndl(x,enl(y)))))
+ P(xt==TT[yt]||xtZ&&ytZ,C w=xw-3;A z=aL(yn);F_(k,yn,L v=gl(ii(y,k));
+  S4(w,B((G)v!=v,zL[k]=NL)v=(UC)v,B((H)v!=v,zL[k]=NL)v=(UH)v,B((I)v!=v,zL[k]=NL)v=(U)v,v=(W)v)
+  I(w==3,U i=fL(xV,xn,v);zL[k]=i<xn?i:NL)E(CO W m=msk[w],u=v*(m>>(-1+(1<<w+3)));B b=false;
+  F(xn-1+(1<<5-w)>>5-w,W h=0,r[4];Fj(4,W e=~(xL[4*i+j]^u);L s=(m&e)>>-1+(1<<w+3);h|=r[j]=m&(s+(e&~m)))
+   B(h,b=true;Fj(4,B(r[j],v=(4*i+j<<3-w)+(CTZ(r[j])>>w+3);zL[k]=v<xn?v:NL))))I(!b,zL[k]=NL)))y(sqzZ(z)))
+ fN(y))
 Z X2(fndGx,
  R_(fN(x))
  RmMA(mRn(xn,xA);l2f(fndGx,x,y))
@@ -38,8 +41,8 @@ A2(fndZFS,Z L*g=0;Z C t;
    Fj(yn,L u,v,i=1;S4(wy,u=yG[j],u=yH[j],u=yI[j],u=yL[j])W(i<n,S4(wx,,v=xh,v=xi,v=xl)i=2*i+(u>v))i>>=1+CTZ(~i);S4(wx,,v=xh,v=xi,v=xl)zL[j]=i&&u==v?g[i]:NL)y(z))
   fN(y))
  Yt(P(xt==TT[yt]||ytz&&xtZ,L v=gl(y);S4(xw-3,,F(xn,P(v==xh,ai(i))),F(xn,P(v==xi,ai(i))),F(xn,P(v==xl,ai(i))))al(NL))y(al(NL)))
- t=xt;I(xtF||xtS,A u=an(xn,G(tG,tH,tI,tL)[xw-3]);MC(uV,xV,xn<<xw-3),x=u)E(_R(x))
- A z=eyt(asc(xR));x=x(i1(x,zR));g=zL;z=x(z(fndZFS(x,y)));g=0;z)
+ t=xt;I(xtF||xtS,xT=G(tG,tH,tI,tL)[xw-3])
+ A z=eyt(asc(xR));xT=t;x=i1(x,zR);g=zL;z=x(z(fndZFS(x,y)));g=0;z)
 X2(fnd,
  R_(et(y))
  Rm(i1(xx,N(fnd(xy,y))))
@@ -48,7 +51,7 @@ X2(fnd,
  RA(fndA(x,y))
  RB(x=cG(xR);x(fnd(x,y)))
  RGC(A z=aL(256);F(256,zl=NL);UC*a=xV;U n=xn;F(n,zL[a[n-1-i]]=n-1-i)z(fndGx(y,z)))
- R5(tH,tI,tL,tF,tS,fndZFS(x,y)))
+ R5(tH,tI,tL,tF,tS,P(xn>2000,fndZFS(x,y))fndl(x,y)))
 X2(que,Rs(Z CO C s[][4]={"j","k","hex"};G(&js0,val,unh,ed)[fI((V*)s,L(s),xv)](y))Ril(rnd(gl_(x),y))R_(fnd(x,y)))
 
 Z A2 binF;
