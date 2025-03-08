@@ -95,7 +95,7 @@ Z A dvdfF(F v,A y,U f)_(A z=MINE(y)?y:aF(yn);U n=zn+3&-4;F(n,zf=v/yf)y-z?y(z):z)
 Z A dvdFf(A x,F v,U f)_(A z=aF(xn);F(xn,zf=xf/v)z)
 Z A dvdzZ(L v,A y,U f)_(dvdfF(v,cF(y),f))
 Z A dvdZZ(A x,A y,U f)_(x=cF(xR);x(amdFF(x,cF(y),f)))
-Z A arizz(L a,L b,U f)_(P(f==4,af((F)a/b))az(f==1?a+b:f==3?a*b:f==5?(!a?b:a<0?(b<0?-1-~b/-a:b/-a):(b%a+a)%a):f==6?MIN(a,b):f==7?MAX(a,b):f==8?a<b:f==9?a>b:f==10?a==b:0))
+Z A arizz(L a,L b,U f)_(P(f==4,af((F)a/b))az(f==1?a+b:f==3?a*b:f==5?(!a?b:a<0?(b<0?-1-~b/-a:b/-a):b<0?(a-1-~b%a):b%a):f==6?MIN(a,b):f==7?MAX(a,b):f==8?a<b:f==9?a>b:f==10?a==b:0))
 Z A arizZ(L v,A y,U f)_(y=ytB?cG(y):y;A(&addzZ,0,mulzZ,dvdzZ,modzZ,mmmzZ,mmmzZ,cmpzZ,cmpzZ,cmpzZ)[f-1](v,y,f))
 Z A ariZZ(A x,A y,U f)_(P(xn-yn,el(y))xR;I(!(xtB&&ytB),x=xtB?cG(x):x;y=ytB?cG(y):y)x(A(&addZZ,0,mulZZ,dvdZZ,0,mmmZZ,mmmZZ,cmpZZ,cmpZZ,cmpZZ)[f-1](x,y,f)))
 ZN A ariz(A x,A y,U f){S(xtT<<1|ytT,R(0,arizz(gl_(x),gl(y),f))R(1,arizZ(gl_(x),y,f))R(2,P(f==4,x=xtB?cG(xR):xR;y=ari(x,cF(y));x(y))arizZ(gl(y),xR,f-8<2u?f^1:f))R_(ariZZ(x,y,f)))}
