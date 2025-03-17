@@ -67,7 +67,7 @@ F gf(A x)_(F v=*xF;x(0);v)
 A AT(W t,A x)_(Q(t<tn);P(TP(t),Lt(t)|-1ull<<56&x)xT=t;x)
 A AK(C k,A x)_(Q(k<9u);xk=k;x)
 A AO(UC o,A x)_(Xs(x&~(0xffll<<32)|(W)o<<32)_O(x)=o;x)
-A AN(U n,A x)_(xn=n;x)
+A AN(U n,A x)_(P(xtM,AN(n,xx);AN(n,xy);x)xn=n;x)
 A1(AZ,xT=tG;x)
 
 Z C s0[1<<16],*s1=s0+1;U ht[1<<16];
