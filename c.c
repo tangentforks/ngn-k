@@ -1,7 +1,6 @@
 #include"a.h" // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
 Z L ms[3][3]={{0xFF00FF00FF00FF00,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF},{0xFFFFFF00FFFFFF00,0xFFFF0000FFFF0000,0xFFFFFFFFFFFFFFFF},{0xFFFFFFFFFFFFFF00,0xFFFFFFFFFFFF0000,0xFFFFFFFF00000000}};
 Z L sb[]={0x8080808080808080,0x8000800080008000,0x8000000080000000};
-Z W bswp(W b)_(b=(b&0xF0F0F0F0F0F0F0F0)>>4|(b&0x0F0F0F0F0F0F0F0F)<<4;b=(b&0xCCCCCCCCCCCCCCCC)>>2|(b&0x3333333333333333)<<2;b=(b&0xAAAAAAAAAAAAAAAA)>>1|(b&0x5555555555555555)<<1;b)
 #define abn V*RES a,CO V*RES b,U n
 #define M(x,y,z) Z V c##x##y(abn){x*r=AL(a);CO y*p=AL(b);F(n+((1<<z)-1)>>z,Fj(1<<z,*r++=*p++))}
  M(H,G,4)M(G,H,4)M(H,I,3)M(I,H,3)M(G,I,3)M(I,G,3)M(H,L,2)M(L,I,2)M(I,L,2)M(G,L,2)//cHG cGH cHI cIH cGI cIG cHL cLI cIL cGL
@@ -21,12 +20,12 @@ NI A2(ct,UC t=xv,u=yt;Q(xti||x==t)Q(tB<=t&&t<=tS)P(t==TT[u],y)
  Y(RmMA(r2f(ct,x,y))RE(cT(x,gZ(y)))Rf(ct(x,al(gf(y))))Rilc(L v=gl(y);S(t,R4(tB,tG,tH,tI,ai(v))RC(ac(v))RL(al(v))RF(af(v))RS(u==tc?as(yv):et0()))0)R_(cT(x,y)))et(y))
 A1(cB,ct(tB,x))A1(cG,ct(tG,x))A1(cH,ct(tH,x))A1(cI,ct(tI,x))A1(cL,ct(tL,x))A1(cF,ct(tF,x))A1(cC,ct(tC,x))A1(cS,ct(tS,x))
 Z X1(csti,RmMA(e1f(csti,x))RF(sqzZ(cL(x)))Rf(az(gf(x)))RC(cG(x))Rc(ai(xv))Ruvw(ai(xv))RilEGHIL(x)R_(et(x)))
-Z X1(prsB,RmMA(e1f(prsB,x))Rc(prsB(enl(x)))RC(A u=aV(tL,xn+7>>3,xV);F(un+3>>2,Fj(4,uL[4*i+j]=bswp(uL[4*i+j])))uT=tB;un=xn<<3;x(u))Ril(x=mut(ct(tL,x));xT=tB;xn<<=6;x)RGHIL(x=cL(x);A u=aV(tL,xn,xV);uT=tB;un<<=6;x(u))R_(et(x)))
+Z X1(prsB,RmMA(e1f(prsB,x))Rc(prsB(enl(x)))RC(A u=aV(tL,xn+7>>3,xV);uT=tB;un=xn<<3;x(u))Ril(x=mut(ct(tL,x));xT=tB;xn<<=6;x)RGHIL(x=cL(x);A u=aV(tL,xn,xV);uT=tB;un<<=6;x(u))R_(et(x)))
 
 Z X1(prsI,RmMA(e1f(prsI,x))Rc(prsI(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tl])))L v=pl(&s);x(*s?_R(cn[tl]):az(v)      ))
 	 RB(N n=(xn-1+(1<<6))>>6,m=xn;A u=MINE(x)?xR:aV(tL,n,xV);uT=tL;un=n;I(m%64,uL[un-1]&=-1+(1ull<<(m%64u)));x(u))R_(et(x)))
 Z X1(prsF,RmMA(e1f(prsF,x))Rc(prsF(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tf])))L v=pf(&s);x(*s?_R(cn[tf]):aV(tf,1,&v)))R_(et(x)))
-A1(prsC,XB(N n=xn;A u=MINE(x)?xR:aV(tB,n,xV);uT=tC;un=n+7>>3;I(n%8u,uC[un-1]&=-1+(1<<(n%8u)));F((un+7>>3)+3>>2,Fj(4,uL[4*i+j]=bswp(uL[4*i+j])))x(u))et(x))
+A1(prsC,XB(N n=xn;A u=MINE(x)?xR:aV(tB,n,xV);uT=tC;un=n+7>>3;I(n%8u,uC[un-1]&=-1+(1<<(n%8u)));x(u))et(x))
 Z A1(cgB,XB(P(xn>8,el0())UC b=xC[0];b<<=-xn%8u;b=(b&0xF0)>>4|(b&0x0F)<<4;b=(b&0xCC)>>2|(b&0x33)<<2;b=(b&0xAA)>>1|(b&0x55)<<1;x(ac(b)))et(x))
 A1(bytes,XA(e1f(cgB,x))et(x))
 Z Y2(pad,RmMA(e2f(pad,x,y))RC(K2("{y@(!x)+(x<0)*#y}",x,y))Rc(dlr(x,enl(y)))R_(et(y)))
