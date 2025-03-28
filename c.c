@@ -26,8 +26,6 @@ Z X1(prsI,RmMA(e1f(prsI,x))Rc(prsI(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tl]
 	 RB(N n=(xn-1+(1<<6))>>6,m=xn;A u=MINE(x)?xR:aV(tL,n,xV);uT=tL;un=n;I(m%64,uL[un-1]&=-1+(1ull<<(m%64u)));x(u))R_(et(x)))
 Z X1(prsF,RmMA(e1f(prsF,x))Rc(prsF(enl(x)))RC(x=str0(x);S s=xV;P(!*s,x(_R(cn[tf])))L v=pf(&s);x(*s?_R(cn[tf]):aV(tf,1,&v)))R_(et(x)))
 A1(prsC,XB(N n=xn;A u=MINE(x)?xR:aV(tB,n,xV);uT=tC;un=n+7>>3;I(n%8u,uC[un-1]&=-1+(1<<(n%8u)));x(u))et(x))
-Z A1(cgB,XB(P(xn>8,el0())UC b=xC[0];b<<=-xn%8u;b=(b&0xF0)>>4|(b&0x0F)<<4;b=(b&0xCC)>>2|(b&0x33)<<2;b=(b&0xAA)>>1|(b&0x55)<<1;x(ac(b)))et(x))
-A1(bytes,XA(e1f(cgB,x))et(x))
 Z Y2(pad,RmMA(e2f(pad,x,y))RC(K2("{y@(!x)+(x<0)*#y}",x,y))Rc(dlr(x,enl(y)))R_(et(y)))
 X2(dlr,Rs(I v=xv;P(v-(C)v,ed(y))G(&csti,cF,cC,cS,cB,prsB,prsC,prsI,prsF,ed)[si("ifcsbBCIF",v|'s'*!v)](y))Ril(pad(x,y))R_(et(y)))
 A1(sqzZ,C r=0,t=xT;U n=xN,w=Tw[t]-3;L *m=ms[w-1];I i,j;CO L*y=AL(xV);MS(xG+(n<<w),0,-n%(1u<<5-w)<<w);
