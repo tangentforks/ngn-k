@@ -14,9 +14,18 @@ X1(whr,Ril(whr(enl(x)))RA(K1("{$[`A~@x;(,&#'*'x),,'/x@\\:!0|/#'x:o'x;,&x]}",x))R
   Mx(S4(t-tG,{G*r=yV;N n;F(m,S4(w,n=xg,n=xh,n=xi,n=xl)Fj(n,*r++=i))},
              {H*r=yV;N n;F(m,S4(w,n=xg,n=xh,n=xi,n=xl)Fj(n,*r++=i))},
              {I*r=yV;N n;F(m,S4(w,n=xg,n=xh,n=xi,n=xl)Fj(n,*r++=i))},))y))
-Z W bswp(W b)_(b=(b&0xFFFFFFFF00000000)>>32|(b&0x00000000FFFFFFFF)<<32;b=(b&0xFFFF0000FFFF0000)>>16|(b&0x0000FFFF0000FFFF)<<16;b=(b&0xFF00FF00FF00FF00)>>8|(b&0x00FF00FF00FF00FF)<<8;b=(b&0xF0F0F0F0F0F0F0F0)>>4|(b&0x0F0F0F0F0F0F0F0F)<<4;b=(b&0xCCCCCCCCCCCCCCCC)>>2|(b&0x3333333333333333)<<2;b=(b&0xAAAAAAAAAAAAAAAA)>>1|(b&0x5555555555555555)<<1;b)
-X1(rev,Rm(A y=kv(&x);am(rev(x),rev(y)))RM(A y=kv(&x);aM(x,e1f(rev,y)))Rt(x)RE(rev(gZ(x)))RB(U n=xn;A u=aB(-n%64u);uL[0]=0;u=cat11(u,x);F((un+63>>6)+3>>2,Fj(4,uL[4*i+j]=bswp(uL[4*i+j])))uT=tL;un>>=6;u=rev(u);uT=tB;AN(n,u))
- R_(P(xn<2,x)x=mut(x);U n=xn;I w=xw-3;F(n>>1,S4(w,SW(xg,xG[n-1-i]),SW(xh,xH[n-1-i]),SW(xi,xI[n-1-i]),SW(xl,xL[n-1-i])))x))
+Z Gx32 bswp(Gx32 b)_(b=((b&0x55)<<1)|((b>>1)&0x55);b=((b&0x33)<<2)|((b>>2)&0x33);b=((b&0x0F)<<4)|((b>>4)&0x0F);b)
+#define M(t,f,r...) F(b,((t*)yV)[i]=f(SHUF(((t*)xV)[b-1-i],(t){r})))
+X1(rev,Rm(A y=kv(&x);am(rev(x),rev(y)))RM(A y=kv(&x);aM(x,e1f(rev,y)))Rt(x)RE(rev(gZ(x)))
+ R_(P(xn<2,x)L b=((xn<<xw)+255)>>8;A y=an(b<<8>>xw,xt);
+  S(xw,C(0,M(Gx32,bswp,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0))
+   C(3,M(Gx32,,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0))
+   C(4,M(Hx16,,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0))
+   C(5,M(Ix8,,7,6,5,4,3,2,1,0))
+   C(6,M(Lx4,,3,2,1,0)))
+  I(xtA,F(yn-xn,ya=ai(0))F(yn,_R(ya)))
+  x(drp(yn-xn,y))))
+#undef M
 A1(typ,x(as(TS[xt])))
 A1(len,x(az(xN)))
 U _N(A x/*0*/){X(RE(Lij j-i)RT_E(xn)Rm(_N(xy))RM(_N(_x(xy)))R_(1))}
