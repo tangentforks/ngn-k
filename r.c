@@ -4,7 +4,7 @@
 //s:2/|+4 64#(n{(|(8#2)\30)@2/'3':0,x,0}\n=!2*n)@'n:256
 //R:{,/|(0,(#y)!x)_y} /rotate
 //X:{*`I$~=/`B$'(x;y)} /xor
-//d:`B$|'(0x76e15d3efefdcbbf;0xc5004e441c522fb3;0x77710069854ee241;0x39109bb02acbe635) /big endian
+//d:`B$|'(0x180ec6d33cfd0aba; 0xd5a61266f0c9392c; 0xa9582618e03fc9aa; 0x39abdc4529b1661c) /big endian
 //f:{r:+/x 0 3;t:x[1]*(*/17#2);x[2]:X/x 2 0;x[3]:X/x 3 1;x[1]:X/x 1 2;x[0]:X/x 0 3;x[2]:X[x 2]t;x[3]:2/R[45]@(64#2)\x 3;x} /next
 //l:{r:{t:$[y;X'/x;*x];(t;f x 1)}/[(&4;x);,//d];*r} /long jump
 //`0:",\n"/{x/"{}"}'","/'"0x",/:/:`hex@|''`C$''`B$''+3 l\s
