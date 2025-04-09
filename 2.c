@@ -1,15 +1,21 @@
 #include"a.h" // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
-Z CO W msk[]={0x8080808080808080ll,0x8000800080008000ll,0x8000000080000000ll};
 #define M(o,f,T) ZN V f(CO V*RES a,CO V*RES b,V*RES c,U n){CO T*x=AL(a),*y=AL(b);T*r=AL(c);F(n,Fj(32/SZ(T),*r++=*x++o*y++))}
- M(+,aFF,F)M(*,mFF,F)M(/,dFF,F)M(+,aLL,L)M(+,aII,I)M(+,aHH,H)M(+,aGG,G)
+ M(+,aFF,F)M(-,sFF,F)M(*,mFF,F)M(/,dFF,F)
 #undef M
 ZN A bitBB(A x,A y,U f)_(A z=MINE(y)?y:aB(yn);F(xn+63>>6,
     S(f,C(3,zl=xl&yl)C(6,zl=xl&yl)C(7,zl=xl|yl)C(8,zl=yl&~xl)C(9,zl=xl&~yl)C(10,zl=~xl^yl)D(z(y-z?y(0):0);_(en0()))))y-z?y(z):z)
-ZN A amdFF(A x,A y,U f)_(U n=xn;P(n-yn,el(y))A z=MINE(y)?y:aF(n);G(&aFF,0,mFF,dFF)[f-1](xV,yV,zV,n+3>>2);y-z?y(z):z)
-ZN B oZZ(CO W*x,CO W*y,CO W*r,U n,U w)_(x=AL(x);y=AL(y);r=AL(r);W t[4]={};F(((W)n<<w)+31>>5,Fj(4,t[j]|=(*r^*x)&(*r^*y);r++;x++;y++))!!((t[0]|t[1]|t[2]|t[3])&msk[w]))
-Z A addZZ(A x,A y,U f)_(XB(addZZ(cG(xR),cG(y),f))U w=MAX(xw-3,yw-3);P(xw-3-w,x=ct(tG+w,xR);x(addZZ(x,y,f)))y=ct(tG+w,y);U n=yn;A z=an(n,yt);
- G(&aGG,aHH,aII,aLL)[w](xV,yV,zV,n+(31>>w)>>5-w);
- P(w<3&&oZZ(xV,yV,zV,n,w),z(0);y=ct(tG+w+1,y);x=ct(tG+w+1,xR);x(addZZ(x,y,f)))y(z))
+ZN A amdFF(A x,A y,U f)_(U n=xn;P(n-yn,el(y))A z=MINE(y)?y:aF(n);G(&aFF,sFF,mFF,dFF)[f-1](xV,yV,zV,n+3>>2);y-z?y(z):z)
+#define M(tx,ty,tz,o) R(CTZ(SZ(tx))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
+			tz a VS(32)=CVV(((tx VS(32*SZ(tx)/SZ(tz))*)xV)[i],tz VS(32)), \
+			   b VS(32)=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],tz VS(32))^(tz)-s, \
+			   c VS(32)=a+b+(tz)s;((tz VS(32)*)zV)[i]=c; \
+		I(o,L t VS(32);*(tz VS(32)*)&t=((a^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
+Z A asuZZ(A x,A y,U f)_(I s=f==2;A z=an(xn,tG+MAX(xw,yw)-3);
+  S(xw-3<<2|yw-3,M(G,G,G,1)M(G,H,H,1)M(G,I,I,1)M(G,L,L,0)M(H,G,H,1)M(H,H,H,1)M(H,I,I,1)M(H,L,L,0)
+                 M(I,G,I,1)M(I,H,I,1)M(I,I,I,1)M(I,L,L,0)M(L,G,L,0)M(L,H,L,0)M(L,I,L,0)M(L,L,L,0))
+  ovf:z=an(xn,z(zt+1));
+  S(xw-3<<2|yw-3,M(G,G,H,0)M(G,H,I,0)M(G,I,L,0)M(H,G,I,0)M(H,H,I,0)M(H,I,L,0)M(I,G,L,0)M(I,H,L,0)M(I,I,L,0))0)
+#undef M
 Z A mulZZ(A x,A y,U f)_(XB(bitBB(x,y,0))U n=yn,i=0,w=MAX(xw-3,yw-3);P(xw-3-w,x=ct(tG+w,xR);x(mulZZ(x,y,f)))y=ct(tG+w,y);A z=an(n,yt);
  S4(w,W(i<n,I v=(I)xg*yg;B(v-(G)v)zg=v;i++),
       W(i<n,I v=(I)xh*yh;B(v-(H)v)zh=v;i++),
@@ -17,12 +23,14 @@ Z A mulZZ(A x,A y,U f)_(XB(bitBB(x,y,0))U n=yn,i=0,w=MAX(xw-3,yw-3);P(xw-3-w,x=c
       W(i<n,zl=xl*yl;i++))
  P(i<n,z(0);x=ct(tG+w+1,xR);x(mulZZ(x,ct(tG+w+1,y),f)))y(z))
 
-#define M(f,T) ZN V f(L v,V*RES b,V*RES c,U n){CO T*y=AL(b);T*r=AL(c);F(n,Fj(32/SZ(T),*r++=v+*y++))}
- M(alL,L)M(aiI,I)M(ahH,H)M(agG,G)
+#define M(ty,tz,o) R(CTZ(SZ(tz))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
+		tz b VS(32)=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],tz VS(32))^(tz)-s,c VS(32)=(tz)v+b+(tz)s;((tz VS(32)*)zV)[i]=c; \
+		I(o,L t VS(32);*(tz VS(32)*)&t=(((tz)v^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
+Z A asuzZ(L v,A y,U f)_(P(f==1&&!v&&ytZ,sqzZ(y))I s=f==2;A z=an(yn,tG+MAX(tZ(v)-tG,yw-3));
+ S(zw-3<<2|yw-3,M(G,G,1)M(G,H,1)M(H,H,1)M(G,I,1)M(H,I,1)M(I,I,1)M(G,L,0)M(H,L,0)M(I,L,0)M(L,L,0))
+ ovf:z=an(yn,z(zt+1));
+ S(zw-3<<2|yw-3,M(G,H,0)M(G,I,0)M(H,I,0)M(G,L,0)M(H,L,0)M(I,L,0))0)
 #undef M
-ZN B ozZ(L v,CO W*y,CO W*r,U n,U w)_(r=AL(r);y=AL(y);F(3-w,v|=v<<(8<<w+i))W t[4]={};F(((W)n<<w)+31>>5,Fj(4,t[j]|=(*r^v)&(*r^*y);r++;y++))!!((t[0]|t[1]|t[2]|t[3])&msk[w]))
-Z A addzZ(L v,A y,U f)_(P(!v&&ytZ,sqzZ(y))U n=yn,w=MAX(tZ(v)-tG,yw-3);y=ct(tG+w,y);A z=an(n,yt);G(&agG,ahH,aiI,alL)[w](v,yV,zV,n+(31>>w)>>5-w);
- P(w<3&&ozZ(v,yV,zV,n,w),z(0);y=ct(tG+w+1,y);addzZ(v,y,f))y(z))
 
 Z A mulzZ(L a,A y,U f)_(U n=yn,i=0,w=MAX(tZ(a)-tG,yw-3);y=ct(tG+w,y);A z=an(n,yt);
  S4(w,W(i<n,I v=a*yg;B(v-(G)v)zg=v;i++),
@@ -88,23 +96,24 @@ Z A cmpzZ(L v,A y,U f)_(U w=yw-3;P(tG+w<tZ(v),y(rsz(yn,ai(f==8?v<0:f==9?v>0:0)))
  U n=yn;A z=aG(n);My(A(&ltng,ltnh,ltni,ltnl,gtng,gtnh,gtni,gtnl,eqlg,eqlh,eqli,eqll)[f-8<<2|w](v,yV,zG,n))z)
 
 Z A addzE(L v,A x)_(Lij x(0);aE(i+v,j+v))
+Z A subfF(F v,A y,U f)_(A z=MINE(y)?y:aF(yn);U n=zn+3&-4;F(n,zf=v-yf)y-z?y(z):z)
 Z A addfF(F v,A y,U f)_(A z=MINE(y)?y:aF(yn);U n=zn+3&-4;F(n,zf=v+yf)y-z?y(z):z)
 Z A mulfF(F v,A y,U f)_(A z=MINE(y)?y:aF(yn);U n=zn+3&-4;F(n,zf=v*yf)y-z?y(z):z)
-Z A admfF(F v,A y,U f)_((f==3?mulfF:addfF)(v,y,f))
+Z A admfF(F v,A y,U f)_((f==3?mulfF:f==2?subfF:addfF)(v,y,f))
 Z A dvdfF(F v,A y,U f)_(A z=MINE(y)?y:aF(yn);U n=zn+3&-4;F(n,zf=v/yf)y-z?y(z):z)
 Z A dvdFf(A x,F v,U f)_(A z=aF(xn);F(xn,zf=xf/v)z)
 Z A dvdzZ(L v,A y,U f)_(dvdfF(v,cF(y),f))
 Z A dvdZZ(A x,A y,U f)_(x=cF(xR);x(amdFF(x,cF(y),f)))
-Z A arizz(L a,L b,U f)_(P(f==4,af((F)a/b))az(f==1?a+b:f==3?a*b:f==5?(!a?b:a<0?(b<0?-1-~b/-a:b/-a):b<0?(a-1-~b%a):b%a):f==6?MIN(a,b):f==7?MAX(a,b):f==8?a<b:f==9?a>b:f==10?a==b:0))
-Z A arizZ(L v,A y,U f)_(y=ytB?cG(y):y;A(&addzZ,0,mulzZ,dvdzZ,modzZ,mmmzZ,mmmzZ,cmpzZ,cmpzZ,cmpzZ)[f-1](v,y,f))
-Z A ariZZ(A x,A y,U f)_(P(xn-yn,el(y))xR;I(!(xtB&&ytB),x=xtB?cG(x):x;y=ytB?cG(y):y)x(A(&addZZ,0,mulZZ,dvdZZ,0,mmmZZ,mmmZZ,cmpZZ,cmpZZ,cmpZZ)[f-1](x,y,f)))
-ZN A ariz(A x,A y,U f){S(xtT<<1|ytT,R(0,arizz(gl_(x),gl(y),f))R(1,arizZ(gl_(x),y,f))R(2,P(f==4,x=xtB?cG(xR):xR;y=ari(x,cF(y));x(y))arizZ(gl(y),xR,f-8<2u?f^1:f))R_(ariZZ(x,y,f)))}
+Z A arizz(L a,L b,U f)_(P(f==4,af((F)a/b))az(f==1?a+b:f==2?a-b:f==3?a*b:f==5?(!a?b:a<0?(b<0?-1-~b/-a:b/-a):b<0?(a-1-~b%a):b%a):f==6?MIN(a,b):f==7?MAX(a,b):f==8?a<b:f==9?a>b:f==10?a==b:0))
+Z A arizZ(L v,A y,U f)_(y=ytB?cG(y):y;A(&asuzZ,asuzZ,mulzZ,dvdzZ,modzZ,mmmzZ,mmmzZ,cmpzZ,cmpzZ,cmpzZ)[f-1](v,y,f))
+Z A ariZZ(A x,A y,U f)_(P(xn-yn,el(y))xR;I(!(xtB&&ytB),x=xtB?cG(x):x;y=ytB?cG(y):y)x(A(&asuZZ,asuZZ,mulZZ,dvdZZ,0,mmmZZ,mmmZZ,cmpZZ,cmpZZ,cmpZZ)[f-1](x,y,f)))
+ZN A ariz(A x,A y,U f){S(xtT<<1|ytT,R(0,arizz(gl_(x),gl(y),f))R(1,arizZ(gl_(x),y,f))R(2,P(f==4,x=xtB?cG(xR):xR;y=ari(x,cF(y));x(y))P(f==2,arizZ(-gl(y),xR,1))arizZ(gl(y),xR,f-8<2u?f^1:f))R_(ariZZ(x,y,f)))}
 ZN A arif(A x,A y,U f)_(C t=xt,u=yt;
  P(f==5,xtz?modzf(gl(x),y,f):et(y))
  P(t-tf&&t-tF,x=Ny(cF(xR));x(ari(x,y)))
  P(u-tf&&u-tF,ari(x,N(cF(y))))
  P(f<5,U k=(t<tM)<<1|(u<tM);S(k,
-  R(0,F a=*xF,b=gf(y);af(f==1?a+b:f==3?a*b:a/b))
+  R(0,F a=*xF,b=gf(y);af(f==1?a+b:f==2?a-b:f==3?a*b:a/b))
   R(1,f<4?admfF(*xF,y,f):dvdfF(*xF,y,f))
   R(2,f<4?admfF(gf(y),xR,f):dvdFf(x,gf(y),f))
   R_(amdFF(x,y,f)))0)
@@ -114,7 +123,8 @@ ZN A arif(A x,A y,U f)_(C t=xt,u=yt;
 Z U f;//0=dex,1=add,2=sub,3=mul,4=dvd,5=mod,6=mnm,7=mxm,8=ltn,9=gtn,10=eql
 A2(ari,C t=xt,u=yt;U v=1<<t|1<<u;
  P(!(v&~(1<<tB|1<<tG|1<<tH|1<<tI|1<<tL|1<<tC|1<<ti|1<<tl|1<<tc)),ariz(x,y,f))
- P(v&(1<<tm|1<<tM|1<<tA),e2(av+f,x,y))
+ P(v&(1<<tA),e2(av+f,x,y))
+ P(v&(1<<tm|1<<tM),P(f==2,e2f(add,x,neg(y)))e2(av+f,x,y))
  P(t==tE,P(f==1&&ytzc,addzE(gl(y),xR))x=gZ(xR);x(ari(x,y)))
  P(u==tE,P(f==1&&xtzc,addzE(gl_(x),y))ari(x,gZ(y)))
  P(v&(1<<tf|1<<tF),arif(x,y,f))
@@ -124,6 +134,6 @@ A2(ari,C t=xt,u=yt;U v=1<<t|1<<u;
  et(y))
 
 #define M(s,i) A2(s,U o=f;f=i;x=ari(x,y);f=o;x)
- M(add,1)M(mul,3)M(dvd,4)M(mod,5)M(mnm,6)M(mxm,7)M(ltn,8)M(gtn,9)M(eql,10)
+ M(add,1)M(sub,2)M(mul,3)M(dvd,4)M(mod,5)M(mnm,6)M(mxm,7)M(ltn,8)M(gtn,9)M(eql,10)
 #undef M
-A2(dex,y)A2(sub,add(x,N(neg(y))))X2(exc,RMT(ytm||rnk(x)<0?ed(y):ytt?exc(x,rsz(xN,y)):xN-yN?el(y):am(xR,y))Rs(x=rsz(yN,x);x(exc(x,y)))Rilc(mod(x,y))R_(et(y)))
+A2(dex,y)X2(exc,RMT(ytm||rnk(x)<0?ed(y):ytt?exc(x,rsz(xN,y)):xN-yN?el(y):am(xR,y))Rs(x=rsz(yN,x);x(exc(x,y)))Rilc(mod(x,y))R_(et(y)))
