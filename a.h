@@ -44,6 +44,7 @@
 #define SZ sizeof
 #define HD 32ll//header
 #define NI __attribute__((noinline))
+#define VS(n) __attribute__((vector_size(n)))
 #define ZN Z NI
 #define TD typedef
 #define TY __typeof__
@@ -81,8 +82,7 @@
 #define MINE(x) (_r(x)==REFB)
 TD void V;TD bool B;TD char G,C;TD char unsigned UC;TD CO C*S;TD short H;TD unsigned short UH;TD int I;TD unsigned int U;TD long long L;TD double F;TD size_t N;
 TD unsigned long long W,A,A0(),A1(A),A2(A,A),A3(A,A,A),A4(A,A,A,A),A5(A,A,A,A,A),A6(A,A,A,A,A,A),A7(A,A,A,A,A,A,A),A8(A,A,A,A,A,A,A,A),AA(CO A*,U),AX(A,CO A*,U);
-
-TD G Gx32 __attribute__((vector_size(32)));TD H Hx16 __attribute__((vector_size(32)));TD I Ix8 __attribute__((vector_size(32)));TD L Lx4 __attribute__((vector_size(32)));
+TD G Gx32 VS(32);TD UC UCx32 VS(32);TD H Hx16 VS(32);TD UH UHx16 VS(32);TD I Ix8 VS(32);TD U Ux8 VS(32);TD L Lx4 VS(32);TD W Wx4 VS(32);
 
 #define A0(f,b...) A f(                )_(b)
 #define A1(f,b...) A f(A x             )_(b)/*1*/
