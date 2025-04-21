@@ -6,22 +6,27 @@ ZN A bitBB(A x,A y,U f)_(A z=MINE(y)?y:aB(yn);F(xn+63>>6,
     S(f,C(3,zl=xl&yl)C(6,zl=xl&yl)C(7,zl=xl|yl)C(8,zl=yl&~xl)C(9,zl=xl&~yl)C(10,zl=~xl^yl)D(z(y-z?y(0):0);_(en0()))))y-z?y(z):z)
 ZN A amdFF(A x,A y,U f)_(U n=xn;P(n-yn,el(y))A z=MINE(y)?y:aF(n);G(&aFF,sFF,mFF,dFF)[f-1](xV,yV,zV,n+3>>2);y-z?y(z):z)
 #define M(tx,ty,tz,o) R(CTZ(SZ(tx))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
-			tz a VS(32)=CVV(((tx VS(32*SZ(tx)/SZ(tz))*)xV)[i],tz VS(32)), \
-			   b VS(32)=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],tz VS(32))^(tz)-s, \
+			tz a VS(32)=CVV(((tx VS(32*SZ(tx)/SZ(tz))*)xV)[i],TY(a)), \
+			   b VS(32)=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b))^(tz)-s, \
 			   c VS(32)=a+b+(tz)s;((tz VS(32)*)zV)[i]=c; \
-		I(o,L t VS(32);*(tz VS(32)*)&t=((a^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
-Z A asuZZ(A x,A y,U f)_(I s=f==2;A z=an(xn,tG+MAX(xw,yw)-3);
+		I(o,L t VS(32);*(TY(c)*)&t=((a^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))x(y(z)))
+Z A asuZZ(A x,A y,U f)_(xR;I(xtB,x=cG(x))I(ytB,y=cG(y));I s=f==2;A z=an(xn,tG+MAX(xw,yw)-3);
   S(xw-3<<2|yw-3,M(G,G,G,1)M(G,H,H,1)M(G,I,I,1)M(G,L,L,0)M(H,G,H,1)M(H,H,H,1)M(H,I,I,1)M(H,L,L,0)
                  M(I,G,I,1)M(I,H,I,1)M(I,I,I,1)M(I,L,L,0)M(L,G,L,0)M(L,H,L,0)M(L,I,L,0)M(L,L,L,0))
   ovf:z=an(xn,z(zt+1));
   S(xw-3<<2|yw-3,M(G,G,H,0)M(G,H,I,0)M(G,I,L,0)M(H,G,I,0)M(H,H,I,0)M(H,I,L,0)M(I,G,L,0)M(I,H,L,0)M(I,I,L,0))0)
 #undef M
-Z A mulZZ(A x,A y,U f)_(XB(bitBB(x,y,0))U n=yn,i=0,w=MAX(xw-3,yw-3);P(xw-3-w,x=ct(tG+w,xR);x(mulZZ(x,y,f)))y=ct(tG+w,y);A z=an(n,yt);
- S4(w,W(i<n,I v=(I)xg*yg;B(v-(G)v)zg=v;i++),
-      W(i<n,I v=(I)xh*yh;B(v-(H)v)zh=v;i++),
-      W(i<n,L v=(L)xi*yi;B(v-(I)v)zi=v;i++),
-      W(i<n,zl=xl*yl;i++))
- P(i<n,z(0);x=ct(tG+w+1,xR);x(mulZZ(x,ct(tG+w+1,y),f)))y(z))
+
+#define M(tx,ty,to,tz,o) R(CTZ(SZ(tx))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
+			tz VS(32)a=CVV(((tx VS(32*SZ(tx)/SZ(tz))*)xV)[i],TY(a)),b=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b)), \
+			         c=a*b,d=(c<0)^CVV(CVV(a,to VS(32*SZ(to)/SZ(tz)))*CVV(b,to VS(32*SZ(to)/SZ(tz)))>>8*(SZ(to)-SZ(tz)),TY(d)); \
+			((tz VS(32)*)zV)[i]=CVV(c,tz VS(32)); \
+		I(o,L t VS(32);*(TY(d)*)&t=d;I(t[0]|t[1]|t[2]|t[3],goto ovf)))x(y(z)))
+Z A mulZZ(A x,A y,U f)_(xR;I(xw<yw,SW(x,y))I(ytB,y=cG(y))A z=an(xn,tG+MAX(xw,yw)-3);
+ S(xw-3<<2|yw-3,M(G,G,H,G,1)M(H,G,I,H,1)M(H,H,I,H,1)M(I,G,L,I,1)M(I,H,L,I,1)M(I,I,L,I,1)M(L,G,L,L,0)M(L,H,L,L,0)M(L,I,L,L,0)M(L,L,L,L,0))
+ ovf:z=an(xn,z(zt+1));
+ S(xw-3<<2|yw-3,M(G,G,H,H,0)M(H,G,I,I,0)M(H,H,I,I,0)M(I,G,L,L,0)M(I,H,L,L,0)M(I,I,L,L,0))0)
+#undef M
 
 #define M(ty,tz,o) R(CTZ(SZ(tz))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
 		tz b VS(32)=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],tz VS(32))^(tz)-s,c VS(32)=(tz)v+b+(tz)s;((tz VS(32)*)zV)[i]=c; \
@@ -31,20 +36,24 @@ Z A asuzZ(L v,A y,U f)_(P(f==1&&!v&&ytZ,sqzZ(y))I s=f==2;A z=an(yn,tG+MAX(tZ(v)-
  ovf:z=an(yn,z(zt+1));
  S(zw-3<<2|yw-3,M(G,H,0)M(G,I,0)M(H,I,0)M(G,L,0)M(H,L,0)M(I,L,0))0)
 #undef M
-Z A mulzZ(L a,A y,U f)_(U n=yn,i=0,w=MAX(tZ(a)-tG,yw-3);y=ct(tG+w,y);A z=an(n,yt);
- S4(w,W(i<n,I v=a*yg;B(v-(G)v)zg=v;i++),
-      W(i<n,I v=a*yh;B(v-(H)v)zh=v;i++),
-      W(i<n,L v=a*yi;B(v-(I)v)zi=v;i++),
-      W(i<n,zl=a*yl;i++))
- i<n?mulzZ(a,ct(tG+w+1,z(y)),f):y(z))
+
+#define M(tx,ty,to,tz,o) R(CTZ(SZ(tz))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
+			to b VS(32*SZ(to)/SZ(tz))=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b)),\
+			   c VS(32*SZ(to)/SZ(tz))=(to)v*b;((tz VS(32)*)zV)[i]=CVV(c,tz VS(32)); \
+		I(o,L t VS(32);*(tz VS(32)*)&t=CVV((c^(c<0))>>8*SZ(tz)-1,tz VS(32));I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
+Z A mulzZ(L v,A y,U f)_(A z=an(yn,tG+MAX(tZ(v)-tG,yw-3));
+ S(zw-3<<2|yw-3,M(G,G,H,G,1)M(H,G,I,H,1)M(H,H,I,H,1)M(I,G,L,I,1)M(I,H,L,I,1)M(I,I,L,I,1)M(L,G,L,L,0)M(L,H,L,L,0)M(L,I,L,L,0)M(L,L,L,L,0))
+ ovf:z=an(yn,z(zt+1));
+ S(zw-3<<2|yw-3,M(G,G,H,H,0)M(H,G,I,I,0)M(H,H,I,I,0)M(I,G,L,L,0)M(I,H,L,L,0)M(I,I,L,L,0))0)
+#undef M
 
 #define M(ty,tz) R(CTZ(SZ(ty))<<2|CTZ(SZ(tz)),F(zn*SZ(ty)+31>>5, \
 		ty v VS(32)=((ty VS(32)*)yV)[i],s VS(32)=v<0,r VS(32); \
 		S4(p<<1|o,r=(s^(s^v)%(ty)m)+(s&(ty)m),r=s^(v^s)/(ty)m,r=v&(ty)m,r=v>>m) \
 		((tz VS(32*SZ(tz)/SZ(ty))*)zV)[i]=CVV(r,tz VS(32*SZ(tz)/SZ(ty))))y(z))
-Z A modzZ(L m,A y,U f){P(!m,y)P(tZ(m)>tG+yw-3,A z=ltn(y,ai(0));P(m>0,y(asuZZ(y,mulzZ(m,z,3),1)))y(neg(z)))
-  U o=m<0;I(o,m=-m);U t=o?MAX(tZ(~(-1ULL<<(1<<yw)-1)/m),tZ(~(~(-1ULL<<(1<<yw)-1)/m))):tZ(m-1),p=!(m&m-1);I(p,m=o?CTZ(m):m-1)
-  A z=an(yn,t);S(yw-3<<2|zw-3,M(G,G)M(H,G)M(H,H)M(I,G)M(I,H)M(I,I)M(L,G)M(L,H)M(L,I)M(L,L))}
+Z A modzZ(L m,A y,U f)_(P(!m,y)P(tZ(m)>tG+yw-3,A z=ltn(y,ai(0));P(m>0,y(asuZZ(y,mulzZ(m,z,3),1)))y(neg(z)))
+  U o=m<0;I(o,m=-m);U t=o?tZ(~(-1LL<<(1<<yw)-1)/m):tZ(m-1),p=!(m&m-1);I(p,m=o?CTZ(m):m-1)
+  A z=an(yn,t);S(yw-3<<2|zw-3,M(G,G)M(H,G)M(H,H)M(I,G)M(I,H)M(I,I)M(L,G)M(L,H)M(L,I)M(L,L))0)
 #undef M
 
 Z A modzf(L n,A y,U f)_(P(!n,y)P(n<0,en(y))K2("{y-x*(-x)!_y}",az(n),y))
