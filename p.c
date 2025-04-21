@@ -9,7 +9,8 @@ Z A1(p1,x&&xn==1?fir(x):x)                                                      
 S pID(S s)_(W(id1(*s),s+=0xe555>>((UC)*s>>4&-2)&3)s)                                                //parse identifier
 W pu(S*p)_(S s=*p;W v=0;C c=*s;W(C09(c),v=10*v+c-'0';c=*++s)*p-s?*p=s,v:NL)                         //parse unsigned long
 L pl(S*p)_(B m=**p=='-';*p+=m;(1-2*m)*pu(p))                                                        //parse long
-Z L plN(S*p)_(S s=*p;L v=pl(&s);P((*s)&&!!strchr(".nwefb",*s),NL)*p=s;!v&&**p=='N'?(*p)++,NL:v)     //parse long (with support for nulls)
+Z L plN(S*p)_(S s=*p;L v=pl(&s);P((*s)&&!!strchr(".nwef",*s),NL)
+ I(*s=='b',S r=*p;F(s-*p,B(*r++-'0'>=2u))P(r==s,NL))*p=s;!v&&**p=='N'?(*p)++,NL:v)                  //parse long (with support for nulls)
 Z L pfu(S*p)_(L v=pu(p);S s=*p;C c=*s;P(c=='w',(*p)++;WFL)P(c=='n',(*p)++;v^NFL)I e=0;              //parse float unsigned
  I(c=='.',c=*++s;W(C09(c),I(v<(1ull<<63)/10,v=10*v+c-'0';e--)c=*++s))
  I(c=='e',s++;e+=pl(&s);P(e<-308,0)P(e>308,WFL))
