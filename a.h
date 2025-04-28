@@ -77,6 +77,8 @@
 #elif __GNUC__
  #define SHUF  __builtin_shuffle
 #endif
+#define CVV   __builtin_convertvector
+#define VS(n) __attribute__((vector_size(n)))
 #define SQ    __builtin_sqrt
 #define REFB  1
 #define MINE(x) (_r(x)==REFB)
