@@ -28,10 +28,9 @@ I qA(A x,A y/*00*/)_(I v=TS[xt]-TS[yt];P(v,v)
    R_(ql(x,y)))0)
 Z I*ascZ(CO UC*v,UC*g,I*a,I*b,I n,I w)_(U c[257];tilV(a,0,n,2);Fj(w,MS(c,0,SZ c);F(n,g[i]=v[w*a[i]+j])F(n,c[g[i]+1]++)I(c[1+*g]-n,F(255,c[i+1]+=c[i])F(n,b[c[g[i]]++]=a[i])SW(b,a)))a)
 Z A grdm(A x/*1*/,A1 f)_(A y=kv(&x);x(x1(Nx(f(y)))))
-
 Z V mrg(A x/*0*/,I*p,I*q,I*b,I*d,I k){I*r=p-q+b;W(1,I(qA(xA[*p],xA[*b])<k,*r++=*p++;P(p==q))E(*r++=*b++;B(b==d)))MC(r,p,q-p<<2);}//merge(k=1),mergeR(k=0)
 Z V cis(A x/*0*/,I*p,N n,I*r){F(n,I j=0,k=i,v=p[i];A y=xA[v];W(j<k,I m=j+k>>1;I(qA(y,xA[r[m]])<0,k=m)E(j=m+1))memmove(r+j+1,r+j,i-j<<2);r[j]=v)}//copying_insertionsort
-Z V cms(A x/*0*/,I*p,N n,I*r){P(n<17,cis(x,p,n,r);)N m=n/2;cms(x,p+m,n-m,r+m);cms(x,p,m,p+m);mrg(x,p+m,p+2*m,r+m,r+n,1);}//copying_mergesort
+Z V cms(A x/*0*/,I*p,N n,I*r){P(n<17,cis(x,p,n,r);)N m=n/2;cms(x,p+m,n-m,r+m);cms(x,p,m,p+m);mrg(x,p+m,p+2*m,r+m,r+n,1);}//copying_mergesort [[http://kicia.ift.uni.wroc.pl/algorytmy/mergesortpaper.pdf]]
 A1(ascA,N n=xn;A z=aI(n);I*p=zI;tilV(p,0,n,2);P(n<17,cis(x,p,n,p);x(z))N m=n/2;A y=aI(n-m);I*t=yI;cms(x,p+m,n-m,t);cms(x,p,m,p+n-m);mrg(x,t,t+n-m,p+n-m,p+n,0);x(y(z)))
 X1(asc,Rt(opn(x))Rm(grdm(x,asc))RM(K1("{(!#x){x@<y x}/|.+x}",x))RS(asc(str(x)))RF(asc(of1(x)))RA(P(xn-(I)xn,ez(x))ascA(x))RE(Lij x(0);aE(0,j-i))
  RGC(P(xn-(I)xn,ez(x))N n=xn;I c[257]={},*c129=c+129;F(n,c129[xg]++)F(256,c[i+1]+=c[i])A y=aI(n);I*c128=c+128;Mx(F(n,yI[c128[xg]++]=i))ct(tZ(n-1),y))
