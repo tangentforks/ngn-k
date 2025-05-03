@@ -1,6 +1,6 @@
 #include<math.h> // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
 #include"a.h"
-///prng: xoshiro256+ (public domain) http://vigna.di.unimi.it/xorshift/ seeded with the central column of rule30, little-endian:
+///prng: xoshiro256++ (public domain) http://vigna.di.unimi.it/xorshift/ seeded with the central column of rule30, little-endian:
 //s:2/|+4 64#(n{(|(8#2)\30)@2/'3':0,x,0}\n=!2*n)@'n:256
 //R:{,/|(0,(#y)!x)_y} /rotate
 //X:{*`I$~=/`B$'(x;y)} /xor
@@ -13,7 +13,7 @@ Z W s[][M]={{0xd5a986ae75c9a33b,0x77788d12d7c3f90a,0x9bb25b5d47975e04,0xa3aa7908
             {0x81f9e6260eb8e5df,0x84b0c73f92967168,0xdea3ef04291616cd,0xc59aa1a597d9ccc7},{0xfa9b718d8d0769bf,0x699d3c097d2a746d,0xad6944fed639d10b,0x993752ab8d4d5eba}};//prng state
 Z W b[M];Z U nb;//buf
 Z V h(U x,U y){Wx4* r=(Wx4*)s;r[x]^=r[y];}
-Z V r4(){nb=M;Wx4 t;Wx4* r=(Wx4*)s;*((Wx4*) b)=r[0]+r[3];t=r[1]<<17;h(2,0);h(3,1);h(1,2);h(0,3);r[2]^=t;r[3]=(r[3]<<45)|(r[3]>>19);}//next 4*64 bits
+Z V r4(){nb=M;Wx4 t;Wx4* r=(Wx4*)s;Wx4 c=r[0]+r[3];c=(c<<23)|(c>>41);c+=r[0];*(Wx4*)b=c;t=r[1]<<17;h(2,0);h(3,1);h(1,2);h(0,3);r[2]^=t;r[3]=(r[3]<<45)|(r[3]>>19);}//next 4*64 bits
 Z W r()_(I(nb<4,r4())b[--nb])//random 64 bits
  Z V jps(){CO W jp[]={0x180ec6d33cfd0aba,0xd5a61266f0c9392c,0xa9582618e03fc9aa,0x39abdc4529b1661c};W a[4];F(4,a[i]=s[i][0])
   F_(r_,3,Lx4 n[M]={0};Lx4* r=(Lx4*)s; F(4,r[i]=SHUF(r[i],(Lx4){0,0,1,2}))
