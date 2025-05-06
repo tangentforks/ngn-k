@@ -28,7 +28,7 @@ Z A mulZZ(A x,A y,U f)_(P(xtB,bitBB(x,y,f))xR;I(xw<yw,SW(x,y))A z=an(xn,tG+MAX(x
 
 #define M(ty,tz,o) R(CTZ(SZ(tz))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
 		tz VS(32)b=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b))^(tz)-s,c=(tz)(v+s)+b;((TY(b)*)zV)[i]=c; \
-		I(o,L VS(32)t;*(TY(b)*)&t=((tz)v^c)&(b^c);I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
+        I(o,L VS(32)t;*(TY(b)*)&t=(((tz)v^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
 Z A asuzZ(L v,A y,U f)_(P(f==1&&!v,P(ytC,ct(tG,y))sqzZ(y))I s=f==2;A z=an(yn,tG+MAX(tZ(v)-tG,yw-3));
  S(zw-3<<2|yw-3,M(G,G,1)M(G,H,1)M(H,H,1)M(G,I,1)M(H,I,1)M(I,I,1)M(G,L,0)M(H,L,0)M(I,L,0)M(L,L,0))
  ovf:z=an(yn,z(zt+1));
