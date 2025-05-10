@@ -13,6 +13,9 @@
 #ifdef shared
 __attribute((weak, visibility("default"))) V kinit();
 #endif
+#ifndef ver
+#define ver "none"
+#endif
 
 Z ST{V*p;W n;B f;}reg[128];Z U nreg;Z UC pnd[128];Z U npnd;
 Z V mc(){P(!npnd)F(npnd,U j=pnd[i];munmap(reg[j].p,reg[j].n);reg[j].p=0)npnd=0;U j=0;F(nreg,I(reg[i].p,MC(reg+j,reg+i,SZ*reg);j++))nreg=j;}
@@ -109,7 +112,7 @@ A cns,cn[tn];A ce[tn];S*argv,*env;
 V kinit(){Z B l;P(l)l=1;pg=sysconf(_SC_PAGESIZE);A b[32],*c=b;
  F(tS-tA+1,*c++=ce[tA+i]=an(0,tA+i))*c++=ce[tm]=am(emp(tS),emp(tA));_x(ce[tA])=_R(ce[tC]);ce[tM]=ce[tA];F(tn-ti,Q(!ce[i+ti]);ce[i+ti]=ce[tA])//empties
  cn[tA]=ce[tC];*c++=cn[ti]=cn[tl]=al(NL);F(tL-tE+1,cn[tE+i]=cn[ti])*c++=cn[tF]=cn[tf]=af(NF);cn[tC]=cn[tc]=ac(32);cn[tS]=cn[ts]=as(0);F(tn-to,cn[to+i]=au)//nulls
- Q(c-b<=32);cns=aV(tA,c-b,b);}
+ Q(c-b<=32);cns=aV(tA,c-b,b);gk[gn]='v';gv[gn++]=sym(ver);}
 V kargs(I n,S*a){argv=(S*)a;env=(S*)a+n+1;n=MAX(0,n-2);A x=n?aA(n):emp(tA);F(n,xa=aCz(a[2+i]))gk[gn]='x';gv[gn++]=x;}
 A emp(U t)_(_R(ce[t]))
 

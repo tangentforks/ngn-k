@@ -13,6 +13,7 @@
 #include<sys/time.h>
 #undef __USE_EXTERN_INLINES
 #include<sys/stat.h>
+
 I pg=4096;//pagesize
 
 //__builtin_ia32_ldmxcsr(__builtin_ia32_stmxcsr()|1<<6|1<<15); //daz,ftz
