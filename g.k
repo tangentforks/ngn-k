@@ -5,7 +5,7 @@ h:("// ngn/k, (c) 2019-2024 ngn, license: GNU AGPLv3 - https://codeberg.org/ngn/
 v:"xyzu" /variable names
 t:"AGHILFC" /some types
 T:t,"BESMmilfscopqruvwx" /all types
-U:T,"UPRtTzZ",$`cC`lL`fF`sS`zZ`mM`mt`MT`zf`ZF`zc`ZC`zfc`ZFC`mMA`sSA`SA /types and pseudotypes
+U:T,"UPRtTzZ",$`cC`lL`fF`sS`zZ`mM`mt`MT`zf`zfs`ZF`zc`ZC`zfc`ZFC`mMA`sSA`SA /types and pseudotypes
 
 c:+!: /cartesian product
 e:,/{$[x~"@";*y;x~"$";y 1;x~"%";_*y;x]}\: /expand @:arg[0],$:arg[1],%:lower(arg[0])
