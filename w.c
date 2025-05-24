@@ -50,7 +50,7 @@ Z A wS(A x,A y,CO A*a,U n/*001n*/)_(P(n==1,ws(x,y,*a))Ab8;MC(b,a,n<<3);mRn(n,b);
 Z A nF(A x,L m,CO A*a,U n/*0m1n*/)_(P(n==1,nf(x,m,*a))Ab8;MC(b,a,n<<3);
  F(m+1-n,mRn(n-1,b+1);A u=N(x8(b,n),mrn(n-1,b+1));memmove(b,b+1,n-1<<3);b[n-1]=u)A z=_R(b[m>n-1?n-1:m]);mrn(n,b);z)
 Z A wF(A x,A y,CO A*a,U n/*001n*/)_(P(n==1,wf(x,y,*a))Ab8;MC(b,a,n<<3);A z=b[n-1];
- W(1,A u=N(y1(zR),mrn(n,b),z(0));B(!tru(u))mRn(n-1,b+1);z=N(x8(b,n),mrn(n-1,b+1));memmove(b,b+1,n-1<<3);b[n-1]=z);mrn(n-1,b);z)
+ W(1,A u=N(y1(zR),mrn(n,b),z=z(0));B(!tru(u))mRn(n-1,b+1);z=N(x8(b,n),mrn(n-1,b+1));memmove(b,b+1,n-1<<3);b[n-1]=z);mrn(n-1,b);z)
 Z A3(ls2,/*010*/Y(Ril(ns(x,gl(y),zR))RU(y(ws(x,y,zR)))R_(et(y)))0)
 Z A3(lf2,/*010*/Y(Ril(nf(x,gl(y),zR))RU(y(wf(x,y,zR)))R_(et(y)))0)
 Z AX(ls8,/*01..1*/A y=*a;P(n==2,A z=a[1];z(ls2(x,y,z)))Y(Ril(nS(x,gl(y),a+1,n-1))RU(y(wS(x,y,a+1,n-1))))et8(a,n))
