@@ -8,7 +8,7 @@ NI B mtc_(A x,A y/*00*/)_(
  YE(mtc_(y,x))
  P(xtZ&&ytZ&&xt-yt&&xn==yn,C t=MAX(xt,yt);x=ct(t,xR);y=ct(t,yR);x(y(!memcmp(xV,yV,((W)xn<<xw)+7>>3))))
  P(xt-yt||xtP||(xtr&&xE-yE)||xn-yn,0)
- XB(U n=((W)xn<<Tw[xt])+7>>3;UC m=~(-1<<(xn&7));!memcmp(xV,yV,n-1)&&(xG[n-1]&m)==(yG[n-1]&m))
+ XB(U n=((W)xn<<Tw[xt])>>3;B r=!memcmp(xV,yV,n);P(xn&7,UC m=~(-1<<(xn&7));r&&(xG[n]&m)==(yG[n]&m))r)
  P(!xtR||(LH(tG,xt,tS)),!memcmp(xV,yV,((W)xn<<Tw[xt])+7>>3))
  F(xn|!xn,P(!mtc_(xa,ya),0))1)
 
