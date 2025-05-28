@@ -5,11 +5,11 @@
 ZN A bitBB(A x,A y,U f)_(A z=MINE(y)?yR:aB(yn);L VS(32)*a=xV,*b=yV,*c=zV;F(xn+255>>8,
     S(f,C(3,c[i]=a[i]&b[i])C(6,c[i]=a[i]&b[i])C(7,c[i]=a[i]|b[i])C(8,c[i]=b[i]&~a[i])C(9,c[i]=a[i]&~b[i])C(10,c[i]=~a[i]^b[i])R_(z(y(en0())))))y(z))
 ZN A amdFF(A x,A y,U f)_(U n=xn;P(n-yn,el(y))A z=MINE(y)?y:aF(n);G(&aFF,sFF,mFF,dFF)[f-1](xV,yV,zV,n+3>>2);y-z?y(z):z)
-
+ Z L VS(32) msk(U n,C w)_(L m VS(32)={0};I b=(n<<w)&~-256;I j=b>>6;m[j]=-1ull<<(b&~-64ll);F(4-j-1,m[i+j+1]=-1);m)
 #define M(tx,ty,tz,o) R(CTZ(SZ(tx))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
 		tz VS(32)a=CVV(((tx VS(32*SZ(tx)/SZ(tz))*)xV)[i],TY(a)),b=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b))^(tz)-s, \
-		c=a+b+(tz)s;((tz VS(32)*)zV)[i]=c;I(o,L t VS(32);*(TY(c)*)&t=((a^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))x(y(z)))
-Z A asuZZ(A x,A y,U f)_(xR;I(xtB,x=cG(x),y=cG(y))I s=f==2;A z=an(xn,tG+MAX(xw,yw)-3);
+		c=a+b+(tz)s;((tz VS(32)*)zV)[i]=c;I(o,L t VS(32)=~(k*(L)!(zn-(i<<(8-zw))>>8-zw));*(TY(c)*)&t&=((a^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))x(y(z)))
+Z A asuZZ(A x,A y,U f)_(xR;I(xtB,x=cG(x),y=cG(y))I s=f==2;A z=an(xn,tG+MAX(xw,yw)-3);L VS(32) k=msk(zn,zw);
   S(xw-3<<2|yw-3,M(G,G,G,1)M(G,H,H,1)M(G,I,I,1)M(G,L,L,0)M(H,G,H,1)M(H,H,H,1)M(H,I,I,1)M(H,L,L,0)
                  M(I,G,I,1)M(I,H,I,1)M(I,I,I,1)M(I,L,L,0)M(L,G,L,0)M(L,H,L,0)M(L,I,L,0)M(L,L,L,0))
   ovf:z=an(xn,z(zt+1));
@@ -19,8 +19,8 @@ Z A asuZZ(A x,A y,U f)_(xR;I(xtB,x=cG(x),y=cG(y))I s=f==2;A z=an(xn,tG+MAX(xw,yw
 #define M(tx,ty,to,tz,o) R(CTZ(SZ(tx))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
 		tz VS(32)a=CVV(((tx VS(32*SZ(tx)/SZ(tz))*)xV)[i],TY(a)),b=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b)), \
 		c=a*b,d=(c<0)^CVV(CVV(a,to VS(32*SZ(to)/SZ(tz)))*CVV(b,to VS(32*SZ(to)/SZ(tz)))>>8*(SZ(to)-SZ(tz)),TY(d)); \
-		((TY(c)*)zV)[i]=c;I(o,L t VS(32);*(TY(d)*)&t=d;I(t[0]|t[1]|t[2]|t[3],goto ovf)))x(y(z)))
-Z A mulZZ(A x,A y,U f)_(P(xtB,bitBB(x,y,f))xR;I(xw<yw,SW(x,y))A z=an(xn,tG+MAX(xw,yw)-3);
+		((TY(c)*)zV)[i]=c;I(o,L t VS(32)=~(k*(L)!(zn-(i<<(8-zw))>>8-zw));*(TY(d)*)&t&=d;I(t[0]|t[1]|t[2]|t[3],goto ovf)))x(y(z)))
+Z A mulZZ(A x,A y,U f)_(P(xtB,bitBB(x,y,f))xR;I(xw<yw,SW(x,y))A z=an(xn,tG+MAX(xw,yw)-3);L VS(32) k=msk(zn,zw);
  S(xw-3<<2|yw-3,M(G,G,H,G,1)M(H,G,I,H,1)M(H,H,I,H,1)M(I,G,L,I,1)M(I,H,L,I,1)M(I,I,L,I,1)M(L,G,L,L,0)M(L,H,L,L,0)M(L,I,L,L,0)M(L,L,L,L,0))
  ovf:z=an(xn,z(zt+1));
  S(xw-3<<2|yw-3,M(G,G,H,H,0)M(H,G,I,I,0)M(H,H,I,I,0)M(I,G,L,L,0)M(I,H,L,L,0)M(I,I,L,L,0))0)
@@ -28,8 +28,8 @@ Z A mulZZ(A x,A y,U f)_(P(xtB,bitBB(x,y,f))xR;I(xw<yw,SW(x,y))A z=an(xn,tG+MAX(x
 
 #define M(ty,tz,o) R(CTZ(SZ(tz))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
 		tz VS(32)b=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b))^(tz)-s,c=(tz)(v+s)+b;((TY(b)*)zV)[i]=c; \
-        I(o,L VS(32)t;*(TY(b)*)&t=(((tz)v^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
-Z A asuzZ(L v,A y,U f)_(P(f==1&&!v,P(ytC,ct(tG,y))sqzZ(y))I s=f==2;A z=an(yn,tG+MAX(tZ(v)-tG,yw-3));
+        I(o,L t VS(32)=~(k*(L)!(zn-(i<<(8-zw))>>8-zw));*(TY(b)*)&t&=(((tz)v^c)&(b^c))<0;I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
+Z A asuzZ(L v,A y,U f)_(P(f==1&&!v,P(ytC,ct(tG,y))sqzZ(y))I s=f==2;A z=an(yn,tG+MAX(tZ(v)-tG,yw-3));L VS(32) k=msk(zn,zw);
  S(zw-3<<2|yw-3,M(G,G,1)M(G,H,1)M(H,H,1)M(G,I,1)M(H,I,1)M(I,I,1)M(G,L,0)M(H,L,0)M(I,L,0)M(L,L,0))
  ovf:z=an(yn,z(zt+1));
  S(zw-3<<2|yw-3,M(G,H,0)M(G,I,0)M(H,I,0)M(G,L,0)M(H,L,0)M(I,L,0))0)
@@ -37,9 +37,9 @@ Z A asuzZ(L v,A y,U f)_(P(f==1&&!v,P(ytC,ct(tG,y))sqzZ(y))I s=f==2;A z=an(yn,tG+
 
 #define M(ty,tz,o) R(CTZ(SZ(tz))<<2|CTZ(SZ(ty)),F(zn*SZ(tz)+31>>5, \
 		tz VS(32)b=CVV(((ty VS(32*SZ(ty)/SZ(tz))*)yV)[i],TY(b));((tz VS(32)*)zV)[i]=(tz)v*b; \
-		I(o,L VS(32)t;*(TY(b)*)&t=b<(tz)l|(tz)h<b;I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
+        I(o,L t VS(32)=~(k*(L)!(zn-(i<<(8-zw))>>8-zw));*(TY(b)*)&t&=(b<(tz)l|(tz)h<b);I(t[0]|t[1]|t[2]|t[3],goto ovf)))y(z))
 Z A mulzZ(L v,A y,U f)_(P(!v,whr(ai(y(yn))))P(v==1,y)P(v==-1,neg(y))A z=an(yn,tG+MAX(tZ(v)-tG,yw-3));
- L m=-1LL<<(1<<zw)-1,l=m/v,h=~m/v;I(v<0,SW(l,m))
+ L m=-1LL<<(1<<zw)-1,l=m/v,h=~m/v;I(v<0,SW(l,m));L VS(32) k=msk(zn,zw);
  S(zw-3<<2|yw-3,M(G,G,1)M(G,H,1)M(H,H,1)M(G,I,1)M(H,I,1)M(I,I,1)M(G,L,0)M(H,L,0)M(I,L,0)M(L,L,0))
  ovf:z=an(yn,z(zt+1));
  S(zw-3<<2|yw-3,M(G,H,0)M(G,I,0)M(H,I,0)M(G,L,0)M(H,L,0)M(I,L,0))0)
