@@ -36,7 +36,7 @@ A2(und,/*01*/
  Ym(K2("{((!y)^x)#y}",x,y))
  YM(flp(N(und(x,flp(y)))))
  et(y))
-X1(enl,R5(ti,tl,tf,tc,ts,x(aV(TT[xt],1,TP(xt)?&x:xV)))Rm(A y=kv(&x);aM(x,e1f(enl,y)))R_(aA1(x)))
+X1(enl,Rl(x=mut(x);xT=tL;x)R4(ti,tf,tc,ts,x(aV(TT[xt],1,TP(xt)?&x:xV)))Rm(A y=kv(&x);aM(x,e1f(enl,y)))R_(aA1(x)))
 A2(cat10,
  XE(cat10(gZ(x),y))
  YE(y=gZ(yR);y(cat10(x,y)))
