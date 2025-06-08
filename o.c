@@ -1,12 +1,11 @@
 #include"a.h" // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
 
-#define M(tx,ty) R(CTZ(SZ(tx))<<2|CTZ(SZ(ty)),F(xn*SZ(ty)+31>>5, \
- L mm VS(32)=~(m*(L)!(yn-(i<<(8-yw))>>8-yw)); \
- ty VS(32)a=CVV(((tx VS(32*SZ(tx)/SZ(ty))*)xV)[i],TY(a)),b=((ty VS(32)*)yV)[i];L c VS(32)=(a&mm)!=(b&mm);P(c[0]|c[1]|c[2]|c[3],0))1)
-Z B mtcZ(A x,A y)_(I(xt>yt,SW(x,y))L m VS(32)={0};I md=(yn<<yw)&~-256;I j=md>>6;m[j]=-1ull<<(md&~-64ll);F(4-j-1,m[i+j+1]=-1)
+#define M(tx,ty) R(CTZ(SZ(tx))<<2|CTZ(SZ(ty)),F(yn*SZ(ty)+31>>5, \
+ Lx4 mm =~(m*(L)!(yn-(i<<(8-yw))>>8-yw)); \
+ ty VS(32)a=CVV(((tx VS(32*SZ(tx)/SZ(ty))*)xV)[i],TY(a)),b=((ty VS(32)*)yV)[i];Lx4 c=(mm&(Lx4)a)!=(mm&(Lx4)b);P(c[0]|c[1]|c[2]|c[3],0))1)
+Z B mtcZ(A x,A y)_(I(xt>yt,SW(x,y))Lx4 m={0};I md=(yn<<yw)&~-256;I j=md>>6;m[j]=-1ull<<(md&~-64ll);F(4-j-1,m[i+j+1]=-1)
  S(xw-3<<2|yw-3,M(G,G)M(G,H)M(G,I)M(G,L)M(H,H)M(H,I)M(H,L)M(I,I)M(I,L)M(L,L))0)
 #undef M
-
 NI B mtc_(A x,A y/*00*/)_(
  P(x==y,1)
  P(xt==yt&&((1<<ti|1<<tc|1<<ts|1<<tu|1<<tv|1<<tw|1<<tx)&1<<xt),xv==yv)
