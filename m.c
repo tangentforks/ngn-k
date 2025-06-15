@@ -102,10 +102,11 @@ Z A bs_(S*p)_(C b[256];S s=*p,e=strchrnul(s,10);P(e-s+1>=L(b),ez0())MC(b,s,e-s);
 
 Z A evs1(S*p)_(S s=*p;P(*s=='\\',++*p;bs_(p))A x=pk((V*)p,10);N(x);x=N(cpl(aCm(s,*p),x,0));x(run(x,0,0)))
 A evs(S s,B r)_(W(*s,A x=evs1(&s);P(!x,I(r,s=strchrnul(s,10);s+=!!*s;epr(0))0)I(r,x(out(x)))E(P(!*s,x)x(0))mc())au)
-B rep()_(Z C b[256],*s=b;C*q;A x=aV(tC,256,b);s=s-b+xC;
- W(1,L n=read(0,s,xC-s+xn);P(n<=0,s=b;0)s+=n;q=memchr(s-n,10,n);
-   P(q,C*p=xC;W(q,*q=0;evs(p,1);p=q+1;q=memchr(p,10,s-p);x(0))MC(b,p,s-p);s=s-p+b;1)
-   q=xC;x=x(aV(tC,2*xn,xV));s=s-q+xC)1)
+Z A s_;
+B rep()_(Z C b[256],*s=b;C*q;A x=aV(tC,256,b);s_=x;s=s-b+xC;
+ W(1,L n=read(0,s,xC-s+xn);P(n<=0,s=b;x(0))s+=n;q=memchr(s-n,10,n);
+   P(q,C*p=xC;W(q,*q=0;evs(p,1);p=q+1;q=memchr(p,10,s-p))MC(b,p,s-p);s=s-p+b;x(1))
+   q=xC;s_=x=x(aV(tC,2*xn,xV));s=s-q+xC)x(1))
 V repl(){W(rep())}
 
 A cns,cn[tn];A ce[tn];S*argv,*env;
@@ -127,5 +128,5 @@ ZN A1(ox,o8(x);osd(" b",xb);C t=xT;os(" t");I(LH(1,t,tn),ow(&TS[t],1))E(od(t))os
 #define OBS(a...) RGS(A x=(A)(p+HD*!f+pg*f),y=(A)q;W(x<y,a;x+=HD<<xb))
 #define XYS(a...) OBS(I(xtR,F(xn|!xn,A y=xa;a)))
 #define RTS(a...) {A x=cns;a;F(gn,I(x=gv[i],a))}
-A bsm(S s)_(XYS(I(!ytP,yr--))RTS(I(!xtP,xr--))OBS(I(xr,os("!refc:");ox(x)))RTS(I(!xtP,xr++))XYS(I(!ytP,yr++))
+A bsm(S s)_(XYS(I(!ytP,yr--))RTS(I(!xtP,xr--))OBS(I(xr&(x!=s_),os("!refc:");ox(x)))RTS(I(!xtP,xr++))XYS(I(!ytP,yr++))
  OBS(I(xT>=tn,os("!type:");ox(x)))OBS(I(xtA&&!xn&&!xx,os("!prot:");ox(x)))XYS(I(!yt,os("!dngl:");ox(x);ox(y)))au)
