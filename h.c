@@ -1,7 +1,7 @@
 #include"a.h" // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
 A1(rs0,rsz(0,x))
-ZN A flt(A x,A y,B b/*01b*/)_(P(xK-1,er(y))Ym(K("{(!y)[i]!(.y)i:&z~/:x@.y}",xR,y,ai(b)))
- x=Ny(x1(yR));x=xN?Ny(cL(x)):x(emp(tG));P(!xtt&&xN-yN,el(x(y)))A z=rs0(yR);F(yN,L n=gl(ii(x,i));B(b&&n-(U)n,z=ed(z))Fj(b?n:!n,PSH(z,ii(y,i))))x(y(z)))
+ZN A flt(A x,A y,B b/*01b*/)_(P(xK-1,er(y))Ym(K("{(!y)[i]!(.y)i:&z~/:x@.y}",xR,y,ai(b)))Yt(flt(x,enl(y),b))
+ x=Ny(x1(yR));x=xN?x:x(emp(tG));P(!xtzZ,et(y(x)))I(xtt,x=rsz(yN,x))E(P(xN-yN,el(x(y))))I(!b,x=not(x))y(y1(whr(x))))
 V cyc(V*a,U m,U n){Q(m);W(2*m<=n,MC(a+m,a,m);m*=2)I(n>m,MC(a+m,a,n-m))}
 A cycB(A x,U m,U n)_(Q(m);AN(m,x);W(2*xn<=n,x=cat10(x,x))I(n>xn,x=cat11(x,slc(x,0,n-xn)))AN(n,x))
 A rsz(L n,A x/*1*/)_(
