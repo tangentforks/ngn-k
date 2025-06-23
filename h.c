@@ -51,14 +51,14 @@ A2(cat10,
  P(xtM||ytM,P(!yN,x)P(!xN,x(yR))P(xtT||ytT,x=N(blw(x));y=Nx(blw(yR));cat11(x,y))P(!xtM||!ytM,et(x))P(!mtc_(xx,yx),ed(x))A z=e2f(cat,xy,_R(yy));x(z?aM(_R(xx),z):0))Q(0);0)
 A2(cat11,y(cat10(x,y)))
 A2(cat,/*01*/cat11(xR,y))
-A2(psh,/*11*/Q(xtMT);U n=xN;P(!n,enl(x(y)))
- P(xtG&&yti&&yv==(G)yv||xtC&&ytc,apc(x,yv))
- P(xtH&&yti&&yv==(H)yv ,x=aa(n+1,x);xH[n]=yv;x)
- P(xtI&&yti||xtS&&yts  ,x=aa(n+1,x);xI[n]=yv;x)
+A2(psh,/*11*/Q(xtMT);U n=xN;P(!n,enl(x(y)))I(xtZFSC,S4(xw-3,
+ P(xtG&&yti&&yv==(G)yv||xtC&&ytc,apc(x,yv)),
+ P(xtH&&yti&&yv==(H)yv ,x=aa(n+1,x);xH[n]=yv;x),
+ P(xtI&&yti||xtS&&yts  ,x=aa(n+1,x);xI[n]=yv;x),
  P(xtL&&yti            ,x=aa(n+1,x);xL[n]=yv;x)
- P(xtL&&ytl||xtF&&ytf  ,x=aa(n+1,x);xL[n]=gl(y);x)
+ P(xtL&&ytl||xtF&&ytf  ,x=aa(n+1,x);xL[n]=gl(y);x))
  P(xtB&&yti&&yv==(1&yv),x=aa(n+1,x);xG[n>>3]|=yv<<(n&7);x)
- P(xtZ&&ytz,N(sup(&x,&y));psh(x,y))
+ P(xtZ&&ytz,N(sup(&x,&y));psh(x,y)))
  XM(P(!ytm||!mtc_(xx,yx),psh(Ny(blw(x)),y))x=mut(x);A z=xy=mut(xy);F(zn|!zn,PSH(za,ii(yy,i)))I(!zn,zx=mkn(zx))y(x))
  P(!xtA&&(!ytt||xt-TT[yt]),psh(Ny(blw(x)),y))
  L v=xtA?(L)y:gl(y);
