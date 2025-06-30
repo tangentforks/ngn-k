@@ -57,6 +57,7 @@ X1(unh,RmMA(e1f(unh,x))RC(x(unhC(xV,xn)))R_(et(x)))
 
 Z A pre(C c,A x)_(cat(ac(c),x))
 Z A1(par,apc(pre('(',x),')'))
+Z A1(brc,apc(pre('[',x),']'))
 Z A1(ek,e1f(kst,x))
 Z A1(kss,
  Z CO C e[128]={'0',['\t']='t',['\n']='n',['\r']='r',['"']='"',['\\']='\\'};
@@ -89,4 +90,4 @@ X1(kst,R_(x(aCz("???")))
  Ru(apc(kst(au^av^x),':'))
  Rv(P(x==GAP,emp(tC))A y=aCn(vc+xv,1);xv<20?y:apc(y,':'))
  Rw(aCn(&"':/:\\:"[xv%3*2],1+xv/3)))
-A1(out,P(x==au,x)mr(v0c(ai(1),xtA&&1<xn?par(jC("\n ",2,ek(xR))):kst(xR)));x)
+A1(out,P(x==au,x)A y=xtA&&1<xn?par(jC("\n ",2,ek(xR))):kst(xR);I(0,y=jc(' ',aA2(brc(xtP?ac('-'):kst(ai(xr))),y)));mr(v0c(ai(1),y));x)
