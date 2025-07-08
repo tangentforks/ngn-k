@@ -7,7 +7,7 @@ sy match  k_c0 /\\\(\w\+\|\\\|$\)/                              nextgroup=k_c1  
 sy match  k_c0 /\\[tw]\>\(:\d\+\)\=/
 sy match  k_e  /"/                                              nextgroup=k_es                          |hi link k_e       error
 sy match  k_es /.*/                                             nextgroup=@k_vw contained               |hi link k_es      k_string
-sy match  k_string /"\(\\.\|[^"\n]\)*"/                         nextgroup=@k_vw contains=k_q            |hi link k_string  string
+sy match  k_string /"\(\\.\|[^"]\|\n\)*"/                       nextgroup=@k_vw contains=k_q            |hi link k_string  string
 sy match  k_q  /\\./                                                            contained               |hi link k_q       specialchar
 sy match  k_u  /[+\-*%!&|<>=~,^#_$?@.\x80-\U000fffff:]:\=/      nextgroup=k_w                           |hi link k_u       function
 sy match  k_v  /[+\-*%!&|<>=~,^#_$?@.\x80-\U000fffff]:\=/       nextgroup=k_w   contained               |hi link k_v       type
