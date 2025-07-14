@@ -139,7 +139,7 @@ enum                 {tA=1,tE,tB,tG,tH,tI,tL,tF,tC,tS,tM,tm,ti,tl,tf,tc,ts,to,tp
 #define _T(x) (*(UC*)((x)- 9))//type(hdr)
 #define _k(x) (*(UC*)((x)-10))//arity(for funcs)
 #define _E(x) (*(UC*)((x)-11))//adverb(for tr)
-#define _O(x) (*(UC*)((x)-12))//scroffset(for symbol lists)
+#define _O(x) (*(UC*)((x)-12))//scroffset(for lists)
 #define _X(x) (*(A *)((x)-24))//ptr to next chunk in bucket
 #define _b(x) (*(UC*)((x)-32))//bucket index
 
