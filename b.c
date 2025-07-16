@@ -34,12 +34,12 @@ AX(run,Q(xto)Z I d;P(++d>2048,es8(a,n))P(n-xk,er8(a,n))UC*b=_V(xy),*start=b,c,nl
   C(bn,b+=2)                                                                                             //filler    |bn    |.. x -> ..             |
   C(bV,UC i=*b++;U(*s=v2[*b++](xA[i+OFF],*s)))                                                           //const dyad|bV,i,d|.. x -> .. r           |r:dyads[d][consts[i];x]
   D(*--s=_R(xA[c-bc+OFF]))))                                                                             //const     |bc+i  |.. -> .. consts[i]     |
- l:d--;A u=*s;MS(l+nl,0,s-l-nl+1<<3);F(L(l),A x=l[i];I(x,mr(x)))I(!u,eS(xx,(UC)_C(xz)[(C*)b-1-_C(xy)]))u)
+   l:d--;A u=*s;MS(l+nl,0,s-l-nl+1<<3);F(L(l),A x=l[i];I(x,mr(x)))I(!u,H f;UC*e=_C(xy)+1;W(e<b,I(*e==bn,f=*(H*)(e+1))e+=1+di[MIN(bc,*e)])eS(xx,f+(UH)_C(xz)[(C*)b-1-_C(xy)]))u)
 #define Nr(a...) {I r_=cr(a);P(r_-OK,r_);}                                                               //compile rvalue; return on error
 #define Nl(a...) {I r_=cl(a);P(r_-OK,r_);}                                                               //compile lvalue; return on error
 #define OK -1                                                                                            //returned by cl() and cr() on success
 #define MB 256                                                                                           //max bytecode size
-Z A u;Z UC *b,*m,lu[16];Z I nb,nl,l[16],cr(A,B);                                                         //u:lambda(src;b:bytes;m:map;l:locals;consts..)  lu:last usages
+Z A u;Z UC *b,*m;Z I nb,nl,lu[16],l[16],cr(A,B);                                                         //u:lambda(src;b:bytes;m:map;l:locals;consts..)  lu:last usages
 #define M(a) {_C(uy)[nb]=a;_C(uz)[nb]=o;nb+=nb<_n(uy)-1;}                                                //append byte
 B gr(I r)_(A y=uy,z=uz;P(nb>yn-4,uy=aa(2*yn,y);uz=aa(2*zn,z);nb=r;b=_C(uy);m=_C(uz);1)0)                 // grow byte code buffer
 ZN I li_(I v,I*p)_(U i=fI(l,nl,v);P(i==nl,-1)*p=lu[i];lu[i]=nb;i)                                        //index of a local variable (returns -1 if not found)
@@ -73,7 +73,6 @@ Z I cr(A x/*0*/,B r)_(I o=xo;                                                   
 A1(qte,/*1*/xtS||xtA?aA1(x):x)                                                                           //quote
 Z A2(c2,/*00*/P(xtw&&!ytSA,1)/*P(x==TIL&&ytZ&&yn<4,F(yn,P(gl(ii(y,i))>100u,0))1)*/0)                     //constant folding
 Z A3(c3,/*000*/P(ADD<=x&&x<=MUL&&ytzZ&&ztzZ&&(ytt||ztt||yn==zn)&&MAX(xN,yN)<101,1)0)                     //constant folding
-/* Z A1(cf,P(!xtA||!xn,x)P(xx==MKL,F(xn,A y=xa;YSA(x))qte(N(drp(1,x))))P(xn==2?c2(xx,xy):xn==3?c3(xx,xy,xz):0,qte(N(val(x))))A y=rsz(xn,au);F(xn,ya=cf(xa);xa=au;P(!ya,die("CF")))AO(xo,x(y))) */
 Z A1(cf,P(!xtA||!xn,x)P(xx==MKL,F(xn,A y=xa;YSA(x))qte(N(drp(1,x))))P(xn==2?c2(xx,xy):xn==3?c3(xx,xy,xz):0,qte(N(val(x))))P(xx==GAP&&(C)xo!=-1,A y=rsz(xn,au);yx=GAP;F(xn-1,A u=xA[i+1];yA[i+1]=aA2(cf(_R(ux)),uy);P(!yA[i+1],die("CF")))AO(xo,x(y)))A y=rsz(xn,au);F(xn,ya=cf(xa);xa=au;P(!ya,die("CF")))AO(xo,x(y)))
 Z I mxs(I i,I s)_(I r=s;W(1,UC c=MIN(bc,b[i++]);r=MAX(r,s);P(!c,r)s+=ds[c]+ks[c]*b[i];i+=di[c]+(c==bj)*b[i];I(c==bz,r=MAX(r,mxs(i+b[i-1],s))))r)//max stack
 Z B shy(A x/*0*/)_(P(!xtA||xn<2,0)P(xx==GAP&&(C)xo!=-1,A u=xA[xn-1];shy(ux))xn==3&&cm(xx)&&_tSA(xy))     //is last expr an assignment?
