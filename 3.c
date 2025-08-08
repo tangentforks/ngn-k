@@ -2,7 +2,7 @@
 #define F4(w,n,a,b,c,d) S4(w,F(n,a),F(n,b),F(n,c),F(n,d))
 NI A1(inv,x=mut(x);L*p=xL;F(((W)xn<<xw)+255>>8<<2,*p++^=-1)x)
 
-Z A3(___f,/*010*/U i=!y;I(i,y=io(z,0))U n=zn;W(i<n,y=y(x2(y,ii(z,i++)));B(!y))y)
+Z A3(___f,/*010*/U i=!y;I(i,y=io(z,0))U n=zn;W(i<n,y=x2(y,ii(z,i++));B(!y))y)
 Z A3(dexf,/*010*/A u=las(zR);I(y,y(0))u)
   L addfB(CO V*a,U n)_(CO W*p=a;U r=0;F(n>>6,r+=PC(*p++))n&=63;n?r+PC(*p&~(-1ll<<n)):r)
 Z L addfG(CO V*a,U n)_(CO G*p=a;L r=0;F(n,r+=*p++)r)
@@ -37,7 +37,7 @@ A3(arf,/*010*/Q(xtv)Q(xv<11)Q(!y||ytzfc)Q(ztZFC)
  ZB(z=cG(zR);z(arf(x,y,z)))
  G(&dexf,admf,subf,admf,___f,___f,mmmf,mmmf,___f,___f,___f)[xv](x,y,z))
 
-Z A3(___s,/*010*/U i=!y;A u;I(i,y=ii(z,0);u=enl(yR))E(yR;u=emp(tG))U n=zn;W(i<n,y=y(x2(y,ii(z,i++)));P(!y,u(0))PSH(u,yR))y(u))
+Z A3(___s,/*010*/U i=!y;A u;I(i,y=ii(z,0);u=enl(yR))E(yR;u=emp(tG))U n=zn;W(i<n,y=x2(y,ii(z,i++));P(!y,u(0))PSH(u,yR))y(u))
 Z A3(dexs,/*010*/I(y,y(0))zR)
 Z A3(adms,/*010*/L w=y?gl(y):x==MUL;U n=zn;I b=1;L v=w;C t=tG+zw-3;A u=an(n,t);
  I(x==ADD,F4(zw-3,n,ug=v+=zg;B(v-(G)v,b=0),uh=v+=zh;B(v-(H)v,b=0),ui=v+=zi;B(v-(I)v,b=0),ul=v+=zl))
