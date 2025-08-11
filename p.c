@@ -39,7 +39,7 @@ Z A0(pp,P(*s-'[',au)A x=N(pS(';'));P(*s-']'||!xn,ep(x))P(xN>8,ez(x))s++;x)      
 Z A pt(C*v)_(C c=*s;                                                                                //parse term
  P(c=='`',qte(p1(N(pS('`')))))
  P(c=='"',p1(pC()))
- P(c=='[',s++;AO(-1,pb(GAP,']')))
+ P(c=='[',s++;AO(-1,N(pb(GAP,']'))))
  P(c=='(',s++;P(*s==')',s++;emp(tA))A x=N(pb(MKL,')'));xn-2?x:las(x))
  P(c=='{',C k0=k;k=1;S s1=s0,s2=sr,t=sr=s0=s++;A y=N(pp()),z=pb(GAP,'}');P(!z,s0=s1;sr=s2;y(0))I(y==au,y=aS(k);F(3,yi='x'+i))A x=N(cpl(aCn(t,s-t),z,y));s0=s1;sr=s2;k=k0;x)
  P(id0(c),S p=s;A x=pP();I(s-p==1&&c-'y'<2u,k=MAX(k,c-'w'))AO(p-sr,x))
