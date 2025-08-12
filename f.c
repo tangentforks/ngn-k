@@ -52,7 +52,7 @@ X2(fnd,
  RB(x=cG(xR);x(fnd(x,y)))
  RGC(A z=aL(256);F(256,zl=NL);UC*a=xV;U n=xn;F(n,zL[a[n-1-i]]=n-1-i)z(fndGx(y,z)))
  R5(tH,tI,tL,tF,tS,P(xn>2000,fndZFS(x,y))fndl(x,y)))
-X2(que,Rs(Z CO C s[][4]={"j","k","hex"};G(&js0,val,unh,ed)[fI((V*)s,L(s),xv)](y))Ril(rnd(gl_(x),y))R_(fnd(x,y)))
+X2(que,Rs(Z CO C s[][4]={"","j","k","hex"};G(&des,js0,val,unh,ed)[fI((V*)s,L(s),xv)](y))Ril(rnd(gl_(x),y))R_(fnd(x,y)))
 
 Z A2 binF;
 Z Y2(binZ,

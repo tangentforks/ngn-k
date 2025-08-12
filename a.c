@@ -50,8 +50,8 @@ Z X1(qp,RC(x=str0(x);S s=xC;x(pk(&s,0)))R_(et(x)))
 Z A1(qt,x(al(now())))
 Z A1(qfb,P(!xtC,et(x))P(xn-8,el(x))x=rev(x);x(aV(tf,1,xV)))//float from bits
 ZN AX(ext,P(n-xK,er8(a,n))V*f=(V*)(x&-1ull>>16);S(n,R(1,((A1*)f)(a[0]))R(2,((A2*)f)(a[0],a[1]))R(3,((A3*)f)(a[0],a[1],a[2]))R(4,((A4*)f)(a[0],a[1],a[2],a[3]))R(5,((A5*)f)(a[0],a[1],a[2],a[3],a[4]))R(6,((A6*)f)(a[0],a[1],a[2],a[3],a[4],a[5]))R(7,((A7*)f)(a[0],a[1],a[2],a[3],a[4],a[5],a[6]))R(8,((A8*)f)(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7]))R_(en8(a,n)))0)
-ZN A sym1(I v,A x)_(Z CO C s[][4]={"k","j","p","t","x","hex","err","argv","env","exit","js","pri","prng","sin","cos","exp","ln","fb"};
- G(&kst,js1,qp,qt,frk,hex,err,qa,qe,qx,qjs,qpri,prng,ksin,kcos,kexp,klog,qfb,ed)[fI((V*)s,L(s),v)](x))
+ZN A sym1(I v,A x)_(Z CO C s[][4]={"","k","j","p","t","x","hex","err","argv","env","exit","js","pri","prng","sin","cos","exp","ln","fb"};
+G(&ser,kst,js1,qp,qt,frk,hex,err,qa,qe,qx,qjs,qpri,prng,ksin,kcos,kexp,klog,qfb,ed)[fI((V*)s,L(s),v)](x))
 A2(_1,/*01*/P(!xtt,i1(x,y))U k=xK;P(1<k,k==2&&!xtp?prj(x,A8(y,GAP),2):prj(x,&y,1))
  X(Ro(run(x,&y,1))Rp(P(k>7,er(y))I m=xn-1,j=0;Ab8;F(m,b[i]=xA[i+1]==GAP&&!j?j++,y:_R(xA[i+1]))I l=MAX(0,1-j);MC(b+m,&y,8*l);_8(xx,b,m+l))
   Rq(_1(xx,N(_1(xy,y))))Rr(w1(xE,xx,y))Rs(sym1(xv,y))Ru(v1[xv](y))Rw(AK(xv-1<3u&&yK==2?1:ytU?yK:1,ar(y,xv)))Rx(ext(x,&y,1))R_(et(y)))0)
