@@ -71,5 +71,5 @@ Z A pe(A x,C*v)_(s=pw(s);C c=*s;                                                
  *v&=y!=av;I(!x,y=pm(y))*v?aA3(aw,x?AO(o,aA3(y,x,GAP)):y,z):AO(o,x?aA3(y,x,z):aA2(pm(y),z)))
 Z A pb(A x,C c)_(x=x?aA1(x):emp(tA);B st=!!strchr("\n}",c);                                                                //parse body (sequence of ;-separated expressions)
  W(1,C v=0;I(st,sr=s)A y=Nx(pe(0,&v));A z=c-']'&&y==GAP?au:y;PSH(x,st&&zo!=-1?aA2(z,ai(sr-s0)):z);P(y==GAP&&c==')',ep(x))B(*s-';'&&*s-10)B(c==10&&*s==10)s++)
- P(c==10&&!*s,x)P(*s-c,ep(x))s++;x)
+ P(c==10&&!*s,x)P(*s-c,ep(x))s++;AO(1,x))
 A pk(S*p,C c)_(sr=s0=s=*p;A x=pb(GAP,c);*p=s;P(x,AO(0,x))eQ(s0,SL(s0),s-s0);0)                            //parse either a group of lines (c='\n') or til '\0' (c='\0')
