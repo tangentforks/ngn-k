@@ -32,7 +32,7 @@ AX(run,Q(xto)Z I d;P(++d>2048,es8(a,n))P(n-xk,er8(a,n))UC*b=_V(xy),*start=b,c,nl
   C(bo,*--s=xR)                                                                                          //recur     |bo    |.. -> .. o             |o is the current lambda
   C(bP,mr(*s++))                                                                                         //pop       |bP    |.. x -> ..             |
   C(bn,b+=2)                                                                                             //filler    |bn    |.. x -> ..             |
-  C(bV,UC i=*b++;U(*s=v2[*b++](xA[i+OFF],*s)))                                                           //const dyad|bV,i,d|.. x -> .. r           |r:dyads[d][consts[i];x]
+  C(bV,UC i=*b++;U(*s=v2[*b++](_R(xA[i+OFF]),*s),mr(xA[i+OFF]))mr(xA[i+OFF]))                            //const dyad|bV,i,d|.. x -> .. r           |r:dyads[d][consts[i];x]
   D(*--s=_R(xA[c-bc+OFF]))))                                                                             //const     |bc+i  |.. -> .. consts[i]     |
    l:d--;A u=*s;MS(l+nl,0,s-l-nl+1<<3);F(L(l),A x=l[i];I(x,mr(x)))I(!u,H f;UC*e=_C(xy)+1;W(e<b,I(*e==bn,f=*(H*)(e+1))e+=1+di[MIN(bc,*e)])eS(xx,f+(UH)_C(xz)[(C*)b-1-_C(xy)]))u)
 #define Nr(a...) {I r_=cr(a);P(r_-OK,r_);}                                                               //compile rvalue; return on error
