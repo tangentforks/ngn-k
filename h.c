@@ -38,12 +38,13 @@ A2(und,/*01*/
  et(y))
 X1(enl,Rl(x=mut(x);xT=tL;x)R4(ti,tf,tc,ts,x(aV(TT[xt],1,TP(xt)?&x:xV)))Rm(A y=kv(&x);aM(x,e1f(enl,y)))R_(aA1(x)))
 Z A psh_(A,A,B);
+Z A cat11_(A,A,B);
 A cat10_(A x,A y,B c)_(
  XE(cat10(gZ(c?x:xR),y))
  YE(y=gZ(yR);y(cat10_(x,y,c)))
  P(xtB&&ytB,U m=xn,n=yn,d=m&63;x=aa_(m+n,x,c);P(!d,MC(xV+(m>>3),yV,n+63>>6<<3);x)
    L*a=xL+(m>>6),*b=yL,v=*a&~(-1ll<<d);F(n+63>>6,v|=*b<<d;*a++=v;v=(W)*b++>>64-d;)I(xn>(a-xL<<6),*a=v);x)
- P(xtT&&ytT,P(!yn,c?x:xR)P(!xn,c?x(yR):yR)P(xt-yt,P(xtZ&&ytZ,yR;N(sup_(&x,&y,c));cat11(x,y))cat11(blw(c?x:xR),blw(yR)))
+ P(xtT&&ytT,P(!yn,c?x:xR)P(!xn,c?x(yR):yR)P(xt-yt,P(xtZ&&ytZ,A u=x;B s=1;yR;N(sup_(&x,&y,c));I(!c&&u==x,mr(x);s=0)cat11_(x,y,s))cat11(blw(c?x:xR),blw(yR)))
   U m=xn,n=yn,w=xw-3;x=aa_(m+n,x,c);
   MC(xV+((W)m<<w),yV,(W)n<<w);I(ytA,mRa(y))x)
  P(xtm&&ytm,a4(c?x:xR,yx,av,yy))
@@ -51,7 +52,7 @@ A cat10_(A x,A y,B c)_(
  Ymt(P(xN,psh_(x,yR,c))y=enl(yR);c?x(y):y)
  P(xtM||ytM,P(!yN,c?x:xR)P(!xN,c?x(yR):yR)P(xtT||ytT,x=N(blw(c?x:xR));y=Nx(blw(yR));cat11(x,y))P(!xtM||!ytM,et(c?x:xR))P(!mtc_(xx,yx),ed(c?x:xR))A z=e2f(cat,xy,_R(yy));y=z?aM(_R(xx),z):0;c?x(y):y)Q(0);0)
 A2(cat10,cat10_(x,y,1))
-A cat11_(A x,A y,B c)_(y(cat10_(x,y,c)))
+Z A cat11_(A x,A y,B c)_(y(cat10_(x,y,c)))
 A2(cat11,y(cat10(x,y)))
 A2(cat,/*01*/cat11_(x,y,0))
 Z A apc_(A,C,B);
@@ -62,7 +63,7 @@ P(xtG&&yti&&yv==(G)yv||xtC&&ytc,apc_(x,yv,c)),
  P(xtL&&yti            ,x=aa_(n+1,x,c);xL[n]=yv;x)
  P(xtL&&ytl||xtF&&ytf  ,x=aa_(n+1,x,c);xL[n]=gl(y);x))
  P(xtB&&yti&&yv==(1&yv),x=aa_(n+1,x,c);xG[n>>3]|=yv<<(n&7);x)
- P(xtZ&&ytz,N(sup_(&x,&y,c));psh(x,y)))
+ P(xtZ&&ytz,A u=x;B s=1;N(sup_(&x,&y,c));I(!c&&u==x,mr(x);s=0)psh_(x,y,s)))
  XM(P(!ytm||!mtc_(xx,yx),psh(Ny(blw(c?x:xR)),y))x=mut_(x,c);A z=xy=mut(xy);F(zn|!zn,PSH(za,ii(yy,i)))I(!zn,zx=mkn(zx))y(x))
  P(!xtA&&(!ytt||xt-TT[yt]),psh(Ny(blw(c?x:xR)),y))
  L v=xtA?(L)y:gl(y);I(!n&&xtA&&x!=ce[tA],mr(xx))
