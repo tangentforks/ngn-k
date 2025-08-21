@@ -47,11 +47,11 @@ A2(cat10,
   MC(xV+((W)m<<w),yV,(W)n<<w);I(ytA,mRa(y))x)
  P(xtm&&ytm,a4(x,yx,av,yy))
  Xmt(cat10(enl(x),y))
- Ymt(psh(x,yR))
+ Ymt(!xn?x(enl(yR)):psh(x,yR))
  P(xtM||ytM,P(!yN,x)P(!xN,x(yR))P(xtT||ytT,x=N(blw(x));y=Nx(blw(yR));cat11(x,y))P(!xtM||!ytM,et(x))P(!mtc_(xx,yx),ed(x))A z=e2f(cat,xy,_R(yy));x(z?aM(_R(xx),z):0))Q(0);0)
 A2(cat11,y(cat10(x,y)))
 A2(cat,/*01*/cat11(xR,y))
-A2(psh,/*11*/Q(xtMT);U n=xN;P(!n,enl(x(y)))I(xtZFSC,S4(xw-3,
+A2(psh,/*11*/Q(xtMT);U n=xN;P((!n)&&((x==ce[tA])||!xtA&&(!ytt||(xt-TT[yt]))),enl(x(y)))I(xtZFSC,S4(xw-3,
  P(xtG&&yti&&yv==(G)yv||xtC&&ytc,apc(x,yv)),
  P(xtH&&yti&&yv==(H)yv ,x=aa(n+1,x);xH[n]=yv;x),
  P(xtI&&yti||xtS&&yts  ,x=aa(n+1,x);xI[n]=yv;x),
@@ -61,7 +61,7 @@ A2(psh,/*11*/Q(xtMT);U n=xN;P(!n,enl(x(y)))I(xtZFSC,S4(xw-3,
  P(xtZ&&ytz,N(sup(&x,&y));psh(x,y)))
  XM(P(!ytm||!mtc_(xx,yx),psh(Ny(blw(x)),y))x=mut(x);A z=xy=mut(xy);F(zn|!zn,PSH(za,ii(yy,i)))I(!zn,zx=mkn(zx))y(x))
  P(!xtA&&(!ytt||xt-TT[yt]),psh(Ny(blw(x)),y))
- L v=xtA?(L)y:gl(y);
+ L v=xtA?(L)y:gl(y);I(!n&&xtA&&x!=ce[tA],mr(xx))
  x=aa(n+1,x);U w=xw-3;MC(xV+((W)n<<w),&v,1<<w);x)
 A apc(A x/*1*/,C c    )_(Q(xtC||xtG);U n=xn;x=aa(n+1,x);xC[n]=c;x)
 A cts(A x/*1*/,S s,U m)_(Q(xtC);     U n=xn;x=aa(n+m,x);MC(xV+n,s,m);x)
