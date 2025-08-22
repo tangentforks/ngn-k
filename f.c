@@ -18,9 +18,9 @@ A2(fndl,YmMA(r2f(fndl,x,y))YE(fndl(x,gZ(y)))YB(fndl(x,cG(y)))Yzfs(fir(N(fndl(x,e
    B(h,b=true;Fj(4,B(r[j],v=(4*i+j<<3-w)+(CTZ(r[j])>>w+3);zL[k]=v<xn?v:NL))))I(!b,zL[k]=NL)))y(sqzZ(z)))
  fN(y))
 Z X2(fndGx,
- R_(fN(x))
- RmMA(mRn(xn,xA);l2f(fndGx,x,y))
- Rilc(L v=gl(x);az(v==(C)v?yL[(UC)v]:NL))
+ R_(y(fN(x)))
+ RmMA(mRn(xn,xA);x(l2f(fndGx,x,y)))
+ Rilc(L v=gl(x);y(az(v==(C)v?yL[(UC)v]:NL)))
  RE(fndGx(gZ(x),y))
  RB(fndGx(cG(x),y))
  RGHILC(U m=xn;A z=aL(m);
@@ -28,7 +28,8 @@ Z X2(fndGx,
    F(m,H v=xh;zl=v==(C)v?yL[(UC)v]:NL),
    F(m,I v=xi;zl=v==(C)v?yL[(UC)v]:NL),
    F(m,L v=xl;zl=v==(C)v?yL[(UC)v]:NL))
-  x(0);sqzZ(z)))
+  x(0);y(sqzZ(z))))
+
 Z L eyt_(L*d,A x,L i,L k)_(P(k>xn,i)i=eyt_(d,x,i,2*k);S4(xw-3,d[k]=xg,d[k]=xh,d[k]=xi,d[k]=xl);eyt_(d,x,i+1,2*k+1))
 Z X1(eyt,R_(et(x))RE(eyt(gZ(x)))RB(eyt(cG(x)))RGHIL(A y=aL(xn+1);*yL=0;eyt_(yL,x,0,1);x(y)))
 A2(fndA,Z L*g=0;Z U k;U l=urnk(y);
@@ -50,7 +51,7 @@ X2(fnd,
  RE(x=gZ(xR);x(fnd(x,y)))
  RA(fndA(x,y))
  RB(x=cG(xR);x(fnd(x,y)))
- RGC(A z=aL(256);F(256,zl=NL);UC*a=xV;U n=xn;F(n,zL[a[n-1-i]]=n-1-i)z(fndGx(y,z)))
+ RGC(A z=aL(256);F(256,zl=NL);UC*a=xV;U n=xn;F(n,zL[a[n-1-i]]=n-1-i)fndGx(y,z))
  R5(tH,tI,tL,tF,tS,P(xn>2000,fndZFS(x,y))fndl(x,y)))
 X2(que,Rs(Z CO C s[][4]={"","j","k","hex"};G(&des,js0,val,unh,ed)[fI((V*)s,L(s),xv)](y))Ril(rnd(gl_(x),y))R_(fnd(x,y)))
 
