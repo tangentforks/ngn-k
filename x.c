@@ -1,7 +1,8 @@
 #include"a.h" // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
 
 Z A2 f;
-A1(ser,x(f(x,aC(0))))
+Z C VER=0x00;
+A1(ser,x(f(x,apc(aC(0),VER))))
 Z A ff(L v,A y)_(cts(y,(V*)&v,8))
 Z A fi(I v,A y)_(cts(y,(V*)&v,4))
 Z A2(fA,/*01*/N n=xn;y=fi(n,y);F(n|!n,y=f(xa,y))y)
@@ -20,7 +21,7 @@ Z A2(f,/*01*/y=apc(y,xt);
 #define h4 (*(I*)h(4))
 #define h8 (*(L*)h(8))
 Z A0 g;Z C*s,*p;
-A1(des,XC(s=xV;p=s+xn;x(g()))ed(x))
+A1(des,XC(s=xV;p=s+xn;C ver=h1;P(ver!=VER,ed(x))x(g()))ed(x))
 Z A0(gA,I n=h4;P(!(n<(W)(1ll<<45)),ed0())A x=aA(n);F(n|!n,P(!(xa=g()),mrn(i,xA);AZ(x);x(0)))x)
 Z A0(g,C t=h1;P(!(t<(W)tn),ed0())
  S(t,
