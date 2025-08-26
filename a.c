@@ -91,7 +91,7 @@ AA(d8,/*10..0*/A x=*a;
  X(RsS(A*p=gp(x);I(!*p,*p=au)Ab8;*b=*p;MC(b+1,a+1,56);*p=au;*p=_R(N(d8_(b,n))))
    RU(n==3?try(x,a[1],a[2]):er(x))
    R_(d8_(a,n)))0)
-ZN A ki(A*p,S s)_(*p=evs(s,0);I(!*p,die(s))PSH(cns,*p);*p)
+ZN A ki(A*p,S s)_(*p=ksg(s);I(!*p,die(s))PSH(cns,*p);*p)
 A k1(A*p,S s,A x)_(I(!*p,ki(p,s))_1(*p,x))
 A k2(A*p,S s,A x,A y)_(A z=*p;I(!z,z=ki(p,s))z2(xR,y))
 A k8(A*p,S s,CO A*a,U n)_(I(!*p,ki(p,s))n?_8(*p,a,n):*p)

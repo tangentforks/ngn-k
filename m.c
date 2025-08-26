@@ -76,11 +76,15 @@ A AN(U n,A x)_(P(xtM,AN(n,_x(xy));x)xn=n;x)
 A1(AZ,xT=tG;x)
 
 Z C s0[1<<16],*s1=s0+1;U ht[1<<16];
-Z I hhs(S c,N n)_(I r=5381;F(n,r+=(r<<31)+*c++);r%L(ht))
-Z I hi(S s,N n)_(I h=hhs(s,n++),h0=h;W(ht[h%L(ht)]>0,P(h-h0>=L(ht),ez0())B(!strncmp(s0+ht[h%L(ht)],s,n));++h)h%=L(ht);P(ht[h]>0,-h)P(s1+n+1>s0+SZ(s0),die("SYMS"));MC(s1,s,n);ht[h]=s1-s0;s1+=n;-h)
+Z I hhs(S c,N n,U s)_(I r=5381;F(n,r+=(r<<31)+*c++);r%s)
+Z I hi(S s,N n)_(I h=hhs(s,n++,L(ht)),h0=h;W(ht[h%L(ht)]>0,P(h-h0>=L(ht),ez0())B(!strncmp(s0+ht[h%L(ht)],s,n));++h)h%=L(ht);P(ht[h]>0,-h)P(s1+n+1>s0+SZ(s0),die("SYMS"));MC(s1,s,n);ht[h]=s1-s0;s1+=n;-h)
 S su(U u)_(P(u&1<<31,s0+ht[-u])Z W r;r=u;(V*)&r)
 U us(S s)_(U n=SL(s);P(n<4||(n==4&&!(s[3]&128)),U v=0;MC(&v,s,n);v)hi(s,n))
 A sym(S s)_(as(us(s)))
+
+#define KSZ 256
+Z S kss[KSZ];Z A ksl[KSZ];
+A ksg(S l){I h=hhs((S)&l,SZ(S),KSZ),h0=h;W(ksl[h%KSZ]>0,P(h-h0>=KSZ,ez0())B(kss[h%KSZ]==l);++h);h%=KSZ;kss[h]=l;P(ksl[h],ksl[h]);return evs(l,0);}
 
 Z U gd,gn;Z W gk[256];A gv[256];
 Z W gkk(A x/*0*/)_(Xs((U)xv)Q(xtS)xn?(W)_v(jS(drp(-1,xR)))<<32|(U)_v(ii(x,xn-1)):0)
