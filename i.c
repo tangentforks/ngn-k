@@ -19,7 +19,7 @@ Z I osf(S s,L fl)_(P(!strchr(s,':'),I f=open(s,fl,0666);P(f<3/*fbsd*/,eo0())f)U 
 Z I o(A x/*1*/,I fl)_(Xz(gl(x))Xs(xv?osf(su(xv),fl):1)XC(x=str0(x);I v;Mx(v=osf(xV,fl));v)et(x))
 Z I fm(I f)_(ST stat s;fstat(f,&s)<0?0:s.st_mode)                                                                                                                 // get file mode
 Z A frd(I f,N i,N n)_(P(i||n+1,en0())DIR*a=fdopendir(f);P(!a,ei0())A x=emp(tC);ST dirent*e;W((e=readdir(a)),S s=e->d_name;x=apc(cts(x,s,SL(s)),10))closedir(a);x) // read dir
-Z A frS(I f,N n)_(C b[1024];A x=emp(tC);I k=1;W(n&&k,k=read(f,b,MIN(SZ b,n));P(k<0,eo(x))n-=k;x=cts(x,b,k);P((-1==n+k||f<3)&&k-SZ b,x))x)                                    // read stream (only length)
+Z A frS(I f,N n)_(C b[1024];I m=fm(f);B r=S_ISREG(m);A x=emp(tC);I k=1;W(n&&k,k=read(f,b,MIN(SZ b,n));P(k<0,eo(x))n-=k;x=cts(x,b,k);P((!r&&-1==n+k||f<3)&&k-SZ b,x))x)                                    // read stream (only length)
 Z A frs(I f,N i,N n)_(I(i&&lseek(f,i,SEEK_CUR)<0,mr(N(frS(f,i))))frS(f,n))                                                                                        // read stream (offset too)
 Z A frm(I f,N i,N n)_(L m=lseek(f,0,SEEK_END);P(m<0,eo0())n=MIN(n,MAX(m-i,0));n?mf(f,i,n):emp(tC))                                                                // read through mmap
 Z A fr(A x/*1*/,N i,N n)_(Xz(frs(gl(x),i,n))I f=N(o(x,O_RDONLY));P(f<3,frs(f,i,n))I m=fm(f);x=(S_ISDIR(m)?frd:S_ISREG(m)?frm:frs)(f,i,n);close(f);x)              // read
