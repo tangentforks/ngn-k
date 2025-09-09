@@ -53,7 +53,7 @@ Z I cl(A x,A y/*00*/,B r){I ns=nb;Q(cm(xx))I v=_v(xx),o=xo;                     
  Y(R_(o)
    RS(I(yn==1,I w=*yI,i=li(w);P(xx==av&&nl,I(i<0,i=nl;P(i>15,o)l[nl++]=w)rl(i,0);M(bs+i)I(r,o=yo;rl(i,2);M(bd+i))OK)P(i>=0,rl(i,1);M(bm)M(i)M(v)I(r,o=yo;rl(i,2);M(bd+i))OK))
       UC i=gi(y);M(v?bM:bS)M(i)I(v,M(v))I(r,M(bG)M(i))OK)
-   RA(I n=yn-1;P(!n||n>8u,o)A z=yx;P(z==MKL&&(xx==av||_t(xx)==tu),M(bL)M(n)F(n,Nl(x,yA[i+1],0))I(r,P(xx-av,o))E(M(bP))OK)
+   RA(I n=yn-1;P(!n||n>8u,o)A z=yx;P(z==MKL&&(xx==av||_t(xx)==tu)||n==1&&z==ENL,M(bL)M(n)F(n,Nl(x,yA[i+1],0))I(r,P(xx-av,o))E(M(bP))OK)
       ZS(F(n,Nr(yA[n-i],1))M(bl)M(n)I i=zn-1?-1:li(*zI);I(i>=0,M(r?by:bx)rl(i,1))E(i=gi(z);M(r?bY:bX))M(i)M(v)OK)o))}
 Z I cr(A x/*0*/,B r)_(I o=xo;                                                                            //compile rvalue (x:tree,r:wantResult)
  XS(I i=xn-1?-1:li(*xI);I(i>=0,rl(i,2);M(bd+i))J(xn==1&&*xI=='o',M(bo))E(M(bG)M(gi(x)))I(!r,M(bP))OK)    // x.y      variable (possibly qualified)
