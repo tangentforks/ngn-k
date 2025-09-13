@@ -29,7 +29,7 @@ AX(run,Q(xto)Z I d;P(++d>2048,es8(a,n))P(n-xk,er8(a,n))UC*b=_V(xy),*start=b,c,nl
   C(bL,UC n=*b++;A x=*s;U(xtt||xN==n,*s=el(x))F(n,*--s=ii(x,n-1-i)))                                     //unlist    |bL,n  |.. x -> .. x[0] x[1]   |
   C(bj,UC n=*b++;b+=n)                                                                                   //jump      |bj,n  |.. x -> ..             |PC+:n
   C(bz,UC n=*b++;b+=n*!tru(*s++))                                                                        //branch    |bz,n  |.. x -> ..             |if x is falsy, PC+:n
-  C(bo,*--s=xR)                                                                                          //recur     |bo    |.. -> .. o             |o is the current lambda
+  C(bo,I(!*b,b=start+1)E(*--s=xR))                                                                       //recur     |bo    |.. -> .. o             |o is the current lambda
   C(bP,mr(*s++))                                                                                         //pop       |bP    |.. x -> ..             |
   C(bn,b+=2)                                                                                             //filler    |bn    |.. x -> ..             |
   C(bV,UC i=*b++;U(*s=v2[*b++](_R(xA[i+OFF]),*s),mr(xA[i+OFF]))mr(xA[i+OFF]))                            //const dyad|bV,i,d|.. x -> .. r           |r:dyads[d][consts[i];x]
@@ -79,8 +79,9 @@ Z A2(c2,/*00*/P(xtw&&!ytSA,1)/*P(x==TIL&&ytZ&&yn<4,F(yn,P(gl(ii(y,i))>100u,0))1)
 Z A3(c3,/*000*/P(ADD<=x&&x<=MUL&&ytzZ&&ztzZ&&(ytt||ztt||yn==zn)&&MAX(xN,yN)<101,1)0)                     //constant folding
 Z A1(cf,P(!xtA||!xn,x)P(xx==MKL,F(xn,A y=xa;YSA(x))qte(N(drp(1,x))))P(xn==2?c2(xx,xy):xn==3?c3(xx,xy,xz):0,qte(N(val(x))))P(xx==GAP&&(C)xo!=-1,A y=rsz(xn,au);yx=GAP;F(xn-1,A u=xA[i+1];yA[i+1]=aA2(cf(_R(ux)),uy);P(!yA[i+1],die("CF")))AO(xo,x(y)))A y=rsz(xn,au);F(xn,ya=cf(xa);xa=au;P(!ya,die("CF")))AO(xo,x(y)))
 Z I mxs(I i,I s)_(I r=s;W(1,UC c=MIN(bc,b[i++]);r=MAX(r,s);P(!c,r)s+=ds[c]+ks[c]*b[i];i+=di[c]+(c==bj)*b[i];I(c==bz,r=MAX(r,mxs(i+b[i-1],s))))r)//max stack
+Z V tco(C k){I i=1,l=nb;B o=0,e=0;W(i<l,I(b[i]==bo&&b[i+1]==ba,UC *c=b+i+3;W(c-b<l&&*c==bj,c+=2+*(c+1))I(*c==bu&&l-i-2<256,I(!e,e=1;F(k,M(bs+i))M(bo)M(bu))b[i]=bj;b[i+1]=l-i-2;b[i+2]=bu))i+=1+di[MIN(bc,b[i])])}
 Z B shy(A x/*0*/)_(P(!xtA||xn<2,0)P(xx==GAP&&(C)xo!=-1,A u=xA[xn-1];shy(ux))xn==3&&cm(xx)&&_tSA(xy))     //is last expr an assignment?
 A3(cpl,/*111*/u=aA(OFF);uy=aC(MB);uz=aC(MB);b=_C(uy);m=_C(uz);nb=1;I ns=nb;lu=an(0,tI);I r,k=0;I(z,k=zn;MC(l,zV,OFF*k);z(0))nl=k;y=Nx(cf(y));ux=x;uA[3]=au;B s=shy(y);B p=1;W(p,r=cr(y,!s);p=gr(ns);AN(0,lu))y(0);P(r-OK,ec0();eS(ux,r);mr(lu);u(0))
- I o=0;I(s,cc(au,o))P(un>255||nl>L(l)-2,ez0();eS(ux,0);mr(lu);u(0))M(bu)P(un>255-bc,eS(ux,0);u(0);ez0())
+ I o=0;I(s,cc(au,o))P(un>255||nl>L(l)-2,ez0();eS(ux,0);mr(lu);u(0))M(bu);ns=nb;p=1;W(p,tco(k);p=gr(ns))P(un>255-bc,eS(ux,0);u(0);ez0())
  mr(lu);*b=mxs(1,0);_C(uz)[0]=-1;AN(nb,uy);AN(nb,uz);uA[3]=aV(tS,nl,l);AK(k,AT(to,u)))
 #undef M
