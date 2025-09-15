@@ -8,7 +8,7 @@ lines:cols:999
 upd:{(lines;cols)::`I$"\n"\`x(("/usr/bin/env";"tput";"-S");"lines\ncols\n")}
 lim:{(x<#y)(x#)/y}
 dd:{(x<#y)(,[;".."](x-2)#)/y}
-ser:{$[(::)~x;"";`k[,/(`C$32#`B$#x;`@x)],"\n"]}
+ser:{$[(::)~x;"";`@x]}
 fmt:{upd[];$[(::)~x;"";(1<#x)&|/`m`M`A=@x;mMA x;(dd[cols]`k@lim[cols]x),"\n"]}
 fmtx:{$[(::)~x;"";`k[x],"\n"]}
 mMA:{(P;f;q):((,"!/+(";dct;,")");(("+![";" +(");tbl;")]");(,,"(";lst;,")"))`m`M`A?t:@x
