@@ -2,6 +2,7 @@
 #include"k.h"
 C TK(K x)_(Tk[xt])
 N NK(K x)_(xn)
+K KN(K x,I n)_(AN(n,x))
 V*dK(K x)_(xV)
 Z V VK(C t,V*a,K x){I(xtZ,x=ct(t,x))MC(a,xV,(W)xn<<Tw[t]>>3);I(xtR,I(MINE(x),AZ(x))E(mRn(xn,xV)))x(0);}
 
