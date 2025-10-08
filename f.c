@@ -29,13 +29,18 @@ Z X2(fndGx,
    F(m,I v=xi;zl=v==(C)v?yL[(UC)v]:NL),
    F(m,L v=xl;zl=v==(C)v?yL[(UC)v]:NL))
   y(sqzZ(z))))
-
+Z W hc0(W x)_(U l=x,h=x>>32;((0x65d200ce55b19ad8UL*l+0x4f2162926e40c299UL*h+0x162dd799029970f8UL)>>32)
+                           |((0x68b665e6872bd1f4UL*l+0xb6cfcf9d79b51db2UL*h+0x7a2b92ae912898c2UL)&0xFFFFFFFF00000000UL)) // https://lemire.me/blog/2018/08/15/fast-strongly-universal-64-bit-hashing-everywhere/
+Z W hc_(A x/*0*/,W s)_(XP(hc0(x^s))XB(x=cG(x);x(hc_(x,s)))XE(x=gZ(x);x(hc_(x,s)))
+ x=sqz(xR);s=hc0(s^(Lt(xt)|xn));XR(F(xn|!xn,s=hc_(xa,s));x(s))W n=xn<<xw-3;F(n>>3,s=hc0(s^xl))I(n&7,s=hc0(s^(xL[n>>3]&(~0ULL>>((n&7)<<3)))));x(s))
+W fndA_(U *g,W n,A *x,A y)_(W h=hc_(y,0);U i;W((i=g[h&(n-1)])!=~0U,P(mtc_(x[i],y),h&(n-1));h++);h&(n-1))
+A2(fndA,Z A z=0;Z U k,n;U l=urnk(y);
+ P(z,P(l>k-1,r2f(fndA,x,y))P(l<k-1,er(y))U b=y(fndA_(zI,n,xA,y));(U)zI[b]<xn?az((U)zI[b]):al(NL))
+ k=urnk(x);P(l+1<k,er(y))
+ P(l>=k,n=MIN(~0U,1U<<64-CLZ(xn));z=an(n,tI);MS(zV,-1,4*n);F(xn,U b=fndA_(zI,n,xA,xa);I(zI[b]>=xn,zI[b]=i));y=z(fndA(x,y)),z=0;y)
+ F(xn,P(mtc_(y,xa),y(al(i))))y(al(NL)))
 Z L eyt_(L*d,A x,L i,L k)_(P(k>xn,i)i=eyt_(d,x,i,2*k);S4(xw-3,d[k]=xg,d[k]=xh,d[k]=xi,d[k]=xl);eyt_(d,x,i+1,2*k+1))
 Z X1(eyt,R_(et(x))RE(eyt(gZ(x)))RB(eyt(cG(x)))RGHIL(A y=aL(xn+1);*yL=0;eyt_(yL,x,0,1);x(y)))
-A2(fndA,Z L*g=0;Z U k;U l=urnk(y);
- P(g,P(l>k-1,r2f(fndA,x,y))P(l<k-1,er(y))L i=1,n=xn;W(i<n,i=2*i+(qA(y,xa)>0))i>>=1+CTZ(~i);y(al(i&&mtc_(y,xa)?g[i]:NL)))
- k=urnk(x);P(l+1<k,er(y))P(l>=k,A z=eyt(asc(xR));x=i1(x,zR),g=zL,z=x(z(fndA(x,y))),g=0;z)
- F(xn,P(mtc_(y,xa),y(al(i))))y(al(NL)))
 A2(fndZFS,Z L*g=0;Z C t;
  P(g,YmMA(r2f(fndZFS,x,y))YE(fndZFS(x,gZ(y)))YB(fndZFS(x,cG(y)))Yt(fir(N(fndZFS(x,enl(y)))))
   P(t==TT[yt]||ytZ&&LH(tG,t,tL),U wx=xw-3,wy=yw-3,n=xn;A z=an(yn,tL);
