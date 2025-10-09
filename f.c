@@ -31,14 +31,14 @@ Z X2(fndGx,
   y(sqzZ(z))))
 Z W hc0(W x)_(U l=x,h=x>>32;((0x65d200ce55b19ad8ULL*l+0x4f2162926e40c299ULL*h+0x162dd799029970f8ULL)>>32)
                            |((0x68b665e6872bd1f4ULL*l+0xb6cfcf9d79b51db2ULL*h+0x7a2b92ae912898c2ULL)&0xFFFFFFFF00000000ULL)) // https://lemire.me/blog/2018/08/15/fast-strongly-universal-64-bit-hashing-everywhere/
-Z W hc(A x/*0*/,W s)_(XP(hc0(x^s))XB(x=cG(xR);x(hc(x,s)))XE(x=gZ(xR);x(hc(x,s)))x=sqz(xR);I(LH(tG,xt,tL),x=sqzZ(x));s=hc0(s^(Lt(xt)|xn));
- XR(F(xn|!xn,s=hc0(s^hc(xa,0)));x(s))W n=xn<<xw-3;F(n>>3,s=hc0(s^xl))I(n&7,s=hc0(s^(xL[n>>3]&(1ULL<<8*(n&7))-1)));x(s))
-W fndA_(U *g,W n,A *x,A y)_(W h=hc(y,0),d=0;U i;W((i=g[h&(n-1)])!=~0U,P(mtc_(x[i],y),h&(n-1));h+=++d);h&(n-1))
+Z W hc(A x/*0*/)_(XP(hc0(x))XB(x=cG(xR);x(hc(x)))XE(x=gZ(xR);x(hc(x)))x=sqz(xR);I(LH(tG,xt,tL),x=sqzZ(x));W s=hc0(Lt(xt)|xn);
+ XR(F(xn|!xn,s=hc0(s^hc(xa)));x(s))W n=xn<<xw-3;F(n>>3,s=hc0(s^xl))I(n&7,s=hc0(s^(xL[n>>3]&(1ULL<<8*(n&7))-1)));x(s))
+W fndA_(U *g,W n,A *x,A y)_(W h=hc(y),d=0;U i;W((i=g[h&(n-1)])!=~0U,P(mtc_(x[i],y),h&(n-1));h+=++d);h&(n-1))
 A2(fndA,Z A z=0;Z W n;Z U k;U l=urnk(y);
  P(z,P(l>k-1,r2f(fndA,x,y))P(l<k-1,er(y))U b=y(fndA_(zI,n,xA,y));(U)zI[b]<xn?az((L)(U)zI[b]):al(NL))
  k=urnk(x);P(l+1<k,er(y))
  // ugly hack: override length limit
- P(l>=k,n=1ULL<<64-CLZ(xn*5/4);z=an(n/2,tL);MS(zV,-1,4*n);F(xn,U b=fndA_(zI,n,xA,xa);I(zI[b]>=xn,zI[b]=i));y=z(fndA(x,y)),z=0;y)
+ P(l>=k,n=1ULL<<64-CLZ(xn*5/4);z=an(n/2,tL);MS(zV,-1,4*n);F(xn,U b=fndA_(zI,n,xA,xa);I(zI[b]==-1,zI[b]=i));y=z(fndA(x,y)),z=0;y)
  F(xn,P(mtc_(y,xa),y(al(i))))y(al(NL)))
 Z L eyt_(L*d,A x,L i,L k)_(P(k>xn,i)i=eyt_(d,x,i,2*k);S4(xw-3,d[k]=xg,d[k]=xh,d[k]=xi,d[k]=xl);eyt_(d,x,i+1,2*k+1))
 Z X1(eyt,R_(et(x))RE(eyt(gZ(x)))RB(eyt(cG(x)))RGHIL(A y=aL(xn+1);*yL=0;eyt_(yL,x,0,1);x(y)))
