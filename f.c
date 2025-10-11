@@ -42,14 +42,16 @@ A2(fndA,Z A z=0;Z W n;Z U k;U l=urnk(y);
  F(xn,P(mtc_(y,xa),y(al(i))))y(al(NL)))
 Z L eyt_(L*d,A x,L i,L k)_(P(k>xn,i)i=eyt_(d,x,i,2*k);S4(xw-3,d[k]=xg,d[k]=xh,d[k]=xi,d[k]=xl);eyt_(d,x,i+1,2*k+1))
 Z X1(eyt,R_(et(x))RE(eyt(gZ(x)))RB(eyt(cG(x)))RGHIL(A y=aL(xn+1);*yL=0;eyt_(yL,x,0,1);x(y)))
-A2(fndZFS,Z L*g=0;Z C t;
+A2(fndZFS,Z U*g=0;Z W n;
  P(g,YmMA(r2f(fndZFS,x,y))YE(fndZFS(x,gZ(y)))YB(fndZFS(x,cG(y)))Yt(fir(N(fndZFS(x,enl(y)))))
-  P(t==TT[yt]||ytZ&&LH(tG,t,tL),U wx=xw-3,wy=yw-3,n=xn;A z=an(yn,tL);
-   Fj(yn,L u,v,i=1;S4(wy,u=yG[j],u=yH[j],u=yI[j],u=yL[j])W(i<n,S4(wx,,v=xh,v=xi,v=xl)i=2*i+(u>v))i>>=1+CTZ(~i);S4(wx,,v=xh,v=xi,v=xl)zL[j]=i&&u==v?g[i]:NL)y(z))
+  P(xt==TT[yt]||ytZ&&LH(tG,xt,tL),U wx=xw-3,wy=yw-3;A z=an(yn,tL);
+   F(yn,L u,v;S4(wy,u=yg,u=yh,u=yi,u=yl);W h=hc0(u),d=0,j;zl=NL;W((j=g[h&(n-1)])!=~0U,S4(wx,,v=xH[j],v=xI[j],v=xL[j]);I(u==v,zl=j;break);h+=++d))y(z))
   fN(y))
  Yt(P(xt==TT[yt]||ytz&&xtZ,L v=gl(y);S4(xw-3,,F(xn,P(v==xh,ai(i))),F(xn,P(v==xi,ai(i))),F(xn,P(v==xl,ai(i))))al(NL))y(al(NL)))
- t=xt;I(xtF||xtS,xT=G(tG,tH,tI,tL)[xw-3])
- A z=eyt(asc(xR));xT=t;x=i1(x,zR);g=zL;z=x(z(fndZFS(x,y)));g=0;z)
+ n=1ULL<<64-CLZ(xn*5/4);A z=an(n/2,tL);g=zV;MS(g,-1,n*4);U wx=xw-3;
+ F(xn,L u,v;S4(wx,,u=xh,u=xi,u=xl);W h=hc0(u),d=0,j;W((j=g[h&(n-1)])!=~0U,S4(wx,,v=xH[j],v=xI[j],v=xL[j]);I(u==v,break);h+=++d)
+  I(g[h&(n-1)]==~0U,g[h&(n-1)]=i))
+ y=z(fndZFS(x,y));g=0;y)
 X2(fnd,
  R_(et(y))
  Rm(i1(xx,N(fnd(xy,y))))
@@ -58,7 +60,7 @@ X2(fnd,
  RA(fndA(x,y))
  RB(x=cG(xR);x(fnd(x,y)))
  RGC(A z=aL(256);F(256,zl=NL);UC*a=xV;U n=xn;F(n,zL[a[n-1-i]]=n-1-i)y(fndGx(y,z)))
- R5(tH,tI,tL,tF,tS,P(xn>2000,fndZFS(x,y))fndl(x,y)))
+ R5(tH,tI,tL,tF,tS,P(xn>100,fndZFS(x,y))fndl(x,y)))
 X2(que,Rs(Z CO C s[][4]={"","j","k","hex"};G(&des,js0,val,unh,ed)[fI((V*)s,L(s),xv)](y))Ril(rnd(gl_(x),y))R_(fnd(x,y)))
 
 Z A2 binF;
