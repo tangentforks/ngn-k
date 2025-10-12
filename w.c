@@ -20,7 +20,7 @@ A e1f(A1 f,A x){X(Rt(f(x))Rm(A y=kv(&x);am(x,Nx(e1f(f,y))))RA(U n=xn;P(!n,o1f(f,
 Z A2(e1,/*01*/X(Ru(e1f(v1[xv],y)))Y(Rt(x1(y))Rm(A z=kv(&y);am(y,Ny(e1(x,z))))RA(U n=yn;P(!n,o1(x,y))y=mut(y);F(n,;P(!(ya=x1(ya)),ya=au;y(0)))sqz(y))
                                     R_(U n=yN;P(!n,o1(x,y))A u=emp(tA);F(n,A z=x1(ii(y,i));B(!z,u=u(0))PSH(u,z))y(u)))0)
 A l2f(A2 f,A x,A y/*f01*/){X(Rt(f(x,y))Rm(A z=N(l2f(f,xy,y));       am(_R(xx),z) )R_(U n=xN;P(!n,x=fir(xR);x(o2f(f,x,y)))A u=emp(tA);F(n,A w=ii(x,i),v=f(w,yR);mr(w); B(!v,u=u(0))PSH(u,v))y(u)))}
-A r2f(A2 f,A x,A y/*f01*/){Y(Rt(f(x,y))Rm(A z=Ny(r2f(f,x,_R(yy)));y(am(_R(yx),z)))R_(U n=yN;P(!n,        o2f(f,x,fir(y)))A u=emp(tA);F(n,A v=f(x,ii(y,i));            B(!v,u=u(0))PSH(u,v))y(u)))}
+A r2f(A2 f,A x,A y/*f01*/){Y(Rt(f(x,y))Rm(A z=Ny(r2f(f,x,_R(yy)));y(am(_R(yx),z)))R_(U n=yN;P(!n,        o2f(f,x,fir(y)))A u=emp(tA);xR;F(n,A v=f(x,ii(y,i));            B(!v,u=u(0))PSH(u,v))x(y(u))))}
 Z A3(l2,/*001*/Xv(l2f(v2[xv],y,z))Yt(x2(yR,z))Ym(x=prj(x,A8((A)GAP,z),2);x(e1(x,yR)))  U n=yN;P(!n,y=fir(yR); y(o2(x,y,z)))A u=emp(tA);F(n,A w=ii(y,i),v=x2(w,zR);B(!v,u=u(0))PSH(u,v))z(u))
   A3(r2,/*001*/Xv(r2f(v2[xv],y,z))Zt(x2(yR,z))Zm(x=prj(x,A8(yR,GAP),2);x(e1(x,z)))     U n=zN;P(!n,         o2(x,y,fir(z)))A u=emp(tA);F(n,A v=x2(yR,ii(z,i));           B(!v,u=u(0))PSH(u,v))z(u))
 Z AX(l8,/*01..1*/Ab8;MC(b,a,64);*b=GAP;x=prj(x,b,n);x(e1(x,*a)))
