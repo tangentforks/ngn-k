@@ -66,8 +66,8 @@ Z Y2(binZ,
  RGHILC(
   XE(x=gZ(xR);x(binZ(x,y)))
   A z=an(yn,tZ(xn-1));U wx=xw-3,wy=yw-3,wz=zw-3;
-  P(!wx,L t[256]={[0]=-1};F(xn,t[128+xg]++)F(255,t[i+1]+=t[i]);L m=t[255];
-   F(yn,L v,j;S4(wy,v=yg,v=yh,v=yi,v=yl);j=v<-128?-1:v>127?m:t[128+v];S4(wz,zg=j,zh=j,zi=j,zl=j))y(z))L k[2];
+  P(!wx,L t[257]={[0]=-1};F(xn,t[129+xg]++)F(256,t[i+1]+=t[i])
+   F(yn,L v,j;S4(wy,v=yg,v=yh,v=yi,v=yl);j=t[129+MIN(127,MAX(-128,v))];S4(wz,zg=j,zh=j,zi=j,zl=j))y(z))L k[2];
   F(yn,L v;S4(wy,v=yg,v=yh,v=yi,v=yl)*k=-1;k[1]=xn;S4(wx,,W(*k+1<k[1],L i=*k+k[1]>>1;k[v<xh]=i),W(*k+1<k[1],L i=*k+k[1]>>1;k[v<xi]=i),W(*k+1<k[1],L i=*k+k[1]>>1;k[v<xl]=i))
        S4(wz,zg=*k,zh=*k,zi=*k,zl=*k))y(z)))
 Z Y2(binF,RF(x=of1(xR);x(binZ(x,of1(y))))REBGHILC(binF(x,N(cF(y))))Rt(YU(ed(y))fir(N(binF(x,enl(y)))))RmMA(r2f(binF,x,y))R_(ed(y)))
