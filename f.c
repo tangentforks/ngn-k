@@ -29,6 +29,8 @@ Z X2(fndGx,
    F(m,I v=xi;zl=v==(C)v?yL[(UC)v]:NL),
    F(m,L v=xl;zl=v==(C)v?yL[(UC)v]:NL))
   y(sqzZ(z))))
+
+Z W hc1(W x)_(x^=x>>33;x*=0xff51afd7ed558ccdUL;x^=x>>33;x*=0xc4ceb9fe1a85ec53UL;x^=x>>33;x) // murmur64
 Z W hc0(W x)_(U l=x,h=x>>32;((0x65d200ce55b19ad8ULL*l+0x4f2162926e40c299ULL*h+0x162dd799029970f8ULL)>>32)
                            |((0x68b665e6872bd1f4ULL*l+0xb6cfcf9d79b51db2ULL*h+0x7a2b92ae912898c2ULL)&0xFFFFFFFF00000000ULL)) // https://lemire.me/blog/2018/08/15/fast-strongly-universal-64-bit-hashing-everywhere/
 Z W hc(A x/*0*/)_(XP(hc0(x))XB(x=cG(xR);x(hc(x)))XE(x=gZ(xR);x(hc(x)))x=sqz(xR);I(LH(tG,xt,tL),x=sqzZ(x));W s=hc0(Lt(xt)|xn);
@@ -38,7 +40,7 @@ A2(fndA,Z A z=0;Z W n;Z U k;U l=urnk(y);
  P(z,P(l>k-1,r2f(fndA,x,y))P(l<k-1,er(y))U b=y(fndA_(zI,n,xA,y));(U)zI[b]<xn?az((L)(U)zI[b]):al(NL))
  k=urnk(x);P(l+1<k,er(y))
  // ugly hack: override length limit
- P(l>=k,n=1ULL<<64-CLZ(xn*5/4);z=an(n/2,tL);MS(zV,-1,4*n);F(xn,U b=fndA_(zI,n,xA,xa);I(zI[b]==-1,zI[b]=i));y=z(fndA(x,y)),z=0;y)
+ P(l>=k,n=1ULL<<64-CLZ(xn*5ULL/4);z=an(n/2,tL);MS(zV,-1,4*n);F(xn,U b=fndA_(zI,n,xA,xa);I(zI[b]==-1,zI[b]=i));y=z(fndA(x,y)),z=0;y)
  F(xn,P(mtc_(y,xa),y(al(i))))y(al(NL)))
 Z L eyt_(L*d,A x,L i,L k)_(P(k>xn,i)i=eyt_(d,x,i,2*k);S4(xw-3,d[k]=xg,d[k]=xh,d[k]=xi,d[k]=xl);eyt_(d,x,i+1,2*k+1))
 Z X1(eyt,R_(et(x))RE(eyt(gZ(x)))RB(eyt(cG(x)))RGHIL(A y=aL(xn+1);*yL=0;eyt_(yL,x,0,1);x(y)))
@@ -48,7 +50,7 @@ A2(fndZFS,Z U*g=0;Z W n;
    F(yn,L u,v;S4(wy,u=yg,u=yh,u=yi,u=yl);W h=hc0(u),d=0,j;zl=NL;W((j=g[h&(n-1)])!=~0U,S4(wx,,v=xH[j],v=xI[j],v=xL[j]);I(u==v,zl=j;break);h+=++d))y(z))
   fN(y))
  Yt(P(xt==TT[yt]||ytz&&xtZ,L v=gl(y);S4(xw-3,,F(xn,P(v==xh,ai(i))),F(xn,P(v==xi,ai(i))),F(xn,P(v==xl,ai(i))))al(NL))y(al(NL)))
- n=1ULL<<64-CLZ(xn*5/4);A z=an(n/2,tL);g=zV;MS(g,-1,n*4);U wx=xw-3;
+ n=1ULL<<64-CLZ(xn*5ULL/4);A z=an(n/2,tL);g=zV;MS(g,-1,n*4);U wx=xw-3;
  F(xn,L u,v;S4(wx,,u=xh,u=xi,u=xl);W h=hc0(u),d=0,j;W((j=g[h&(n-1)])!=~0U,S4(wx,,v=xH[j],v=xI[j],v=xL[j]);I(u==v,break);h+=++d)
   I(g[h&(n-1)]==~0U,g[h&(n-1)]=i))
  y=z(fndZFS(x,y));g=0;y)
