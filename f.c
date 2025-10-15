@@ -65,8 +65,10 @@ Z Y2(binZ,
  RB(binZ(x,cG(y)))
  RGHILC(
   XE(x=gZ(xR);x(binZ(x,y)))
-  P(xn-(I)xn,ez(y))U wx=xw-3,wy=yw-3;P(!wx,wy?K2("{@[x'`c$127&y;&-128>y;:;-1]}",x,y):K2("{(-1+\\@[&256;128+x;+;1])128+y}",x,y))A z=an(yn,tZ(xn-1));I wz=zw-3,k[2];
-  F(yn,L v;S4(wy,v=yg,v=yh,v=yi,v=yl)*k=-1;k[1]=xn;S4(wx,,W(*k+1<k[1],I i=*k+k[1]>>1;k[v<xh]=i),W(*k+1<k[1],I i=*k+k[1]>>1;k[v<xi]=i),W(*k+1<k[1],I i=*k+k[1]>>1;k[v<xl]=i))
+  A z=an(yn,tZ(xn-1));U wx=xw-3,wy=yw-3,wz=zw-3;
+  P(!wx,L t[257]={[0]=-1};F(xn,t[129+xg]++)F(256,t[i+1]+=t[i])
+   F(yn,L v,j;S4(wy,v=yg,v=yh,v=yi,v=yl);j=t[129+MIN(127,MAX(-128,v))];S4(wz,zg=j,zh=j,zi=j,zl=j))y(z))L k[2];
+  F(yn,L v;S4(wy,v=yg,v=yh,v=yi,v=yl)*k=-1;k[1]=xn;S4(wx,,W(*k+1<k[1],L i=*k+k[1]>>1;k[v<xh]=i),W(*k+1<k[1],L i=*k+k[1]>>1;k[v<xi]=i),W(*k+1<k[1],L i=*k+k[1]>>1;k[v<xl]=i))
        S4(wz,zg=*k,zh=*k,zi=*k,zl=*k))y(z)))
 Z Y2(binF,RF(x=of1(xR);x(binZ(x,of1(y))))REBGHILC(binF(x,N(cF(y))))Rt(YU(ed(y))fir(N(binF(x,enl(y)))))RmMA(r2f(binF,x,y))R_(ed(y)))
 X2(bin,REBGHILC(binZ(x,y))RF(binF(x,y))Rm(_1(xx,N(bin(xy,y))))R_(et(y)))
