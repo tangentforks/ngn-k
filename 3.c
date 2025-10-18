@@ -57,7 +57,7 @@ A3(ars,/*011*/Q(xtv)Q(xv<11)Q(!y||ytzc)Q(ztZC)
 Z A3(dexp,/*011*/zn?cat11(y?y:_R(cn[zt]),drp(-1,z)):y(z))
 Z A3(___p,/*011*/A u=dexp(av,y,zR);z(v2[xv](z,u)))
 Z A3(modp,/*011*/A u=dexp(av,y,zR);z(e2f(mod,z,u)))
-Z A3(mxmp,/*011*/U w=zw-3;L v=gl(y),l=-1ll<<(8<<w)-1,h=~l;v=MAX(v,l);N n=zn;P(v>=h,z(rsz(n,az(v))))y=an(zn,tG+zw-3);S4(w,zG[-1]=v,zH[-1]=v,zI[-1]=v,zL[-1]=v)N j=n-1;
+Z A3(mxmp,/*011*/U w=zw-3;L v=gl(y),l=-1ll<<(8<<w)-1,h=~l;v=MAX(v,l);N n=zn;P(v>=h,z(rsz(n,az(v))))z=mut(z);y=an(zn,tG+zw-3);S4(w,zG[-1]=v,zH[-1]=v,zI[-1]=v,zL[-1]=v)N j=n-1;
  F4(w,n,yG[j]=MAX(zG[j],zG[j-1]);j--,yH[j]=MAX(zH[j],zH[j-1]);j--,yI[j]=MAX(zI[j],zI[j-1]);j--,yL[j]=MAX(zL[j],zL[j-1]);j--)z(y))
 Z A3(mnmp,/*011*/y=az(~gl(y));z=inv(z);inv(mxmp(MXM,y,z)))
 Z A3(cmpp,/*011*/I o=x-LTN,w=zw-3;U n=zn;A u=aG(n);L v=gl(y),p=iw(z,w,0);*uG=!o?p<v:o==1?p>v:p==v;L m=n-1,j=m;
