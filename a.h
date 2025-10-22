@@ -96,7 +96,7 @@ TD G Gx32 VS(32);TD UC UCx32 VS(32);TD H Hx16 VS(32);TD UH UHx16 VS(32);TD I Ix8
 #define AA(f,b...) A f(    CO A*a,U n  )_(DBG(Q(n<=8));b)
 A1 _R,aA1,asc,AZ,blw,cB,cG,cC,cF,cH,cI,cL,cS,des,dsc,enl,epr,err,fir,flp,flr,frk,gZ,gg,grp,hex,imx,imn,inv,jS,js0,js1,kcos,kexp,klog,ksin,kst,las,len,m0,m1,mkn,mRa,mr,mut,
  neg,not,nul,of0,of1,opn,out,prng,qkmp,qpri,qte,raz,rev,rs0,ser,spl,sqr,sqz,sqzZ,str,str0,til,typ,u0c,u1c,u2c,unh,unq,val,whr;
-A2 _1,aA2,aM,add,am,psh,ari,bin,ct,cat,cat10,cat11,dlr,dex,dot,dvd,eql,exc,crt,fil,fnd,gtn,hsh,ie,i1,ltn,mod,mnm,mtc,mul,mxm,que,sub,und,v0c,v1c,v2c;
+A2 _1,aA2,aM,add,am,psh,ari,bin,ct,cat,cat10,cat11,dlr,dex,dot,dvd,eql,exc,crt,fil,fnd,gtn,hsh,ie,i1,ltn,mod,mnm,mtc,mul,mxm,que,sub,ser2,und,v0c,v1c,v2c;
 A3 _2,aA3,arf,arp,ars,cpl,e2,r2,try;
 A4 ara,a4,d4;
 AX _8,e8,f8,prj,run;
@@ -105,7 +105,7 @@ TD A TAU(U);TAU aA0,aA,aB,aG,aC,aH,aF,aI,aL,aS,gns,emp;
 TD A TAL(L);TAL al,az,cls,rndF;
 TD A TALA(L,A);TALA drp,rnd,rsz;
 TD A TAQ(S);TAQ aCz,bsl,bsm,die,sym;
-A aa(U,A),aa_(U,A,B),ar(L,C),ii(A,U),io(A,L),aE(L,L),af(F),aCm(S,S),aCn(S,U),apc(A,C),an(U,C),aV(C,U,CO V*),cts(A,S,U),e1f(A1,A),e2f(A2,A,A),err0(S),evs(S,B),
+A aa(U,A),aa_(U,A,B),ar(L,C),ii(A,U),io(A,L),aE(L,L),af(F),aCm(S,S),aCn(S,U),apc(A,C),an(U,C),aV(C,U,CO V*),cts(A,S,U),des_(C*,I),e1f(A1,A),e2f(A2,A,A),err0(S),evs(S,B),
  k1(A*,S,A),k2(A*,S,A,A),k8(A*,S,CO A*,U),jc(C,A),jC(S,U,A),ksg(S),kv(A*),mut_(A,B),r2f(A2,A,A),l2f(A2,A,A),mf(U,U,U),pk(S*,C),pen(A,A1*),slc(A,U,U),unhC(S,U),wdn(A,U,U,U),
  AT(W,A),AW(C,A),AK(C,A),AO(UC,A),AN(U,A),w1(U,A,A),w2(U,A,A,A),w8(U,A,CO A*,U),*gp(A);
 V cyc(V*,U,U),eS(A,U),eQ(S,U,U),exit(I),hexC(S,U,C*),kargs(I,S*),kinit(),*memmem(CO V*,N,CO V*,N),mrn(U,CO A*),mRn(U,CO A*),repl(),tilV(V*,L,L,U);
