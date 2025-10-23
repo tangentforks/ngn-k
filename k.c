@@ -21,5 +21,6 @@ K KE(S s)_(err0(s))
 
 K ref(K x)_(xR)
 V unref(K x){mr(x);}
+K unpack(C* s,I n){return des_(s,n);}
 
 K K0(K*p,S s,K*a,I n)_(k8(p,s,a,n))
