@@ -16,7 +16,7 @@ K Kf(F v)_(af(v))    K KF(F*a ,N n)_(a?aV(tF,n,a):an(n,tF))                   F 
 K Kp(V*p)_(al((L)p))
 
 V KA(K s,K x){x=x(d8(A8(s,ce[tA],av,x),4));I(x,mr(x))}
-V KR(S s,V*f,I n)_(KA(Ks((char*)s),ax(f,n)))
+V KR(S s,V*f,I n)_(C *a[8],b[256],*r,*t=b;strncpy(b,s,SZ(b));I(b[SZ(b)-1],return)I m=L(a),i=0;t=b;r=strchr(t,'.');W(i<L(a)&&r,*r=0;a[i++]=t;t=r+1;r=strchr(t,'.'));a[i]=t;KA(i-0?KS(a,i+1):Ks((char*)s),ax(f,n)))
 K KE(S s)_(err0(s))
 
 K ref(K x)_(xR)
