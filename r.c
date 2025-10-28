@@ -18,7 +18,7 @@ Z W r()_(I(nb<4,r4())b[--nb])//random 64 bits
  Z V jps(){CO W jp[]={0x180ec6d33cfd0aba,0xd5a61266f0c9392c,0xa9582618e03fc9aa,0x39abdc4529b1661c};W a[4];F(4,a[i]=s[i][0])
   F_(r_,3,Lx4 n[M]={0};Lx4* r=(Lx4*)s; F(4,r[i]=SHUF(r[i],(Lx4){0,0,1,2}))
   Fj(L(jp),F_(k,64,I(jp[j]&(1ull<<k),F_(l,4,n[l]^=r[l]))r4()))MC(s,n,SZ(n));F(4,s[i][0]=a[i]));nb=0;}
-X1(prng,Ru(x=an(M,tL);F(M,xl=s[i][0])x)REGHIL(P(xn-M,el(x))F(M,s[i][0]=xl)jps();nb=0;x(au))Ril(W v=gl(x);I(!v,v=now())F(M,s[i][0]=v=v*6364136223846793005+1442695040888963407/*knuth mmix*/)jps();au)R_(et(x)))
+X1(prng,Ru(x=an(M,tL);F(M,xl=s[i][0])x)REGHIL(P(xn-M,el(x))F(M,s[i][0]=xl)jps();nb=0;x(au))Ril(W v=gl(x);I(!v,A u=sym("/dev/random");P(u=fr(u,0,32),F(M,s[i][0]=ul)jps();nb=0;u(au))v=now())F(M,s[i][0]=v=v*6364136223846793005+1442695040888963407/*knuth mmix*/)jps();au)R_(et(x)))
 Z U ri(W m)_((U)r()*m>>32)//random int mod m
 Z W rw(W m)_(m>>32?r()%m:ri(m))
 Z F rf()_(W v=1023ll<<52|(r()&-1ull>>12);-1+*(F*)&v)//random float 0..1
