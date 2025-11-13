@@ -39,10 +39,10 @@ AX(run,Q(xto)Z I d;P(++d>2048,es8(a,n))P(n-xk,er8(a,n))UC*b=_V(xy),*start=b,c,nl
 #define Nl(a...) {I r_=cl(a);P(r_-OK,r_);}                                                               //compile lvalue; return on error
 #define OK -1                                                                                            //returned by cl() and cr() on success
 #define MB 256                                                                                           //max bytecode size
-Z A u,lu,ms;Z UC *b,*m;Z I nb,nl,l[16],cr(A,B);                                                          //u:lambda(src;b:bytes;m:map;l:locals;consts..)
+Z A u,lu,ms;Z UC *b,*m;Z I nb,nl,ml,l[16],cr(A,B);                                                     //u:lambda(src;b:bytes;m:map;l:locals;consts..)
 #define M(a) {_C(uy)[nb]=a;_C(uz)[nb]=o;nb+=nb<_n(uy)-1;}                                                //append byte
 #define SE(a,b) {M(a)I(0<=(b),M(b))A u=ms;UC c=MIN(bc,(a));A z=mut(uA[un-1]);I(c==bV,MC(zH,sec,4))I(zH[0]>=0,zH[1]+=ds[c]+ks[c]*(H)(b);zH[0]=MAX(zH[0],zH[1]));uA[un-1]=z;}
-B gr(I r)_(A y=uy,z=uz;P(nb>yn-4,uy=aa(2*yn,y);uz=aa(2*zn,z);nb=r;b=_C(uy);m=_C(uz);1)0)                 // grow byte code buffer
+B gr(I r,I l,I p)_(A y=uy,z=uz;P(nb>yn-p,uy=aa(2*yn,y);uz=aa(2*zn,z);nb=r;ml=l;b=_C(uy);m=_C(uz);1)0)             // grow byte code buffer
 ZN I li(I v)_(U i=fI(l,nl,v);P(i==nl,-1);i)                                                              //index of a local variable (returns -1 if not found)
 ZN V rl(I v,U m){I j=0,*p=_I(lu);F(_n(lu),                                                               //reference local variable (m:mode 0=write, 1=read, 2=delete)
  I((b[p[i]]&15)!=v,p[j++]=p[i])J(m&&LH(bd,b[p[i]],bd+15),b[p[i]]+=bg-bd));AN(j,lu);I(m==2,PSH(lu,ai(nb)))}
@@ -54,12 +54,12 @@ Z V cc(A x/*0*/,I o){U n=un,i=OFF;                                              
   W(i<n&&!mtc_(x,ua),i++)I(i>=n,PSH(u,xR))MC(sec,(V*)_A(ms)[-1+_n(ms)],4);SE(i+bc-OFF,-1)}
 Z I cl(A x,A y/*00*/,B r){I ns=nb;Q(cm(xx))I v=_v(xx),o=xo;                                              //compile lvalue (x:assignmentNode,y:tree,r:wantResult)
  Y(R_(o)
-   RS(I(yn==1,I w=*yI,i=li(w);P(xx==av&&nl,I(i<0,i=nl;P(i>15,o)l[nl++]=w)rl(i,0);SE(bs+i,-1);I(r,o=yo;rl(i,2);SE(bd+i,-1))OK)P(i>=0,rl(i,1);SE(bm,i)M(v)I(r,o=yo;rl(i,2);SE(bd+i,-1))OK))
+   RS(I(yn==1,I w=*yI,i=li(w);P(xx==av&&nl,I(i<0,i=nl;P(i>15,o)l[nl++]=w;ml=MAX(ml,nl))I(i>=ml,ml++)rl(i,0);SE(bs+i,-1);I(r,o=yo;rl(i,2);SE(bd+i,-1))OK)P(i>=0,rl(i,1);SE(bm,i)M(v)I(r,o=yo;rl(i,2);SE(bd+i,-1))OK))
       UC i=gi(y);SE(v?bM:bS,i)I(v,M(v))I(r,SE(bG,i))OK)
    RA(I n=yn-1;P(!n||n>8u,o)A z=yx;P(z==MKL&&(xx==av||_t(xx)==tu)||n==1&&z==ENL,SE(bL,n)F(n,Nl(x,yA[i+1],0))I(r,P(xx-av,o))E(SE(bP,-1))OK)
-      ZS(F(n,Nr(yA[n-i],1))SE(bl,n)I i=zn-1?-1:li(*zI);I(i>=0,SE(r?by:bx,i)rl(i,1))E(i=gi(z);SE(r?bY:bX,i))M(v)OK)o))}
+      ZS(F(n,Nr(yA[n-i],1))SE(bl,n)I i=zn-1?-1:li(*zI);i=i<ml?i:-1;I(i>=0,SE(r?by:bx,i)rl(i,1))E(i=gi(z);SE(r?bY:bX,i))M(v)OK)o))}
 Z I cr(A x/*0*/,B r)_(I o=xo;                                                                            //compile rvalue (x:tree,r:wantResult)
- XS(I i=xn-1?-1:li(*xI);                                                                                 // x.y      variable (possibly qualified)
+ XS(I i=xn-1?-1:li(*xI);i=i<ml?i:-1;                                                                     // x.y      variable (possibly qualified)
 	I(i>=0,rl(i,2);SE(bd+i,-1);)J(xn==1&&*xI=='o',SE(bo,-1))E(SE(bG,gi(x)))I(!r,SE(bP,-1))OK)
  P(!xtA||!xn,I(r,cc(x-GAP?x:au,o))OK)                                                                    // 0        constant
  U n=xn;A y=xx;                                                                                          //
@@ -87,8 +87,8 @@ Z A3(c3,/*000*/P(ADD<=x&&x<=MUL&&ytzZ&&ztzZ&&(ytt||ztt||yn==zn)&&MAX(xN,yN)<101,
 Z A1(cf,P(!xtA||!xn,x)P(xx==MKL,F(xn,A y=xa;YSA(x))qte(N(drp(1,x))))P(xn==2?c2(xx,xy):xn==3?c3(xx,xy,xz):0,qte(N(val(x))))P(xx==GAP&&(C)xo!=-1,A y=rsz(xn,au);yx=GAP;F(xn-1,A u=xA[i+1];yA[i+1]=aA2(cf(_R(ux)),uy);P(!yA[i+1],die("CF")))AO(xo,x(y)))A y=rsz(xn,au);F(xn,ya=cf(xa);xa=au;P(!ya,die("CF")))AO(xo,x(y)))
 Z B shy(A x/*0*/)_(P(!xtA||xn<2,0)P(xx==GAP&&(C)xo!=-1,A u=xA[xn-1];shy(ux))xn==3&&cm(xx)&&_tSA(xy))     //is last expr an assignment?
 Z V tco(C k){I i=1,l=nb;B o=0,e=0;W(i<l,I(b[i]==bo&&b[i+1]==ba,UC *c=b+i+3;W(c-b<l&&*c==bj,c+=2+*(c+1))I(*c==bu&&l-i-2<256,I(!e,e=1;F(k,M(bs+i))M(bo)M(bu))b[i]=bj;b[i+1]=l-i-2;b[i+2]=bu))i+=1+di[MIN(bc,b[i])])}
-A3(cpl,/*111*/u=aA(OFF);uy=aC(MB);uz=aC(MB);b=_C(uy);m=_C(uz);nb=1;I ns=nb;lu=an(0,tI);ms=emp(tA);A j=aH(2);PSH(ms,j);I r,k=0;I(z,k=zn;MC(l,zV,OFF*k);z(0))nl=k;y=Nx(cf(y));ux=x;uA[3]=au;B s=shy(y);B p=1;W(p,ms=rsz(1,ms);MS(_V(*_A(ms)),0,4);r=cr(y,!s);p=gr(ns);AN(0,lu);)y(0);P(r-OK,ec0();eS(ux,r);mrn(2,A(lu,ms));u(0))
-   I o=0;I(s,cc(au,o))P(un>255||nl>L(l)-2,ez0();eS(ux,0);mrn(2,A(lu,ms));u(0))SE(bu,-1)p=1;W(p,tco(k);p=gr(nb))P(un>255-bc,eS(ux,0);u(0);ez0())
+A3(cpl,/*111*/u=aA(OFF);uy=aC(MB);uz=aC(MB);b=_C(uy);m=_C(uz);nb=1;I ls,ns=nb;lu=an(0,tI);ms=emp(tA);A j=aH(2);PSH(ms,j);I r,k=0;I(z,k=zn;MC(l,zV,OFF*k);z(0))nl=ml=ls=k;y=Nx(cf(y));ux=x;uA[3]=au;B s=shy(y);B p=1;W(p,ms=rsz(1,ms);MS(_V(*_A(ms)),0,4);r=cr(y,!s);p=gr(ns,ls,4);AN(0,lu);)y(0);P(r-OK,ec0();eS(ux,r);mrn(2,A(lu,ms));u(0))
+   I o=0;I(s,cc(au,o))P(un>255||nl>L(l)-2,ez0();eS(ux,0);mrn(2,A(lu,ms));u(0))SE(bu,-1)p=1;ns=nb;ls=nl;W(p,tco(k);p=gr(ns,ls,0))P(un>255-bc,eS(ux,0);u(0);ez0())
  UC se=0;{A x=ms;F(xn,A y=xa;H v=yH[0];v=v<0?-v:v;se=MAX(se,v))}
  mrn(2,A(lu,ms));*b=se;_C(uz)[0]=-1;AN(nb,uy);AN(nb,uz);uA[3]=aV(tS,nl,l);AK(k,AT(to,u)))
 #undef SE
