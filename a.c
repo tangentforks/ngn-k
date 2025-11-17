@@ -15,12 +15,12 @@ ZN U maxfU(CO U*a,U n)_(U v=0;F(n,v=MAX(v,a[i]))v)
 ZN V iG(ambcn){CO G*p=a;G*r=c;F(n,*r++=p[*b++])}
 ZN V iH(ambcn){CO H*p=a;H*r=c;F(n,*r++=p[*b++])}
 ZN V iI(ambcn){CO I*p=a;I*r=c;F(n,*r++=p[*b++])}
-ZN V iC(ambcn){CO C*p=a;C*r=c;F(n+31&-32,*r++=b[i]<m?p[b[i]]:32)}
-ZN V iS(ambcn){CO I*p=a;I*r=c;F(n+7&-8,*r++=b[i]<m?p[b[i]]: 0)}
-ZN V oG(ambcn){CO G*p=a;L*r=c;F(n+3&-4,*r++=b[i]<m?p[b[i]]:NL)}
-ZN V oH(ambcn){CO H*p=a;L*r=c;F(n+3&-4,*r++=b[i]<m?p[b[i]]:NL)}
-ZN V oI(ambcn){CO I*p=a;L*r=c;F(n+3&-4,*r++=b[i]<m?p[b[i]]:NL)}
-ZN V o8(ambcn,L v){CO L*p=a;L*r=c;F(n+3&-4,*r++=b[i]<m?p[b[i]]:v)}
+ZN V iC(ambcn){CO C*p=a;C*r=c;F(n,*r++=b[i]<m?p[b[i]]:32)}
+ZN V iS(ambcn){CO I*p=a;I*r=c;F(n,*r++=b[i]<m?p[b[i]]: 0)}
+ZN V oG(ambcn){CO G*p=a;L*r=c;F(n,*r++=b[i]<m?p[b[i]]:NL)}
+ZN V oH(ambcn){CO H*p=a;L*r=c;F(n,*r++=b[i]<m?p[b[i]]:NL)}
+ZN V oI(ambcn){CO I*p=a;L*r=c;F(n,*r++=b[i]<m?p[b[i]]:NL)}
+ZN V o8(ambcn,L v){CO L*p=a;L*r=c;F(n,*r++=b[i]<m?p[b[i]]:v)}
 ZN V oL(ambcn){o8(a,m,b,c,n,NL);}
 ZN V oF(ambcn){o8(a,m,b,c,n,NFL);}
 A2(i1,/*01*/P(y==GAP||y==au,xR)
