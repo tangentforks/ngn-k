@@ -18,7 +18,7 @@ Z U nC(S p,U n)_(U m=2+n;F(n,m+=t[(UC)p[i]])m)
 Z V JC(S p,U n){*s++='"';UC c;F(n,S(t[c=*p++],C(0,*s++=c)C(1,*s++='\\';*s++=ej[si(je,c)])D(MC(s,"\\u00",4);s+=4;hexC(p-1,2,s);s+=2)))*s++='"';}
 Z U nl(L v)_(P(v==NL,4)U n=v<0?(v=-v),2:1;W m=10;W(m<=v&&n<19,n++;m*=10)n)
 Z V Jl(L v){s=v-NL?sl(s,v):MC(s,"null",4)+4;}
-Z U nx(A x/*0*/){X(Ri(nl(xv))Rl(nl(*xL))Rc(C c=xv;nC(&c,1))Rf(F v=*xF;P(v==(L)v,nl(v))P(v!=v,4)C b[32];sf(b,*(L*)&v)-b)Rm(nx(xx)+nx(xy)-1-!_N(xx))Ru(4+!!xv)RC(nC(xC,xn))
+Z U nx(A x/*0*/){X(Ri(nl(xv))Rl(nl(*xL))Rc(C c=xv;nC(&c,1))Rf(F v=*xF;P(v==(L)v,nl(v))P(v!=v,4)C b[32];sf(b,*(L*)&v)-b)Rm(nx(xx)+nx(xy)-1-!_N(xx))Ru(4+!xv)RC(nC(xC,xn))
  RMT_C(U n=xN,m=1+n+!n;F(n,m+=nX(ii(x,i)))m)R_(nX(str(xR))))}
 Z A Jx(A x/*0*/){X(Rm(*s++='{';F(xN,*s=',';s+=!!i;JX(ii(xx,i));*s++=':';JX(ii(xy,i)))*s++='}';x)Rf(F v=*xF;s=v==(L)v?sl(s,v):v!=v?MC(s,"null",4)+4:sf(s,*(L*)&v);x)Ri(s=sl(s,xv);x)
  Rl(Jl(*xL);x)Rc(C c=xv;JC(&c,1);x)RC(JC(xC,xn);x)Ru(U n=4+!xv;MC(s,xv?"true":"false",n);s+=n;x)R_(I(xtMT,*s++='[';F(xN,I(i,*s++=',')JX(ii(x,i)))*s++=']')E(JX(str(xR)))x))}
