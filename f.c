@@ -43,7 +43,8 @@ A2(fndA,Z A z=0;Z U k;U l=urnk(y);
 A2(fndZFS,Z A z=0;
  P(z,YmMA(r2f(fndZFS,x,y))YE(fndZFS(x,gZ(y)))YB(fndZFS(x,cG(y)))Yt(fir(N(fndZFS(x,enl(y)))))
   P(xt==TT[yt]||ytZ&&LH(tG,xt,tL),U wx=xw-3,wy=yw-3,n=zn;A u=an(yn,tL);
-   F(yn,L l,m;ul=NL;S4(wy,l=yg,l=yh,l=yi,l=yl)U h=hc0(l),d=0,j;W((j=zI[h&(n-1)])!=~0U,S4(wx,,m=xH[j],m=xI[j],m=xL[j]);B(l==m,ul=j);h+=++d))y(u))
+   F(yn,L l,m;ul=NL;S4(wy,l=yg,l=yh,l=yi,l=yl)S4(wx,,I(l-(H)l,continue),I(l-(I)l,continue),)U h=hc0(l),d=0,j;
+    W((j=zI[h&(n-1)])!=~0U,S4(wx,,m=xH[j],m=xI[j],m=xL[j]);B(l==m,ul=j);h+=++d))y(u))
   fN(y))
  Yt(P(xt==TT[yt]||ytz&&xtZ,L v=gl(y);S4(xw-3,,F(xn,P(v==xh,ai(i))),F(xn,P(v==xi,ai(i))),F(xn,P(v==xl,ai(i))))al(NL))y(al(NL)))
  z=tbl(xn);U wx=xw-3,n=zn;
