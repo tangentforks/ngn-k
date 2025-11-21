@@ -29,7 +29,7 @@ joinpath:{$[x~,".";y;"/"~*|x;x,y;x,"/",y]}
 line0:{c:{0x07~*-2#*x}{(l;r):x;(1:1;r,,(-2_l))}/(x;());"\n"/(*|c),,*c}
 line1:{$[#x;;:0];x:-1_x;$[(3>#x)&("\\"=*x)&~^(!cmds)?x 1;cmds[x 1]x 1;.[`1:(fmt;fmtx;ser;fmt)[3&+/&\" "=x]@.:;,x;{`0:`err[]}]];`1:prompt;1}
 line:line1@line0@
-$["repl.k"~basename`argv 1;{cmds::@[cmds;x[1]1;:;{y;`0:x}2_x]}'{(&x~\:80#"-")_x:(1+*&x~\:,"/")_-1_x}@0:`argv 1;];
+$["repl.k"~basename`argv 1;[{cmds::@[cmds;x[1]1;:;{y;`0:x}2_x]}'{(&x~\:80#"-")_full::x:(1+*&x~\:,"/")_-1_x}@0:`argv 1;cmds,:(,"?")!{y;`0:x}[full]];];
 run:{`1:banner,prompt;{line@1:`}::/`;}
 \d .
 
@@ -38,7 +38,7 @@ $[(~"kw"~`argv 0)&~"--non-interactive"~*x;repl.run[];]
 /
 --------------------------------------------------------------------------------
 
-\   help               \\         exit
+\   help help          \\         exit
 \a  license(AGPLv3)    \l file.k  load
 \0  types              \d foo     set namespace; restore with  \d .
 \+  verbs              \t:n expr  time(elapsed milliseconds after n runs)
@@ -46,6 +46,7 @@ $[(~"kw"~`argv 0)&~"--non-interactive"~*x;repl.run[];]
 \'  adverbs            \f         functions
 \`  symbols            \cd path   change directory
 \h  summary            \other     command(through /bin/sh)
+\?  full help
 --------------------------------------------------------------------------------
 \0
 Types:
