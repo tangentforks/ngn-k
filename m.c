@@ -1,11 +1,30 @@
 #include"a.h" // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
-#include<unistd.h>
-#include<fcntl.h>
-#include<sys/mman.h>
-#ifndef MAP_NORESERVE
+#ifdef _WIN32
+ #include<fcntl.h>
+ #include<stdio.h>
+ Z V*w_mmap(V*a,N n,I pr,I fl,I f,long o){(void)pr;(void)fl;(void)o;
+  I(f<0,_(VirtualAlloc(a,n,MEM_RESERVE|MEM_COMMIT,PAGE_READWRITE)))
+  HANDLE h=CreateFileMapping((HANDLE)_get_osfhandle(f),0,PAGE_READWRITE,0,n,0);P(!h,(V*)-1)
+  V*p=MapViewOfFile(h,FILE_MAP_ALL_ACCESS,0,o,n);CloseHandle(h);_(p?p:(V*)-1)}
+ Z I w_munmap(V*p,N n){(void)n;_(VirtualFree(p,0,MEM_RELEASE)?0:-1)}
+ #define mmap w_mmap
+ #define munmap w_munmap
+ #define PROT_READ 1
+ #define PROT_WRITE 2
+ #define MAP_PRIVATE 2
+ #define MAP_ANON 0x20
+ #define MAP_SHARED 1
+ #define MAP_FIXED 0x10
  #define MAP_NORESERVE 0
+#else
+ #include<unistd.h>
+ #include<fcntl.h>
+ #include<sys/mman.h>
+ #ifndef MAP_NORESERVE
+  #define MAP_NORESERVE 0
+ #endif
 #endif
-#ifdef __LP64__
+#if defined(__LP64__) || defined(_WIN64)
  #define AP(p) ((A)(p))
 #else
  #define AP(p) ((A)(U)(p)) //A from pointer
@@ -21,7 +40,11 @@ Z ST{V*p;W n;B f;}reg[128];Z U nreg;Z UC pnd[128];Z U npnd;
 Z V mc(){P(!npnd)F(npnd,U j=pnd[i];munmap(reg[j].p,reg[j].n);reg[j].p=0)npnd=0;U j=0;F(nreg,I(reg[i].p,MC(reg+j,reg+i,SZ*reg);j++))nreg=j;}
 Z A mu(V*p)_(F(nreg,P(reg[i].p==p,pnd[npnd++]=i;0))die("UNMAP"))
 Z V*mm(W n,U f)_(V*p=mmap(0,n,PROT_READ|PROT_WRITE,MAP_NORESERVE|MAP_PRIVATE|MAP_ANON,-1,0);P((L)p==(C)p,(V*)0)I(nreg==L(reg),mc();I(nreg==L(reg),die("MMAP")))reg[nreg++]=(TY(*reg)){p,n,f};p)
+#ifdef _WIN32
+A mf(U f,U i,U n)_(V*p=mm(pg+n,1);P(!p,eo0())lseek(f,i,SEEK_SET);L k=read(f,p+pg,n);P(k<0||(U)k!=n,mu(p);eo0())A x=AP(p+pg);xb=0;xr=REFB;xT=tC;xn=n;x)
+#else
 A mf(U f,U i,U n)_(V*p=mm(pg+n,1);P(!p,eo0())P(mmap(p+pg,n,PROT_READ|PROT_WRITE,MAP_NORESERVE|MAP_PRIVATE|MAP_FIXED,f,i)!=p+pg,mu(p);eo0())A x=AP(p+pg);xb=0;xr=REFB;xT=tC;xn=n;x)
+#endif
 
 Z A bkt[24];DBG(Z U lck;)
 Z W cap(A x/*0*/)_((HD<<xb)-HD)

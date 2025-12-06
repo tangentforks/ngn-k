@@ -3,12 +3,15 @@ M=mkdir -p $(@D)
 #V=$$(git --no-pager log --pretty=format:"-Dver=\"%H\"" -1)
 0:;$(MAKE) k && $(MAKE) t #default target
 k:;$(MAKE) a N=$@ R=k O='-O3 -march=native' L='-lm -ldl' #for calling k from dynamic libs, add: L='... -Wl,-E'
+kw:;$(MAKE) a N=$@ R=k.exe B=bin.exe O='-O3 -march=native' L='-lws2_32' #windows
 libk.so:;$(MAKE) a N=$@ R=$@ O='-fPIC -Dshared -fvisibility=hidden' L='-lm -ldl -shared'
 libk.dylib:;$(MAKE) a N=$@ R=$@ O='-fPIC -Dshared -fvisibility=hidden' L='-lm -ldl -install_name $@ -dynamiclib'
 libk.a:;$(MAKE) b N=$@ R=$@ O='-O3 -march=native -ffreestanding -lm -ldl -Dldstatic'
-o/$N/%.o:%.c *.h;$M;$(CC) @opts $O $V -o $@ -c $<
-o/$N/bin:$(patsubst %.c,o/$N/%.o,$(wildcard *.c));$(CC) $O -o $@ $^ @lopts $L # ;$(STRIP) -R .comment $@ -R '.note*'
-a:o/$N/bin;cp o/$N/bin $R
+OPTS?=@opts
+B?=bin
+o/$N/%.o:%.c *.h;$M;$(CC) $(OPTS) $O $V -o $@ -c $<
+o/$N/bin:$(patsubst %.c,o/$N/%.o,$(wildcard *.c));$(CC) $O -o o/$N/$B $^ @lopts $L # ;$(STRIP) -R .comment $@ -R '.note*'
+a:o/$N/bin;cp o/$N/$B $R
 b:$(patsubst %.c,o/$N/%.o,$(wildcard *.c));ar rcs o/$R/libk.a o/$N/*.o && cp o/$N/libk.a $R
 
 o/asm/%.s:%.c *.h;$M;$(CC) -O3 @opts -march=native -nostdlib -ffreestanding -c $< -o $@ -S -masm=intel

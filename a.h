@@ -1,6 +1,37 @@
 #include<stdbool.h> // ngn/k, (c) 2019-2024 ngn, GNU AGPLv3 - https://codeberg.org/ngn/k/raw/branch/master/LICENSE
 #include<string.h>
-#include<unistd.h>
+#ifdef _WIN32
+ #define WIN32_LEAN_AND_MEAN
+ #include<windows.h>
+ #undef OUT
+ #undef IN
+ #undef NEAR
+ #undef FAR
+ #include<io.h>
+ #include<direct.h>
+ #define ssize_t long long
+ #define getcwd _getcwd
+ #define chdir _chdir
+ #define open _open
+ #define close _close
+ #define read _read
+ #define write _write
+ #define lseek _lseek
+ #define fstat _fstat
+ #define stat _stat
+ #define ftruncate _chsize
+ #define O_RDONLY (_O_RDONLY|_O_BINARY)
+ #define O_RDWR (_O_RDWR|_O_BINARY)
+ #define O_CREAT _O_CREAT
+ #define O_TRUNC _O_TRUNC
+ #define S_ISDIR(m) (((m)&_S_IFMT)==_S_IFDIR)
+ #define S_ISREG(m) (((m)&_S_IFMT)==_S_IFREG)
+ #define S_IFCHR _S_IFCHR
+ #define _SC_PAGESIZE 1
+ static inline long sysconf(int i){(void)i;SYSTEM_INFO s;GetSystemInfo(&s);return s.dwPageSize;}
+#else
+ #include<unistd.h>
+#endif
 
 #if __clang__
  #define vfor _Pragma("clang loop vectorize(assume_safety)") for
@@ -9,7 +40,6 @@
 #else
  #define vfor for
 #endif
-
 #include"g.h"
 #define  DBG(a...)//a
 #define    _(a...) {return({a;});}

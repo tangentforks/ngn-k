@@ -3,23 +3,36 @@
 #include<stdio.h>
 #include<fcntl.h>
 #include<errno.h>
-#include<sys/socket.h>
-#include<sys/types.h>
-#include<sys/wait.h>
-#include<netinet/in.h>
-#include<netinet/tcp.h>
-#include<arpa/inet.h>
-#include<unistd.h>
-#include<sys/time.h>
-#undef __USE_EXTERN_INLINES
-#include<sys/stat.h>
-
+#ifdef _WIN32
+ #include<winsock2.h>
+ #include<ws2tcpip.h>
+ #include<sys/stat.h>
+ #define RTLD_LAZY 0
+ TD I socklen_t;
+ #pragma comment(lib,"ws2_32.lib")
+ V*memmem(CO V*x,N m,CO V*y,N n)_(S p=x,q=y;F((L)m-(L)n+1,P(!memcmp(p+i,q,n),(V*)(p+i)))(V*)0)
+#else
+ #include<sys/socket.h>
+ #include<sys/types.h>
+ #include<sys/wait.h>
+ #include<netinet/in.h>
+ #include<netinet/tcp.h>
+ #include<arpa/inet.h>
+ #include<unistd.h>
+ #include<sys/time.h>
+ #undef __USE_EXTERN_INLINES
+ #include<sys/stat.h>
+#endif
 I pg=4096;//pagesize
 
 //__builtin_ia32_ldmxcsr(__builtin_ia32_stmxcsr()|1<<6|1<<15); //daz,ftz
 #ifndef shared
 #ifndef ldstatic
+ #ifdef _WIN32
+ I main(I n,S*a)_(_setmode(1,_O_BINARY);_setmode(2,_O_BINARY);kinit();kargs(n,a);I r=0;I(n<2,repl())J(!bsl(a[1]),r=1;epr(0))Q(bsm(""));r)
+ #else
  I main(I n,S*a)_(kinit();kargs(n,a);I r=0;I(n<2,repl())J(!bsl(a[1]),r=1;epr(0))Q(bsm(""));r)
+ #endif
 #endif
 #endif
 
