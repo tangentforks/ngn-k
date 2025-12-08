@@ -88,6 +88,7 @@ Z N wrep(A*,A);
 Z N rep(A x){
  UC t=_t(x);N n=_N(x);
  N r=2*sizeof(L);// type + count header
+ I(t==tE,return rep(gZ(_R(x))))// enumeration - expand to calculate size
  I(t==ti||t==tl,return r)// int/long atom - value in count field
  I(t==tf,return r+sizeof(F))// float atom
  I(t==tc,return r)// char atom - value in count field
@@ -104,6 +105,9 @@ Z N rep(A x){
 Z N wrep(A*p,A x){
  N start=_n(*p);
  UC t=_t(x);N n=_N(x);
+
+ // Enumeration (range) - expand to actual list before serializing
+ I(t==tE,return wrep(p,gZ(x)))// gZ expands and consumes x
 
  // Int atom (ti, tl)
  I(t==ti||t==tl,emitL(p,1);emitL(p,_v(x));return 2*sizeof(L))
@@ -407,10 +411,10 @@ Z A ipc_recv_dispatch(I fd){
  A h=ipc_handler(msgtype==MSG_ASYNC?'s':'g');
  A r;
  I(h,r=dot(h,enl(val)))// call handler with value
- J(_t(val)==tC,val=str0(val);r=evs(_V(val),0);mr(val))// string: evaluate as K code
+ J(_t(val)==tC,val=str0(val);r=evs(_V(val),0);mr(val);I(!r,r=au))// string: evaluate as K code
  E(mr(val);r=au)// anything else: return null
- // For sync messages, send response
- I(msgtype==MSG_SYNC,k3send(fd,r,MSG_RESP);mr(r);return au)
+ // For sync messages, send response (k3send consumes r via wrep)
+ I(msgtype==MSG_SYNC,k3send(fd,r,MSG_RESP);return au)
  _(r)}
 
 // === Server mode (for -l command line option) ===
@@ -484,12 +488,37 @@ L ipc_repl_read(V*buf,N n){
 #endif
 }
 
-// Read from stdin - uses REPL socket in IPC server mode on Windows
+// Read from stdin - handles IPC while waiting in server mode
 L ipc_stdin_read(V*buf,N n){
 #ifdef _WIN32
  I(repl_sock[0]>=0,_(recv(repl_sock[0],buf,n,0)))
+#else
+ // In server mode, poll stdin + IPC and handle IPC while waiting
+ I(ipc_listener>=0,
+   W(1,
+     ST pollfd pfd[2+MAX_CLIENTS];
+     pfd[0].fd=0;pfd[0].events=POLLIN;// stdin
+     pfd[1].fd=ipc_listener;pfd[1].events=POLLIN;
+     F(ipc_nclient,pfd[2+i].fd=ipc_clients[i];pfd[2+i].events=POLLIN)
+     I r=poll(pfd,2+ipc_nclient,-1);// blocking wait
+     P(r<0,-1)
+     // Handle new connections
+     I(pfd[1].revents&POLLIN,
+       I fd=ipc_accept(ipc_listener);
+       I(fd>=0&&ipc_nclient<MAX_CLIENTS,ipc_clients[ipc_nclient++]=fd))
+     // Handle client messages
+     F(ipc_nclient,
+       I(pfd[2+i].revents&(POLLIN|POLLHUP|POLLERR),
+         A v=ipc_recv_dispatch(ipc_clients[i]);
+         I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient])// no i-- (pfd stale)
+         E(mr(v))))
+     // If stdin ready, break to read
+     I(pfd[0].revents&POLLIN,break)))
 #endif
  _(read(0,buf,n))}
+
+// Flag to disable stdin in server mode (set when stdin returns EOF)
+Z B ipc_no_stdin=0;
 
 // Called from REPL to check for IPC activity
 // Returns: 0=stdin has data, 1=IPC handled (continue), -1=error
@@ -514,29 +543,31 @@ I ipc_check(){
  F(ipc_nclient,
    I(n>0&&FD_ISSET(ipc_clients[i],&r),
      A v=ipc_recv_dispatch(ipc_clients[i]);
-     I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient];i--)// connection closed
+     I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient])// connection closed (no i-- due to stale fd_set)
      E(mr(v))))// value handled by .m.s/.m.g
  // Check if stdin data available (via repl socket)
  _(n>0&&repl_sock[0]>=0&&FD_ISSET(repl_sock[0],&r)?0:1)
 #else
  ST pollfd pfd[2+MAX_CLIENTS];
- pfd[0].fd=0;pfd[0].events=POLLIN;// stdin
- pfd[1].fd=ipc_listener;pfd[1].events=POLLIN;
- F(ipc_nclient,pfd[2+i].fd=ipc_clients[i];pfd[2+i].events=POLLIN)
- I n=poll(pfd,2+ipc_nclient,0);// non-blocking
+ I nfd=0;
+ I stdin_idx=-1;
+ I(isatty(0)&&!ipc_no_stdin,stdin_idx=nfd;pfd[nfd].fd=0;pfd[nfd++].events=POLLIN)// stdin only if tty
+ I listener_idx=nfd;pfd[nfd].fd=ipc_listener;pfd[nfd++].events=POLLIN;
+ I client_base=nfd;
+ F(ipc_nclient,pfd[nfd].fd=ipc_clients[i];pfd[nfd++].events=POLLIN)
+ I n=poll(pfd,nfd,-1);// blocking wait until something ready
  P(n<0,-1)
- P(!n,0)// nothing ready
  // Check listener for new connections
- I(pfd[1].revents&POLLIN,
+ I(pfd[listener_idx].revents&POLLIN,
    I fd=ipc_accept(ipc_listener);
    I(fd>=0&&ipc_nclient<MAX_CLIENTS,ipc_clients[ipc_nclient++]=fd))
  // Check clients for incoming data
  F(ipc_nclient,
-   I(pfd[2+i].revents&(POLLIN|POLLHUP|POLLERR),
+   I(pfd[client_base+i].revents&(POLLIN|POLLHUP|POLLERR),
      A v=ipc_recv_dispatch(ipc_clients[i]);
-     I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient];i--)
+     I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient])// remove (no i--, pfd stale)
      E(mr(v))))
- // Return whether stdin is ready
- _(pfd[0].revents&POLLIN?0:1)
+ // Return whether stdin is ready (or always 1 if stdin disabled)
+ _(stdin_idx>=0&&pfd[stdin_idx].revents&POLLIN?0:1)
 #endif
 }
