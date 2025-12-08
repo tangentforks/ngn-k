@@ -134,7 +134,7 @@ A evs(S s,B r)_(W(*s,A x=evs1(&s);P(!x,I(r,s=strchrnul(s,10);s+=!!*s;epr(0))0)I(
 Z A s_;
 B rep()_(Z C b[256],*s=b;C*q;A x=aV(tC,256,b);s_=x;s=s-b+xC;
  W(1,I c=ipc_check();I(c>0,continue)// IPC handled, no stdin data
-   L n=read(0,s,xC-s+xn);P(n<=0,s=b;x(0))s+=n;q=memchr(s-n,10,n);
+   I rfd=ipc_repl_fd();L n=rfd>=0?ipc_repl_read(s,xC-s+xn):read(0,s,xC-s+xn);P(n<=0,s=b;x(0))s+=n;q=memchr(s-n,10,n);
    P(q,C*p=xC;W(q,*q=0;evs(p,1);p=q+1;q=memchr(p,10,s-p))MC(b,p,s-p);s=s-p+b;x(1))
    q=xC;s_=x=x(aV(tC,2*xn,xV));s=s-q+xC)x(1))
 V repl(){W(rep())}

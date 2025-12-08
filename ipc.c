@@ -2,30 +2,22 @@
 // Kona-compatible IPC - Inter-Process Communication protocol
 // Wire format compatible with Kona (https://github.com/kevinlawler/kona)
 //
+// In-memory serialization:
+//   ` 3: value        / serialize to bytes
+//   ` 4: bytes        / deserialize from bytes
+//
 // Client usage:
-//   fd:<"host:port"   / open connection
-//   fd 3: value       / serialize and send (async)
-//   fd 4: "expr"      / serialize and send, wait for response (sync)
-//   >fd               / close connection
+//   (`host;port) 3: value  / connect, send async message (fire-and-forget)
+//   (`host;port) 4: value  / connect, send sync message, wait for response
+//   (`;1234) 3: value      / empty host = localhost
+//   ("";1234) 3: value     / string host also works
 //
 // Server usage (command line):
 //   ./k -l 1234        / start listening on port 1234
-//   .m.s:{[x] ...}     / define async message handler
-//   .m.g:{[x] ...}     / define sync handler (return value sent back)
+//   .m.s:{[x] ...}     / define async message handler (3: messages)
+//   .m.g:{[x] ...}     / define sync handler (4: messages, return value sent back)
 //
-// Server usage (explicit API):
-//   listener: 0 5: port / listen on port, returns listener fd
-//   client: listener 5: timeout / accept connection (ms timeout, -1=block)
-//   client 6: timeout / poll and receive with handler dispatch
-//   >listener         / close listener
-//
-// Message handlers (define in .m namespace):
-//   .m.s:{[x] ...}    / async message handler (3: messages)
-//   .m.g:{[x] ...}    / sync message handler (4: messages, return value sent back)
-//
-// For in-memory serialization:
-//   (3:)[0;value]     / serialize to bytes
-//   (4:)[0;bytes]     / deserialize from bytes
+// Connections are cached - same (host;port) reuses existing socket
 
 #ifdef _WIN32
  #include<winsock2.h>
@@ -43,6 +35,13 @@
  #define sock_read(fd,buf,n) read(fd,buf,n)
  #define sock_write(fd,buf,n) write(fd,buf,n)
  #define sock_close close
+#endif
+
+#ifdef _WIN32
+// Initialize Winsock (call before any socket operations)
+Z V wsa_init(){Z WSADATA wsa;Z B init;I(!init,init=1;WSAStartup(MAKEWORD(2,2),&wsa))}
+#else
+#define wsa_init()
 #endif
 
 // Kona message types: {0,1,2} -> {async 3:, sync 4:, response}
@@ -226,21 +225,112 @@ Z A k3recv(I fd){
  _n(buf)=HDRSZ+msgLen;
  k3parse(buf,0);}
 
+// === Connection Table ===
+// Maps (host,port) pairs to socket file descriptors
+
+#define MAX_CONNS 64
+Z struct{U host;UH port;I fd;}ipc_conns[MAX_CONNS];
+Z I ipc_nconn=0;
+
+// Find or create connection for host:port
+// Returns fd or -1 on error
+Z I ipc_connect(U host,UH port){
+ // Look for existing connection
+ F(ipc_nconn,I(ipc_conns[i].host==host&&ipc_conns[i].port==port,return ipc_conns[i].fd))
+ // Create new connection
+ P(ipc_nconn>=MAX_CONNS,-1)
+ wsa_init();
+ I fd=socket(AF_INET,SOCK_STREAM,0);
+#ifdef _WIN32
+ P(fd==INVALID_SOCKET,-1)
+ I yes=1;setsockopt(fd,IPPROTO_TCP,TCP_NODELAY,(CO C*)&yes,sizeof(yes));
+ ST sockaddr_in a;MS(&a,0,sizeof(a));
+ a.sin_family=AF_INET;
+ a.sin_addr.s_addr=host;
+ a.sin_port=htons(port);
+ I(connect(fd,(ST sockaddr*)&a,sizeof(a))==SOCKET_ERROR,sock_close(fd);return -1)
+#else
+ P(fd<0,-1)
+ I yes=1;setsockopt(fd,IPPROTO_TCP,TCP_NODELAY,(CO C*)&yes,sizeof(yes));
+ ST sockaddr_in a;MS(&a,0,sizeof(a));
+ a.sin_family=AF_INET;
+ a.sin_addr.s_addr=host;
+ a.sin_port=htons(port);
+ I(connect(fd,(ST sockaddr*)&a,sizeof(a))<0,sock_close(fd);return -1)
+#endif
+ // Add to table
+ ipc_conns[ipc_nconn].host=host;
+ ipc_conns[ipc_nconn].port=port;
+ ipc_conns[ipc_nconn].fd=fd;
+ ipc_nconn++;
+ _(fd)}
+
+// Close connection and remove from table
+Z V ipc_disconnect(I fd){
+ F(ipc_nconn,I(ipc_conns[i].fd==fd,sock_close(fd);ipc_conns[i]=ipc_conns[--ipc_nconn];return))}
+
+// Parse host from symbol or string, returns network byte order address
+// Empty/null = localhost (127.0.0.1), 0 = parse error
+Z U ipc_addr(A x){
+ S s=0;
+ I(_t(x)==ts,s=su(_v(x)))
+ else I(_t(x)==tC,I(!_n(x),return 0x0100007f)s=(S)_V(x))
+ else return 0;
+ I(!*s,return 0x0100007f)// empty = localhost
+ UC v[4];
+ F(4,I(i,I(*s!='.',return 0)s++)v[i]=pu(&s);I(v[i]>255,return 0))
+ return *(U*)v;}
+
 // === Public API ===
 
-// x 3: y - async send (or serialize if x=0)
+// x 3: y - async send (or serialize if x=`)
+// x can be:
+//   ` (empty symbol) - serialize y to bytes (no send)
+//   (host;port) - connect to host:port and send y async
+//   fd (integer) - send y async on existing fd
 A2(v3c,
- P(!xtz,mr(y);et(x))
- I fd=gl(x);
- P(!fd,k3msg(y,MSG_ASYNC))
+ // Empty symbol `: serialize-only
+ I(xts&&!xv,return k3msg(y,MSG_ASYNC))
+ // Integer x: fd for send
+ I(xtz,I fd=gl(x);return k3send(fd,y,MSG_ASYNC))
+ // List x: (host;port)
+ P(!xtA||xn!=2,mr(y);et(x))
+ A h0=xx,p0=xy;
+ P(!_tz(p0),mr(y);et(x))
+ U host=ipc_addr(h0);
+ P(!host&&_n(h0),mr(x);mr(y);ed0())// invalid host
+ I(!host,host=0x0100007f)// default localhost
+ UH port=gl(p0);
+ mr(x);
+ I fd=ipc_connect(host,port);
+ P(fd<0,mr(y);eo0())
  k3send(fd,y,MSG_ASYNC))
 
-// x 4: y - sync send/receive (or deserialize if x=0)
+// x 4: y - sync send/receive (or deserialize if x=`)
+// x can be:
+//   ` (empty symbol) - deserialize y from bytes
+//   (host;port) - connect to host:port, send y sync, receive response
+//   fd (integer) - send y sync on existing fd, receive response
 A2(v4c,
- P(!xtz,mr(y);et(x))
- I fd=gl(x);
- P(!fd,k3parse(y,0))
- mr(y);
+ // Empty symbol `: deserialize-only
+ I(xts&&!xv,return k3parse(y,0))
+ // Integer x: fd for receive
+ I(xtz,I fd=gl(x);mr(y);return k3recv(fd))
+ // List x: (host;port)
+ P(!xtA||xn!=2,mr(y);et(x))
+ A h0=xx,p0=xy;
+ P(!_tz(p0),mr(y);et(x))
+ U host=ipc_addr(h0);
+ P(!host&&_n(h0),mr(x);mr(y);ed0())// invalid host
+ I(!host,host=0x0100007f)// default localhost
+ UH port=gl(p0);
+ mr(x);
+ I fd=ipc_connect(host,port);
+ P(fd<0,mr(y);eo0())
+ A msg=k3msg(y,MSG_SYNC);
+ I r=writen(fd,_V(msg),_n(msg));
+ mr(msg);
+ P(r<0,eo0())
  k3recv(fd))
 
 // === Server functionality ===
@@ -248,14 +338,25 @@ A2(v4c,
 // Create listening socket bound to port
 Z I ipc_listen(I port){
  I fd=socket(AF_INET,SOCK_STREAM,0);
+#ifdef _WIN32
+ P(fd==INVALID_SOCKET,-1)
+ I yes=1;setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,(CO C*)&yes,sizeof(yes));
+ ST sockaddr_in a;MS(&a,0,sizeof(a));
+ a.sin_family=AF_INET;
+ a.sin_addr.s_addr=INADDR_ANY;
+ a.sin_port=htons(port);
+ I(bind(fd,(ST sockaddr*)&a,sizeof(a))==SOCKET_ERROR,sock_close(fd);return -1)
+ I(listen(fd,16)==SOCKET_ERROR,sock_close(fd);return -1)
+#else
  P(fd<0,-1)
- I yes=1;setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&yes,sizeof(yes));
+ I yes=1;setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,(CO C*)&yes,sizeof(yes));
  ST sockaddr_in a;MS(&a,0,sizeof(a));
  a.sin_family=AF_INET;
  a.sin_addr.s_addr=INADDR_ANY;
  a.sin_port=htons(port);
  I(bind(fd,(ST sockaddr*)&a,sizeof(a))<0,sock_close(fd);return -1)
  I(listen(fd,16)<0,sock_close(fd);return -1)
+#endif
  _(fd)}
 
 // Accept connection on listening socket
@@ -263,8 +364,12 @@ Z I ipc_accept(I listener){
  ST sockaddr_in a;
  socklen_t len=sizeof(a);
  I fd=accept(listener,(ST sockaddr*)&a,&len);
+#ifdef _WIN32
+ P(fd==INVALID_SOCKET,-1)
+#else
  P(fd<0,-1)
- I yes=1;setsockopt(fd,IPPROTO_TCP,TCP_NODELAY,&yes,sizeof(yes));
+#endif
+ I yes=1;setsockopt(fd,IPPROTO_TCP,TCP_NODELAY,(CO C*)&yes,sizeof(yes));
  _(fd)}
 
 // Poll fd for readability, returns 1 if ready, 0 if timeout, -1 on error
@@ -313,69 +418,111 @@ Z A ipc_recv_dispatch(I fd){
  I(msgtype==MSG_SYNC,k3send(fd,r,MSG_RESP);mr(r);return au)
  _(r)}
 
-// x 5: y - listen or accept (explicit API, mainly for testing)
-// 0 5: port     - listen on port, return listener fd
-// listener 5: timeout - accept connection (timeout in ms, 0=non-blocking, -1=blocking)
-A2(v5c,
- P(!xtz||!ytz,mr(y);et(x))
- I left=gl(x),right=gl(y);
- // Mode 0: listen on port
- I(!left,P(right<0||right>65535,ed0())I fd=ipc_listen(right);P(fd<0,eo0())return ai(fd))
- // Mode fd: accept connection with timeout
- I r=ipc_poll(left,right);
- P(r<0,eo0())
- P(!r,_R(cn[ti]))// timeout - return null
- I fd=ipc_accept(left);
- P(fd<0,eo0())
- ai(fd))
-
-// fd 6: timeout - poll and receive message with handler dispatch
-A2(v6c,
- P(!xtz||!ytz,mr(y);et(x))
- I fd=gl(x),timeout=gl(y);
- I r=ipc_poll(fd,timeout);
- P(r<0,eo0())
- P(!r,_R(cn[ti]))// timeout - return null
- ipc_recv_dispatch(fd))
-
 // === Server mode (for -l command line option) ===
+// On Windows, stdin can't be mixed with sockets in select().
+// Solution: REPL runs in a separate thread, sends lines via a socket pair.
 
 #define MAX_CLIENTS 64
 Z I ipc_listener=-1;           // listener socket fd
 Z I ipc_clients[MAX_CLIENTS];  // client socket fds
 Z I ipc_nclient=0;             // number of active clients
 
+#ifdef _WIN32
+#include<process.h>
+Z I repl_sock[2]={-1,-1};      // socket pair: [0]=main reads, [1]=repl writes
+
+// Create a socket pair (Windows doesn't have socketpair)
+Z I make_sockpair(I sv[2]){
+ I ls=socket(AF_INET,SOCK_STREAM,0);P(ls==INVALID_SOCKET,-1)
+ ST sockaddr_in a;MS(&a,0,sizeof(a));
+ a.sin_family=AF_INET;a.sin_addr.s_addr=htonl(0x7f000001);a.sin_port=0;
+ P(bind(ls,(ST sockaddr*)&a,sizeof(a))==SOCKET_ERROR,sock_close(ls);-1)
+ socklen_t len=sizeof(a);getsockname(ls,(ST sockaddr*)&a,&len);
+ P(listen(ls,1)==SOCKET_ERROR,sock_close(ls);-1)
+ sv[1]=socket(AF_INET,SOCK_STREAM,0);
+ P(sv[1]==INVALID_SOCKET,sock_close(ls);-1)
+ P(connect(sv[1],(ST sockaddr*)&a,sizeof(a))==SOCKET_ERROR,sock_close(ls);sock_close(sv[1]);-1)
+ sv[0]=accept(ls,0,0);sock_close(ls);
+ P(sv[0]==INVALID_SOCKET,sock_close(sv[1]);-1)
+ _(0)}
+
+// REPL thread: reads stdin, sends lines to main thread
+Z V __cdecl repl_thread(V*arg){
+ C buf[4096];
+ W(1,
+   I n=read(0,buf,sizeof(buf));
+   I(n<=0,break)
+   send(repl_sock[1],buf,n,0))
+ sock_close(repl_sock[1]);repl_sock[1]=-1;}
+#endif
+
 // Start listening on port (called from main with -l option)
 I ipc_start(I port){
+ wsa_init();
  I fd=ipc_listen(port);
  P(fd<0,-1)
  ipc_listener=fd;
+#ifdef _WIN32
+ // Create socket pair and start REPL thread
+ I(make_sockpair(repl_sock)<0,repl_sock[0]=repl_sock[1]=-1)// continue without repl thread if sockpair fails
+ E(_beginthread(repl_thread,0,0))
+#endif
  _(0)}
+
+// Get fd to read REPL input from (socket on Windows server mode, -1 otherwise)
+I ipc_repl_fd(){
+#ifdef _WIN32
+ _(repl_sock[0])
+#else
+ _(-1)
+#endif
+}
+
+// Read from REPL fd (use recv on Windows since it's a socket)
+L ipc_repl_read(V*buf,N n){
+#ifdef _WIN32
+ I fd=repl_sock[0];
+ P(fd<0,-1)
+ _(recv(fd,buf,n,0))
+#else
+ _(-1)
+#endif
+}
+
+// Read from stdin - uses REPL socket in IPC server mode on Windows
+L ipc_stdin_read(V*buf,N n){
+#ifdef _WIN32
+ I(repl_sock[0]>=0,_(recv(repl_sock[0],buf,n,0)))
+#endif
+ _(read(0,buf,n))}
 
 // Called from REPL to check for IPC activity
 // Returns: 0=stdin has data, 1=IPC handled (continue), -1=error
 I ipc_check(){
  P(ipc_listener<0,0)// not in server mode
 #ifdef _WIN32
- fd_set r;FD_ZERO(&r);FD_SET(0,&r);FD_SET(ipc_listener,&r);
+ // On Windows, monitor sockets only (stdin comes via repl_sock[0])
+ fd_set r;FD_ZERO(&r);
+ FD_SET(ipc_listener,&r);
+ I(repl_sock[0]>=0,FD_SET(repl_sock[0],&r))
  I maxfd=ipc_listener;
+ I(repl_sock[0]>maxfd,maxfd=repl_sock[0])
  F(ipc_nclient,FD_SET(ipc_clients[i],&r);I(ipc_clients[i]>maxfd,maxfd=ipc_clients[i]))
- ST timeval tv={0,0};// non-blocking
+ ST timeval tv={0,50000};// 50ms timeout
  I n=select(maxfd+1,&r,0,0,&tv);
  P(n<0,-1)
- P(!n,0)// nothing ready
  // Check listener for new connections
- I(FD_ISSET(ipc_listener,&r),
+ I(n>0&&FD_ISSET(ipc_listener,&r),
    I fd=ipc_accept(ipc_listener);
    I(fd>=0&&ipc_nclient<MAX_CLIENTS,ipc_clients[ipc_nclient++]=fd))
  // Check clients for incoming data
  F(ipc_nclient,
-   I(FD_ISSET(ipc_clients[i],&r),
+   I(n>0&&FD_ISSET(ipc_clients[i],&r),
      A v=ipc_recv_dispatch(ipc_clients[i]);
      I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient];i--)// connection closed
      E(mr(v))))// value handled by .m.s/.m.g
- // Check if stdin is ready
- _(FD_ISSET(0,&r)?0:1)
+ // Check if stdin data available (via repl socket)
+ _(n>0&&repl_sock[0]>=0&&FD_ISSET(repl_sock[0],&r)?0:1)
 #else
  ST pollfd pfd[2+MAX_CLIENTS];
  pfd[0].fd=0;pfd[0].events=POLLIN;// stdin
