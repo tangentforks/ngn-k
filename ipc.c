@@ -207,14 +207,14 @@ Z I writen(I fd,CO V*buf,N n){
  W(n>0,L k=sock_write(fd,(CO C*)p,n);P(k<=0,-1)p+=k;n-=k)
  _(0)}
 
-Z A k3send(I fd,A x,UC msgtype){
+Z A k3send(I fd,A x,UC msgtype)_(
  A msg=k3msg(x,msgtype);
  I r=writen(fd,_V(msg),_n(msg));
  mr(msg);
  P(r<0,eo0())
- au;}
+ au)
 
-Z A k3recv(I fd){
+Z A k3recv(I fd)_(
  UC hdr[HDRSZ];
  P(readn(fd,hdr,HDRSZ)<0,eo0())
  HDRLEN msgLen=*(HDRLEN*)(hdr+HDRLENOFF);
@@ -223,7 +223,7 @@ Z A k3recv(I fd){
  MC(_V(buf),hdr,HDRSZ);
  P(readn(fd,_C(buf)+HDRSZ,msgLen)<0,mr(buf);eo0())
  _n(buf)=HDRSZ+msgLen;
- k3parse(buf,0);}
+ k3parse(buf,0))
 
 // === Connection Table ===
 // Maps (host,port) pairs to socket file descriptors
@@ -235,10 +235,7 @@ Z I ipc_nconn=0;
 // Find or create connection for host:port
 // Returns fd or -1 on error
 Z I ipc_connect(U host,UH port){
- // Look for existing connection
- F(ipc_nconn,I(ipc_conns[i].host==host&&ipc_conns[i].port==port,return ipc_conns[i].fd))
- // Create new connection
- P(ipc_nconn>=MAX_CONNS,-1)
+ // Create new connection (no caching for now)
  wsa_init();
  I fd=socket(AF_INET,SOCK_STREAM,0);
 #ifdef _WIN32
@@ -258,11 +255,6 @@ Z I ipc_connect(U host,UH port){
  a.sin_port=htons(port);
  I(connect(fd,(ST sockaddr*)&a,sizeof(a))<0,sock_close(fd);return -1)
 #endif
- // Add to table
- ipc_conns[ipc_nconn].host=host;
- ipc_conns[ipc_nconn].port=port;
- ipc_conns[ipc_nconn].fd=fd;
- ipc_nconn++;
  _(fd)}
 
 // Close connection and remove from table
@@ -295,16 +287,18 @@ A2(v3c,
  I(xtz,I fd=gl(x);return k3send(fd,y,MSG_ASYNC))
  // List x: (host;port)
  P(!xtA||xn!=2,mr(y);et(x))
- A h0=xx,p0=xy;
+ A h0=xx,p0=xy;  // get refs (don't modify refcounts - elements are owned by list)
  P(!_tz(p0),mr(y);et(x))
  U host=ipc_addr(h0);
- P(!host&&_n(h0),mr(x);mr(y);ed0())// invalid host
+ P(!host&&_N(h0),mr(y);ed(x))// invalid host
  I(!host,host=0x0100007f)// default localhost
- UH port=gl(p0);
- mr(x);
+ UH port=gl_(p0);  // get value WITHOUT freeing (gl_ vs gl)
  I fd=ipc_connect(host,port);
- P(fd<0,mr(y);eo0())
- k3send(fd,y,MSG_ASYNC))
+ P(fd<0,eo0())
+ A r=k3send(fd,y,MSG_ASYNC);
+ sock_close(fd);
+ r)
+ // NOTE: x is NOT freed here - ngn/k evaluator handles argument cleanup
 
 // x 4: y - sync send/receive (or deserialize if x=`)
 // x can be:
@@ -318,20 +312,20 @@ A2(v4c,
  I(xtz,I fd=gl(x);mr(y);return k3recv(fd))
  // List x: (host;port)
  P(!xtA||xn!=2,mr(y);et(x))
- A h0=xx,p0=xy;
+ A h0=xx,p0=xy;  // get refs (don't modify refcounts - elements are owned by list)
  P(!_tz(p0),mr(y);et(x))
  U host=ipc_addr(h0);
- P(!host&&_n(h0),mr(x);mr(y);ed0())// invalid host
+ P(!host&&_N(h0),mr(y);ed(x))// invalid host
  I(!host,host=0x0100007f)// default localhost
- UH port=gl(p0);
- mr(x);
+ UH port=gl_(p0);  // get value WITHOUT freeing (gl_ vs gl)
  I fd=ipc_connect(host,port);
- P(fd<0,mr(y);eo0())
+ P(fd<0,eo0())
  A msg=k3msg(y,MSG_SYNC);
  I r=writen(fd,_V(msg),_n(msg));
  mr(msg);
  P(r<0,eo0())
  k3recv(fd))
+ // NOTE: x is NOT freed here - ngn/k evaluator handles argument cleanup
 
 // === Server functionality ===
 
