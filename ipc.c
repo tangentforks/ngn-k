@@ -405,9 +405,10 @@ Z A ipc_recv_dispatch(I fd){
  I(msgtype==MSG_RESP,return val)// response - just return value
  // Look up handler
  A h=ipc_handler(msgtype==MSG_ASYNC?'s':'g');
- I(!h,return val)// no handler - return value directly
- // Call handler with value
- A r=dot(h,enl(val));
+ A r;
+ I(h,r=dot(h,enl(val)))// call handler with value
+ J(_t(val)==tC,val=str0(val);r=evs(_V(val),0);mr(val))// string: evaluate as K code
+ E(mr(val);r=au)// anything else: return null
  // For sync messages, send response
  I(msgtype==MSG_SYNC,k3send(fd,r,MSG_RESP);mr(r);return au)
  _(r)}
