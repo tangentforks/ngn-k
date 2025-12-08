@@ -2,11 +2,26 @@
 // Kona-compatible IPC - Inter-Process Communication protocol
 // Wire format compatible with Kona (https://github.com/kevinlawler/kona)
 //
-// Usage:
+// Client usage:
 //   fd:<"host:port"   / open connection
 //   fd 3: value       / serialize and send (async)
 //   fd 4: "expr"      / serialize and send, wait for response (sync)
 //   >fd               / close connection
+//
+// Server usage (command line):
+//   ./k -l 1234        / start listening on port 1234
+//   .m.s:{[x] ...}     / define async message handler
+//   .m.g:{[x] ...}     / define sync handler (return value sent back)
+//
+// Server usage (explicit API):
+//   listener: 0 5: port / listen on port, returns listener fd
+//   client: listener 5: timeout / accept connection (ms timeout, -1=block)
+//   client 6: timeout / poll and receive with handler dispatch
+//   >listener         / close listener
+//
+// Message handlers (define in .m namespace):
+//   .m.s:{[x] ...}    / async message handler (3: messages)
+//   .m.g:{[x] ...}    / sync message handler (4: messages, return value sent back)
 //
 // For in-memory serialization:
 //   (3:)[0;value]     / serialize to bytes
@@ -14,14 +29,20 @@
 
 #ifdef _WIN32
  #include<winsock2.h>
+ #include<ws2tcpip.h>
  #define sock_read(fd,buf,n) recv(fd,buf,n,0)
  #define sock_write(fd,buf,n) send(fd,buf,n,0)
+ #define sock_close closesocket
 #else
  #include<unistd.h>
  #include<sys/socket.h>
+ #include<netinet/in.h>
+ #include<netinet/tcp.h>
  #include<errno.h>
+ #include<poll.h>
  #define sock_read(fd,buf,n) read(fd,buf,n)
  #define sock_write(fd,buf,n) write(fd,buf,n)
+ #define sock_close close
 #endif
 
 // Kona message types: {0,1,2} -> {async 3:, sync 4:, response}
@@ -221,3 +242,159 @@ A2(v4c,
  P(!fd,k3parse(y,0))
  mr(y);
  k3recv(fd))
+
+// === Server functionality ===
+
+// Create listening socket bound to port
+Z I ipc_listen(I port){
+ I fd=socket(AF_INET,SOCK_STREAM,0);
+ P(fd<0,-1)
+ I yes=1;setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&yes,sizeof(yes));
+ ST sockaddr_in a;MS(&a,0,sizeof(a));
+ a.sin_family=AF_INET;
+ a.sin_addr.s_addr=INADDR_ANY;
+ a.sin_port=htons(port);
+ I(bind(fd,(ST sockaddr*)&a,sizeof(a))<0,sock_close(fd);return -1)
+ I(listen(fd,16)<0,sock_close(fd);return -1)
+ _(fd)}
+
+// Accept connection on listening socket
+Z I ipc_accept(I listener){
+ ST sockaddr_in a;
+ socklen_t len=sizeof(a);
+ I fd=accept(listener,(ST sockaddr*)&a,&len);
+ P(fd<0,-1)
+ I yes=1;setsockopt(fd,IPPROTO_TCP,TCP_NODELAY,&yes,sizeof(yes));
+ _(fd)}
+
+// Poll fd for readability, returns 1 if ready, 0 if timeout, -1 on error
+Z I ipc_poll(I fd,I timeout_ms){
+#ifdef _WIN32
+ fd_set r;FD_ZERO(&r);FD_SET(fd,&r);
+ ST timeval tv;tv.tv_sec=timeout_ms/1000;tv.tv_usec=(timeout_ms%1000)*1000;
+ _(select(fd+1,&r,0,0,&tv))
+#else
+ ST pollfd pfd;pfd.fd=fd;pfd.events=POLLIN;
+ _(poll(&pfd,1,timeout_ms))
+#endif
+}
+
+// Look up handler in .m namespace using gg() (get global)
+// name: 's' for .m.s (async), 'g' for .m.g (sync)
+// Returns handler function or 0 if not defined
+Z A ipc_handler(C name){
+ // Build symbol list `m`<name> for .m.<name>
+ C nm[2]={name,0};
+ A path=aS(2);_I(path)[0]=us("m");_I(path)[1]=us(nm);
+ A h=gg(path);// gg() consumes path, returns 0 if not found
+ _(h)}
+
+// Receive and dispatch message with handler callbacks
+Z A ipc_recv_dispatch(I fd){
+ UC hdr[HDRSZ];
+ P(readn(fd,hdr,HDRSZ)<0,eo0())
+ UC msgtype=hdr[HDRMSGOFF];
+ HDRLEN msgLen=*(HDRLEN*)(hdr+HDRLENOFF);
+ P(msgLen<0||msgLen>100000000,el0())
+ A buf=aC(HDRSZ+msgLen);
+ MC(_V(buf),hdr,HDRSZ);
+ P(readn(fd,_C(buf)+HDRSZ,msgLen)<0,mr(buf);eo0())
+ _n(buf)=HDRSZ+msgLen;
+ A val=k3parse(buf,0);
+ P(!val,val)
+ // Dispatch based on message type
+ I(msgtype==MSG_RESP,return val)// response - just return value
+ // Look up handler
+ A h=ipc_handler(msgtype==MSG_ASYNC?'s':'g');
+ I(!h,return val)// no handler - return value directly
+ // Call handler with value
+ A r=dot(h,enl(val));
+ // For sync messages, send response
+ I(msgtype==MSG_SYNC,k3send(fd,r,MSG_RESP);mr(r);return au)
+ _(r)}
+
+// x 5: y - listen or accept (explicit API, mainly for testing)
+// 0 5: port     - listen on port, return listener fd
+// listener 5: timeout - accept connection (timeout in ms, 0=non-blocking, -1=blocking)
+A2(v5c,
+ P(!xtz||!ytz,mr(y);et(x))
+ I left=gl(x),right=gl(y);
+ // Mode 0: listen on port
+ I(!left,P(right<0||right>65535,ed0())I fd=ipc_listen(right);P(fd<0,eo0())return ai(fd))
+ // Mode fd: accept connection with timeout
+ I r=ipc_poll(left,right);
+ P(r<0,eo0())
+ P(!r,_R(cn[ti]))// timeout - return null
+ I fd=ipc_accept(left);
+ P(fd<0,eo0())
+ ai(fd))
+
+// fd 6: timeout - poll and receive message with handler dispatch
+A2(v6c,
+ P(!xtz||!ytz,mr(y);et(x))
+ I fd=gl(x),timeout=gl(y);
+ I r=ipc_poll(fd,timeout);
+ P(r<0,eo0())
+ P(!r,_R(cn[ti]))// timeout - return null
+ ipc_recv_dispatch(fd))
+
+// === Server mode (for -l command line option) ===
+
+#define MAX_CLIENTS 64
+Z I ipc_listener=-1;           // listener socket fd
+Z I ipc_clients[MAX_CLIENTS];  // client socket fds
+Z I ipc_nclient=0;             // number of active clients
+
+// Start listening on port (called from main with -l option)
+I ipc_start(I port){
+ I fd=ipc_listen(port);
+ P(fd<0,-1)
+ ipc_listener=fd;
+ _(0)}
+
+// Called from REPL to check for IPC activity
+// Returns: 0=stdin has data, 1=IPC handled (continue), -1=error
+I ipc_check(){
+ P(ipc_listener<0,0)// not in server mode
+#ifdef _WIN32
+ fd_set r;FD_ZERO(&r);FD_SET(0,&r);FD_SET(ipc_listener,&r);
+ I maxfd=ipc_listener;
+ F(ipc_nclient,FD_SET(ipc_clients[i],&r);I(ipc_clients[i]>maxfd,maxfd=ipc_clients[i]))
+ ST timeval tv={0,0};// non-blocking
+ I n=select(maxfd+1,&r,0,0,&tv);
+ P(n<0,-1)
+ P(!n,0)// nothing ready
+ // Check listener for new connections
+ I(FD_ISSET(ipc_listener,&r),
+   I fd=ipc_accept(ipc_listener);
+   I(fd>=0&&ipc_nclient<MAX_CLIENTS,ipc_clients[ipc_nclient++]=fd))
+ // Check clients for incoming data
+ F(ipc_nclient,
+   I(FD_ISSET(ipc_clients[i],&r),
+     A v=ipc_recv_dispatch(ipc_clients[i]);
+     I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient];i--)// connection closed
+     E(mr(v))))// value handled by .m.s/.m.g
+ // Check if stdin is ready
+ _(FD_ISSET(0,&r)?0:1)
+#else
+ ST pollfd pfd[2+MAX_CLIENTS];
+ pfd[0].fd=0;pfd[0].events=POLLIN;// stdin
+ pfd[1].fd=ipc_listener;pfd[1].events=POLLIN;
+ F(ipc_nclient,pfd[2+i].fd=ipc_clients[i];pfd[2+i].events=POLLIN)
+ I n=poll(pfd,2+ipc_nclient,0);// non-blocking
+ P(n<0,-1)
+ P(!n,0)// nothing ready
+ // Check listener for new connections
+ I(pfd[1].revents&POLLIN,
+   I fd=ipc_accept(ipc_listener);
+   I(fd>=0&&ipc_nclient<MAX_CLIENTS,ipc_clients[ipc_nclient++]=fd))
+ // Check clients for incoming data
+ F(ipc_nclient,
+   I(pfd[2+i].revents&(POLLIN|POLLHUP|POLLERR),
+     A v=ipc_recv_dispatch(ipc_clients[i]);
+     I(!v,sock_close(ipc_clients[i]);ipc_clients[i]=ipc_clients[--ipc_nclient];i--)
+     E(mr(v))))
+ // Return whether stdin is ready
+ _(pfd[0].revents&POLLIN?0:1)
+#endif
+}
