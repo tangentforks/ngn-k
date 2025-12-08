@@ -1,0 +1,57 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [windows]
+  pull_request:
+    branches: [windows]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-gcc make
+
+      - name: Build k.exe
+        shell: msys2 {0}
+        run: |
+          # Create GCC-compatible opts file (removes clang-specific warnings)
+          cat > opts.gcc <<'EOF'
+          -fsigned-char
+          -fno-math-errno
+          -fno-signed-zeros
+          -fno-stack-protector
+          -fomit-frame-pointer
+          -Werror
+          -Wfatal-errors
+          -Wno-pointer-sign
+          -Wno-pointer-to-int-cast
+          -Wno-parentheses
+          -Wno-unused-result
+          EOF
+
+          # Build with GCC using compatible options
+          # Note: -march=native replaced with -march=x86-64 for CI reproducibility
+          make CC=gcc OPTS=@opts.gcc kw O='-O3 -march=x86-64'
+
+      - name: Verify build
+        shell: msys2 {0}
+        run: |
+          ls -la k.exe
+          file k.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: k-windows-x64
+          path: k.exe
