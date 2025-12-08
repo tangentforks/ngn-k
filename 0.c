@@ -28,10 +28,18 @@ I pg=4096;//pagesize
 //__builtin_ia32_ldmxcsr(__builtin_ia32_stmxcsr()|1<<6|1<<15); //daz,ftz
 #ifndef shared
 #ifndef ldstatic
+ // Parse -l PORT for IPC server mode
+ Z I parse_l(I n,S*a,I*port){*port=-1;F(n-1,I(!strcmp(a[i],"-l")&&i+1<n,S p=a[i+1];*port=pu(&p);return i))return -1;}
  #ifdef _WIN32
- I main(I n,S*a)_(_setmode(1,_O_BINARY);_setmode(2,_O_BINARY);kinit();kargs(n,a);I r=0;I(n<2,repl())J(!bsl(a[1]),r=1;epr(0))Q(bsm(""));r)
+ I main(I n,S*a)_(_setmode(1,_O_BINARY);_setmode(2,_O_BINARY);kinit();
+   I port,li=parse_l(n,a,&port);I(port>=0,P(ipc_start(port)<0,write(2,"'listen\n",8);1))
+   I(li>=0,F(n-li-2,a[li+i]=a[li+i+2])n-=2)// remove -l PORT from args
+   kargs(n,a);I r=0;I(n<2,repl())J(!bsl(a[1]),r=1;epr(0))Q(bsm(""));r)
  #else
- I main(I n,S*a)_(kinit();kargs(n,a);I r=0;I(n<2,repl())J(!bsl(a[1]),r=1;epr(0))Q(bsm(""));r)
+ I main(I n,S*a)_(kinit();
+   I port,li=parse_l(n,a,&port);I(port>=0,P(ipc_start(port)<0,write(2,"'listen\n",8);1))
+   I(li>=0,F(n-li-2,a[li+i]=a[li+i+2])n-=2)// remove -l PORT from args
+   kargs(n,a);I r=0;I(n<2,repl())J(!bsl(a[1]),r=1;epr(0))Q(bsm(""));r)
  #endif
 #endif
 #endif
