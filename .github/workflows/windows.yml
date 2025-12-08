@@ -2,9 +2,9 @@ name: Windows Build
 
 on:
   push:
-    branches: [master, main]
+    branches: [windows]
   pull_request:
-    branches: [master, main]
+    branches: [windows]
   workflow_dispatch:
 
 jobs:
